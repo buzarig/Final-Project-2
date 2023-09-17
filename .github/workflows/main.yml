@@ -19,8 +19,12 @@ jobs:
         with:
           node-version: 16
 
+      # Переход в папку "client"
+      - name: Change to client directory
+        run: cd client
+
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: npm install
 
       - name: Build project
         run: npm run build
