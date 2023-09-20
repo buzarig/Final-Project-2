@@ -1,4 +1,8 @@
+@import "fonts";
 @import "reset";
 @import "variables";
 @import "mixin";
 
+body {
+  background-color: rgb(255, 255, 255);
+}

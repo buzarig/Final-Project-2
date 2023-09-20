@@ -1,4 +1,50 @@
-.header{
-  color: white;
-  background: green;
+.header {
+  width: 100%;
+  padding: 64px 0 16px 0;
+  display: flex;
+  justify-content: center;
+
+  .header-wrapper {
+    width: 1248px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo {
+    img {
+      width: 158px;
+      flex-shrink: 0;
+    }
+  }
+  .nav {
+    display: flex;
+    .links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      li {
+        padding-right: 48px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 27px;
+        &:last-child {
+          border-right: 1px solid rgba(112, 112, 112, 1);
+          height: 18px;
+          padding-right: 0;
+        }
+      }
+    }
+    .personal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      li {
+        img {
+          width: 20px;
+          margin-left: 48px;
+        }
+      }
+    }
+  }
 }
