@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<Outlet />}>
           <Route path="/" element={<Home />} />
           <Route path="catalog" element={<Catalog />}>
-            <Route path="catalog/:productId" element={<Product />} />
+            <Route path=":productId" element={<Product />} />
           </Route>
           <Route path="contacts" element={<Contacts />} />
           <Route path="blog" element={<Blog />} />
@@ -39,7 +39,7 @@ function App() {
           <Route path="order" element={<Order />} />
           <Route path="order-confirmation" element={<OrderConfirmation />} />
 
-          <Route path="myAccount" element={<MyAccount />} />
+          <Route path="account" element={<MyAccount />} />
           <Route path="resetPassword" element={<ResetPassword />} />
           <Route path="thanks" element={<Thanks />} />
           <Route path="order" element={<Order />} />
