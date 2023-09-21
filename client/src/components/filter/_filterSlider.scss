@@ -1,0 +1,22 @@
+.filter {
+    &__wrapper {
+        height: 130px;
+        border-bottom: 1px solid #b3b9b857;
+        margin-bottom: 18px;
+    }
+    &__name, &__hyphen{
+        font-family: Mont;
+        font-size: 19px;
+        font-weight: 600;
+        font-style: normal;
+        margin-bottom: 15px;
+    }
+    &__hyphen{
+        padding-top: 4px;
+    }
+    &__wrapper-inputs {
+        width: inherit;
+        display: flex;
+        justify-content: space-between;
+    }
+}
