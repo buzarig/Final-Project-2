@@ -1,0 +1,42 @@
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.gold-section {
+  background-image: url("../../img/Img 01.jpg");
+  background-repeat: no-repeat;
+  width: 1248px;
+  height: 646px;
+  object-fit: cover;
+  padding: 20px;
+  margin: 10px;
+  min-width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gold-section h2 {
+  font-size: 18px;
+}
+
+.gold-section p {
+  font-size: 14px;
+}
+
+.gold-section .btn-product {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.gold-section .btn-product:hover {
+  background-color: #555;
+}
+
