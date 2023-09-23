@@ -1,11 +1,15 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import CarouselComponent from "../components/carousel/Carousel";
 
 function Home() {
   return (
     <div className="container">
+        <h1>Title</h1>
       <main>
-        <CarouselComponent />
+        <CarouselComponent/>
+        <CarouselComponent/>
+        <CarouselComponent/>
+        <CarouselComponent/>
       </main>
     </div>
   );
