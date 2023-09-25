@@ -29,7 +29,7 @@
     background-color: aquamarine;
     &__wrapper {
         width: 1248px;
-        min-height: 50vh;
+        height: min-content;
        display: flex;
        justify-content: space-between;
     }
