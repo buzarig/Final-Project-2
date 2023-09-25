@@ -1,145 +1,87 @@
 import * as React from 'react';
-import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
-import { createTheme, useTheme, ThemeProvider } from '@mui/material/styles';
+import Autocomplete from '@mui/material/Autocomplete';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-// Theme.ts
-const customTheme = (outerTheme) =>
-  createTheme({
-    palette: {
-      mode: outerTheme.palette.mode,
-    },
-    components: {
-      MuiAutocomplete: {
-        defaultProps: {
-          renderOption: (props, option, state, ownerState) => (
-            <Box
-              sx={{
-                borderRadius: '8px',
-                margin: '5px',
-                [`&.${autocompleteClasses.option}`]: {
-                  padding: '8px',
-                },
-              }}
-              component="li"
-              {...props}
-            >
-              {ownerState.getOptionLabel(option)}
-            </Box>
-          ),
-        },
-      },
-    },
-  });
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export default function GloballyCustomizedOptions() {
-  // useTheme is used to determine the dark or light mode of the docs to maintain the Autocomplete component default styles.
-  const outerTheme = useTheme();
-
-  return (
-    <ThemeProvider theme={customTheme(outerTheme)}>
-      <Stack spacing={5} sx={{ width: 300 }}>
-        <CountrySelect />
-      </Stack>
-    </ThemeProvider>
-  );
-}
-
-function CountrySelect() {
+export default function CheckboxesTags({nameCheckboxes}) {
   return (
     <Autocomplete
-      id="country-customized-option-demo"
-      options={countries}
+      multiple
+      limitTags={3}
+      id="checkboxes-tags-demo"
+      options={top100Films}
       disableCloseOnSelect
-      getOptionLabel={(option) =>
-        `${option.label} (${option.code}) +${option.phone}`
-      }
-      renderInput={(params) => <TextField {...params} label="Choose a country" />}
+      getOptionLabel={(option) => option.title}
+      renderOption={(props, option, { selected }) => (
+        <li {...props}>
+          <Checkbox
+            icon={icon}
+            checkedIcon={checkedIcon}
+            style={{ marginRight: 8 }}
+            checked={selected}
+          />
+          {option.title}
+        </li>
+      )}
+      renderInput={(params) => (
+        <TextField {...params} label={nameCheckboxes} placeholder="Favorites" />
+      )}
     />
   );
 }
 
-// From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
-const countries = [
-  { code: 'AD', label: 'Andorra', phone: '376' },
+// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+const top100Films = [
+  { title: 'The Shawshank Redemption', year: 1994 },
+  { title: 'The Godfather', year: 1972 },
+  { title: 'The Godfather: Part II', year: 1974 },
+  { title: 'The Dark Knight', year: 2008 },
+  { title: '12 Angry Men', year: 1957 },
+  { title: "Schindler's List", year: 1993 },
+  { title: 'Pulp Fiction', year: 1994 },
   {
-    code: 'AE',
-    label: 'United Arab Emirates',
-    phone: '971',
+    title: 'The Lord of the Rings: The Return of the King',
+    year: 2003,
   },
-  { code: 'AF', label: 'Afghanistan', phone: '93' },
+  { title: 'The Good, the Bad and the Ugly', year: 1966 },
+  { title: 'Fight Club', year: 1999 },
   {
-    code: 'AG',
-    label: 'Antigua and Barbuda',
-    phone: '1-268',
-  },
-  { code: 'AI', label: 'Anguilla', phone: '1-264' },
-  { code: 'AL', label: 'Albania', phone: '355' },
-  { code: 'AM', label: 'Armenia', phone: '374' },
-  { code: 'AO', label: 'Angola', phone: '244' },
-  { code: 'AQ', label: 'Antarctica', phone: '672' },
-  { code: 'AR', label: 'Argentina', phone: '54' },
-  { code: 'AS', label: 'American Samoa', phone: '1-684' },
-  { code: 'AT', label: 'Austria', phone: '43' },
-  {
-    code: 'AU',
-    label: 'Australia',
-    phone: '61',
-    suggested: true,
-  },
-  { code: 'AW', label: 'Aruba', phone: '297' },
-  { code: 'AX', label: 'Alland Islands', phone: '358' },
-  { code: 'AZ', label: 'Azerbaijan', phone: '994' },
-  {
-    code: 'BA',
-    label: 'Bosnia and Herzegovina',
-    phone: '387',
-  },
-  { code: 'BB', label: 'Barbados', phone: '1-246' },
-  { code: 'BD', label: 'Bangladesh', phone: '880' },
-  { code: 'BE', label: 'Belgium', phone: '32' },
-  { code: 'BF', label: 'Burkina Faso', phone: '226' },
-  { code: 'BG', label: 'Bulgaria', phone: '359' },
-  { code: 'BH', label: 'Bahrain', phone: '973' },
-  { code: 'BI', label: 'Burundi', phone: '257' },
-  { code: 'BJ', label: 'Benin', phone: '229' },
-  { code: 'BL', label: 'Saint Barthelemy', phone: '590' },
-  { code: 'BM', label: 'Bermuda', phone: '1-441' },
-  { code: 'BN', label: 'Brunei Darussalam', phone: '673' },
-  { code: 'BO', label: 'Bolivia', phone: '591' },
-  { code: 'BR', label: 'Brazil', phone: '55' },
-  { code: 'BS', label: 'Bahamas', phone: '1-242' },
-  { code: 'BT', label: 'Bhutan', phone: '975' },
-  { code: 'BV', label: 'Bouvet Island', phone: '47' },
-  { code: 'BW', label: 'Botswana', phone: '267' },
-  { code: 'BY', label: 'Belarus', phone: '375' },
-  { code: 'BZ', label: 'Belize', phone: '501' },
-  {
-    code: 'CA',
-    label: 'Canada',
-    phone: '1',
-    suggested: true,
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
+    year: 2001,
   },
   {
-    code: 'CC',
-    label: 'Cocos (Keeling) Islands',
-    phone: '61',
+    title: 'Star Wars: Episode V - The Empire Strikes Back',
+    year: 1980,
   },
+  { title: 'Forrest Gump', year: 1994 },
+  { title: 'Inception', year: 2010 },
   {
-    code: 'CD',
-    label: 'Congo, Democratic Republic of the',
-    phone: '243',
+    title: 'The Lord of the Rings: The Two Towers',
+    year: 2002,
   },
+  { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
+  { title: 'Goodfellas', year: 1990 },
+  { title: 'The Matrix', year: 1999 },
+  { title: 'Seven Samurai', year: 1954 },
   {
-    code: 'CF',
-    label: 'Central African Republic',
-    phone: '236',
+    title: 'Star Wars: Episode IV - A New Hope',
+    year: 1977,
   },
-  {
-    code: 'CG',
-    label: 'Congo, Republic of the',
-    phone: '242',
-  }
+  { title: 'City of God', year: 2002 },
+  { title: 'Se7en', year: 1995 },
+  { title: 'The Silence of the Lambs', year: 1991 },
+  { title: "It's a Wonderful Life", year: 1946 },
+  { title: 'Life Is Beautiful', year: 1997 },
+  { title: 'The Usual Suspects', year: 1995 },
+  { title: 'Léon: The Professional', year: 1994 },
+  { title: 'Spirited Away', year: 2001 },
+  { title: 'Saving Private Ryan', year: 1998 },
+  { title: 'Once Upon a Time in the West', year: 1968 },
+  { title: 'American History X', year: 1998 },
+  { title: 'Interstellar', year: 2014 },
 ];

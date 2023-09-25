@@ -1,23 +1,17 @@
 // eslint-disable react/destructuring-assignment
 
-import React, { useState, useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import { activeFilter } from "../../redux/actions/filter";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
-import MuiInput from "@mui/material/Input";
-import "./_filterSlider.scss";
 
 const PriceSlider = styled(Slider)(({ theme }) => ({
-  color: "#0B3E36",
-  height: 15,
-  padding: "13px 0",
+  color: "#000",
   "& .MuiSlider-thumb": {
-    height: 27,
-    width: 27,
-    backgroundColor: "#fff",
+    height: 12,
+    width: 4,
+    backgroundColor: "#000",
     border: "1px solid currentColor",
     "&:hover": {
       boxShadow: "0 0 0 8px rgba(58, 133, 137, 0.16)"
@@ -31,57 +25,17 @@ const PriceSlider = styled(Slider)(({ theme }) => ({
     }
   },
   "& .MuiSlider-track": {
-    height: 3
+    height: 2
   },
   "& .MuiSlider-rail": {
-    color: theme.palette.mode === "dark" ? "#bfbfbf" : "#d8d8d8",
+    color: theme.palette.mode === "dark" ? "#000" : "#d8d8d8",
     opacity: theme.palette.mode === "dark" ? undefined : 1,
-    height: 3
+    height: 2
   }
 }));
 
-const Input = styled(MuiInput)`
-  font-family: Mont;
-  font-size: 19px;
-  font-weight: 600;
-  font-style: normal;
-  margin-bottom: 15px;
-  padding-left: 10px;
-  padding-top: 4px;
-  width: 76px;
-  height: 30px;
-  border-radius: 5px;
-  border: 1px solid #00000061;
-`;
-
-const FilterSlider = ({ filterName }) => {
-  const { sort, grade, roasting, brand, type } = useSelector(
-    (state) => state.filter
-  );
-  const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useDispatch();
-  const minPriceQuery = searchParams.get("minPrice") || 49.99;
-  const maxPriceQuery = searchParams.get("maxPrice") || 479.99;
-  const [value, setValue] = useState([minPriceQuery, maxPriceQuery]);
-  
-  const changePriceQuery = useMemo(()=>{
-    return setValue([minPriceQuery, maxPriceQuery])
-  }, [minPriceQuery, maxPriceQuery] )
-
-  useEffect(() => {
-    dispatch(
-      activeFilter(
-        sort,
-        value[0],
-        value[1],
-        grade,
-        roasting,
-        brand,
-        type
-      )
-    );
-    console.log(searchParams);
-  }, [value, changePriceQuery]);
+const FilterSlider = () => {
+  const [value, setValue] = useState([199.99, 479.99]);
 
   const handleChange = (event, newValue) => {
     let minValue = value[0] !== newValue[0] ? newValue[0] - 0.01 : newValue[0];
@@ -89,27 +43,11 @@ const FilterSlider = ({ filterName }) => {
     maxValue === 479.98 && (maxValue = maxValue + 0.01);
     minValue < 49.99 && (minValue = 49.99);
     setValue([minValue, maxValue]);
-    setSearchParams({ minPrice: minValue, maxPrice: maxValue });
-  };
-
-  const handleInputChangeMin = (event) => {
-    setValue([
-      event.target.value === "" ? "" : Number(event.target.value),
-      value[1]
-    ]);
-  };
-
-  const handleInputChangeMax = (event) => {
-    setValue([
-      value[0],
-      event.target.value === "" ? "" : Number(event.target.value)
-    ]);
   };
 
   return (
     <div className="filter__wrapper">
-      <p className="filter__name">{filterName}</p>
-      <Box sx={{ width: 200 }}>
+      <Box sx={{ width: 262, marginTop: 5 }}>
         <PriceSlider
           getAriaLabel={() => "Temperature range"}
           value={value}
@@ -119,34 +57,10 @@ const FilterSlider = ({ filterName }) => {
           onChangeCommitted={handleChange}
           valueLabelDisplay="auto"
         />
+        <Typography id="non-linear-slider" style={{color:"#707070"}} gutterBottom>
+          Price: ${value[0]} - $ {value[1]}
+        </Typography>
       </Box>
-      <div className="filter__wrapper-inputs">
-        <Input
-          value={value[0]}
-          size="small"
-          onChange={handleInputChangeMin}
-          inputProps={{
-            step: 10,
-            min: 49.99,
-            max: 479.99,
-            type: "number",
-            "aria-labelledby": "input-slider"
-          }}
-        />
-        <span className="filter__hyphen">-</span>
-        <Input
-          value={value[1]}
-          size="small"
-          onChange={handleInputChangeMax}
-          inputProps={{
-            step: 10,
-            min: 49.99,
-            max: 479.99,
-            type: "number",
-            "aria-labelledby": "input-slider"
-          }}
-        />
-      </div>
     </div>
   );
 };

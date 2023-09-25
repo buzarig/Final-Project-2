@@ -9,8 +9,6 @@
     "lint": "eslint src --ext js,jsx,json --report-unused-disable-directives --max-warnings 0 --fix"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.8",
-    "@emotion/styled": "^11.10.8",
     "@mui/material": "^5.12.3",
     "@vitejs/plugin-react": "^4.0.0",
     "axios": "^1.4.0",
