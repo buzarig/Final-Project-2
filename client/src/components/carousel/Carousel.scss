@@ -1,42 +1,76 @@
+.carousel-component {
+  position: relative;
+
+  .custom-dot-list-style {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+     .react-multi-carousel-dot button {
+       width: 10px;
+       height: 10px;
+       margin: 0 8px;
+       background-color: #fff;
+       border: 1px #fff solid;
+       border-radius: 50%;
+      cursor: pointer;
+     }
+
+   .react-multi-carousel-dot--active button{
+    width: 16px;
+    height: 16px;
+    background-color: #ccc;
+    border: 1px solid #fff;
+    }
+  }
+}
+
 .carousel {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   width: 100%;
   max-width: 100%;
-}
-
-.gold-section {
   background-image: url("../../assets/images/Img 01.jpg");
   background-repeat: no-repeat;
   width: 1248px;
   height: 646px;
   object-fit: cover;
   padding: 20px;
-  margin: 10px;
+  margin: 0 auto;
   min-width: 250px;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+  font-family: "DS Sant", sans-serif;
 
-.gold-section h2 {
-  font-size: 18px;
-}
+  .flex-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
 
-.gold-section p {
-  font-size: 14px;
-}
+      .product-title {
+          font-size: 33px;
+          color: #fff;
+          margin-bottom: 16px;
+      }
 
-.gold-section .btn-product {
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
+      .product-price {
+          font-size: 26px;
+          color: #fff;
+          margin-bottom: 48px;
+      }
 
-.gold-section .btn-product:hover {
-  background-color: #555;
+      .btn-product {
+      color: #fff;
+      background-color: #ccc;
+      border: 2px #fff solid;
+      border-radius: 16px;
+      padding: 15px 50px;
+    }
+  }
 }
-

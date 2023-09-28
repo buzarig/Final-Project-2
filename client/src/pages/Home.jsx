@@ -1,16 +1,19 @@
 import React from "react";
 import CarouselComponent from "../components/carousel/Carousel";
+import "../styles/_home.scss";
 
 function Home() {
   return (
     <div className="container">
-        <h1>Title</h1>
-      <main>
-        <CarouselComponent/>
-        <CarouselComponent/>
-        <CarouselComponent/>
-        <CarouselComponent/>
+      <main className="home">
+        <CarouselComponent />
       </main>
+      <div className="flex-shop">
+        <h2 className="title-shop">Shop The Latest</h2>
+        <button type="button" className="btn-link">
+          View all
+        </button>
+      </div>
     </div>
   );
 }
