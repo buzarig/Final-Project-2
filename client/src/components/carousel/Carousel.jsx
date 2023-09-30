@@ -6,7 +6,11 @@ import "./Carousel.scss";
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000, min: 1620 },
+    items: 1
+  },
+  desktopMedium: {
+    breakpoint: { max: 1620, min: 1024 },
     items: 1
   },
   tablet: {
