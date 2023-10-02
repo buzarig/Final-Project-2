@@ -20,5 +20,5 @@ export default defineConfig({
     react(),
     { ...eslint({ failOnWarning: false, failOnError: false }) }
   ], // vite plugins
-  base: "/final_project/" // configure path to auto-deploy process
+  base: "/" // configure path to auto-deploy process
 });

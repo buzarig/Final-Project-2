@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-// import productsReducer from "./reducers/productsReducer";
+import tokenReducer from "./token/reducers";
 
 const rootReducer = combineReducers({
-  // products: productsReducer
+  token: tokenReducer
 });
 
 export default rootReducer;

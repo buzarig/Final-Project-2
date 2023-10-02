@@ -7,6 +7,7 @@ import Footer from "../components/footer/Footer";
 function Home() {
   return (
     <div className="container">
+      home!!!!
       <Header />
       <main>
         <Outlet />

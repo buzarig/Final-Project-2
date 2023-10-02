@@ -1,0 +1,75 @@
+.wrapper_signIn {
+  margin-top: 126px;
+}
+
+.input {
+  color: var(--light-colors-dark-gray-light, #707070);
+  font-family: DM Sans, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px; /* 168.75% */
+  border-bottom: 1px solid #D8D8D8;
+  width: 100%;
+  padding-bottom: 12px;
+  padding-top: 34px;
+}
+
+.checkbox {
+  margin-top: 15px;
+  margin-bottom: 69px;
+  color: var(--light-colors-black-light, #000);
+  font-family: DM Sans, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px; /* 168.75% */
+  input {
+    margin-right: 8px;
+    width: 16px;
+    height: 17.174px;
+
+  }
+  .checkbox input:checked {
+  background-color: black; /* Чорний фон, коли вибрано */
+}
+
+
+}
+
+button {
+  height: 53px;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid var(--light-colors-white-light, #FFF);
+  background: var(--light-colors-black-light, #000);
+  color: var(--light-colors-white-light, #FFF);
+  font-family: DM Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 257px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .wrapper_signIn {
+    margin-top: 87px;
+
+    .input, .checkbox, button {
+      font-size: 12px;
+    }
+
+    .checkbox {
+      margin-bottom: 15px;
+
+      input {
+        width: 13px;
+        height: 13.136px;
+      }
+    }
+    button {
+       margin-bottom: 128px;
+    }
+  }
+}
