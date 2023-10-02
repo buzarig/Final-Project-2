@@ -99,7 +99,7 @@ function Contacts() {
                     id="message"
                     label="Message"
                     variant="standard"
-                    sx={{ gridColumn: "span 2", width: "100%" }}
+                    sx={{ gridColumn: "span 2" }}
                 />
                 <div style={buttonContainerStyle}>
                     <Button
