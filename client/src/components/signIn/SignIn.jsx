@@ -4,8 +4,9 @@ import "./SignIn.scss";
 // import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import setAuthToken from "./setAuthToken";
-import setAccessToken from "../../redux/token/action";
+import setAccessToken from "../../redux/actions/tokenActions";
 
 function SignIn() {
   const { control, handleSubmit, formState } = useForm();
@@ -114,10 +115,13 @@ function SignIn() {
             )}
           />
         </div>
-        <div>
-          <button type="submit">Sign In</button>
-        </div>
+        <button className="submit_signin" type="submit">
+          Sign In
+        </button>
       </form>
+      <Link className="reset_pass" to="/resetPassword">
+        Have you forgotten your password?
+      </Link>
     </div>
   );
 }

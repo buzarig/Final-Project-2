@@ -46,7 +46,7 @@ function Register() {
   };
 
   return (
-    <div className="wrapper_signIn">
+    <div className="wrapper_register">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <Controller
@@ -182,7 +182,9 @@ function Register() {
           {errors.password2 && <span>{errors.password2.message}</span>}
         </div>
         <div>
-          <button type="submit">Sign In</button>
+          <button className="submit_register" type="submit">
+            Sign In
+          </button>
         </div>
       </form>
     </div>

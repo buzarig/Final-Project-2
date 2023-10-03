@@ -1,8 +1,8 @@
-export const SET_ACCESS_TOKEN = "SET_ACCESS_TOKEN";
+import types from "../types";
 
 export default function setAccessToken(token) {
   return {
-    type: SET_ACCESS_TOKEN,
+    type: types.SET_ACCESS_TOKEN,
     payload: token
   };
 }

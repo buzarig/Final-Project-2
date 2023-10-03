@@ -1,4 +1,4 @@
-import { SET_ACCESS_TOKEN } from "./action";
+import types from "../types";
 
 const initialState = {
   accessToken: null
@@ -6,7 +6,7 @@ const initialState = {
 
 const tokenReducer = (state = initialState, { type, payload } = {}) => {
   switch (type) {
-    case SET_ACCESS_TOKEN:
+    case types.SET_ACCESS_TOKEN:
       return {
         ...state,
         accessToken: payload

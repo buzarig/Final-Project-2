@@ -1,4 +1,4 @@
-.wrapper_signIn {
+.wrapper_register {
   margin-top: 126px;
 }
 
@@ -15,30 +15,7 @@
   padding-top: 34px;
 }
 
-.checkbox {
-  margin-top: 15px;
-  margin-bottom: 69px;
-  color: var(--light-colors-black-light, #000);
-  font-family: DM Sans, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 27px; /* 168.75% */
-  input {
-    margin-right: 8px;
-    width: 16px;
-    height: 17.174px;
-
-  }
-
-  .checkbox input:checked {
-    background-color: black; /* Чорний фон, коли вибрано */
-  }
-
-
-}
-
-button {
+.submit_register {
   height: 53px;
   width: 100%;
   border-radius: 4px;
@@ -51,7 +28,7 @@ button {
   font-weight: 700;
   line-height: normal;
   margin-bottom: 257px;
-   margin-top: 40px;
+   margin-top: 111px;
 }
 
 //Tablet
