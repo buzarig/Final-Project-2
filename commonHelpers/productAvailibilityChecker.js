@@ -1,6 +1,6 @@
-const Product = require("../models/Product");
+const Product = require('../models/Product');
 
-module.exports = async orderProducts => {
+module.exports = async (orderProducts) => {
   try {
     const productsAvailibilityDetails = await orderProducts.reduce(
       async (resultPromise, orderItem) => {
@@ -10,11 +10,11 @@ module.exports = async orderProducts => {
         const realQuantity = dbProduct.quantity;
         result.push({
           productId: dbProduct._id,
-          itemNo: dbProduct.itemNo,
+          id: dbProduct.id,
           orderedQuantity,
           realQuantity,
           diff: realQuantity - orderedQuantity,
-          available: realQuantity >= orderedQuantity
+          available: realQuantity >= orderedQuantity,
         });
 
         return result;
@@ -23,23 +23,23 @@ module.exports = async orderProducts => {
     );
 
     const unavailableProductIds = productsAvailibilityDetails
-      .filter(item => !item.available)
-      .map(item => item.productId);
+      .filter((item) => !item.available)
+      .map((item) => item.productId);
 
     const unavailableProducts = await Product.find({
-      _id: { $in: unavailableProductIds }
+      _id: { $in: unavailableProductIds },
     });
 
     return {
       productsAvailibilityStatus: productsAvailibilityDetails.every(
-        product => product.available
+        (product) => product.available
       ),
       productsAvailibilityDetails,
-      unavailableProducts
+      unavailableProducts,
     };
   } catch (err) {
     return {
-      message: `Error happened on server: "${err}" `
+      message: `Error happened on server: "${err}" `,
     };
   }
 };

@@ -30,7 +30,7 @@ function App() {
         <Route path="/" element={<Outlet />}>
           <Route path="/" element={<Home />} />
           <Route path="catalog" element={<Catalog />}>
-            <Route path="catalog/:productId" element={<Product />} />
+            <Route path=":productId" element={<Product />} />
           </Route>
           <Route path="contacts" element={<Contacts />} />
           <Route path="blog" element={<Blog />} />
@@ -40,10 +40,12 @@ function App() {
           <Route path="checkout" element={<Checkout />} />
           <Route path="order" element={<Order />} />
           <Route path="order-confirmation" element={<OrderConfirmation />} />
+
           <Route path="myAccount" element={<MyAccount />}>
             <Route path="signIn" element={<SignIn />} />
             <Route path="register" element={<Register />} />
           </Route>
+
           <Route path="resetPassword" element={<ResetPassword />} />
           <Route path="thanks" element={<Thanks />} />
           <Route path="order" element={<Order />} />

@@ -1,6 +1,11 @@
+@import "fonts";
 @import "reset";
 @import "variables";
 @import "mixin";
-
 @import "myAccount";
+
+
+body {
+  background-color: rgb(255, 255, 255);
+}
 
