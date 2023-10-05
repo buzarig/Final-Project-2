@@ -1,5 +1,5 @@
 const types = {
-  GET_ALL_PRODUCTS: "GET_ALL_PRODUCTS"
+  TOGGLE_SEARCH: "TOGGLE_SEARCH"
 };
 
 export default types;
