@@ -19,6 +19,8 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import MyAccount from "./pages/MyAccount";
 import ResetPassword from "./pages/ResetPassword";
 import PageError from "./pages/PageError";
+import SignIn from "./components/signIn/SignIn";
+import Register from "./components/register/Register";
 
 function App() {
   return (
@@ -39,13 +41,18 @@ function App() {
           <Route path="order" element={<Order />} />
           <Route path="order-confirmation" element={<OrderConfirmation />} />
 
-          <Route path="account" element={<MyAccount />} />
+          <Route path="myAccount" element={<MyAccount />}>
+            <Route path="signIn" element={<SignIn />} />
+            <Route path="register" element={<Register />} />
+          </Route>
+
           <Route path="resetPassword" element={<ResetPassword />} />
           <Route path="thanks" element={<Thanks />} />
           <Route path="order" element={<Order />} />
           <Route path="error" element={<PageError />} />
         </Route>
       </Routes>
+
       <Footer />
     </div>
   );
