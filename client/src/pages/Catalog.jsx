@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import Search from "../components/filter/search";
 import CheckboxesTags from "../components/filter/checkbox";
@@ -9,6 +9,12 @@ import FormGroup from "@mui/material/FormGroup";
 import "../styles/_catalog.scss";
 
 function Catalog() {
+  const [checked, setChecked] = useState(false);
+
+  function changeChecked(e) {
+    setChecked(e);
+  }
+
   return (
     <div className="catalog__wrapper">
       <div className="catalog">
@@ -21,12 +27,15 @@ function Catalog() {
               <CheckboxesTags nameCheckboxes="Sort By" />
             </Stack>
             <FilterSlider filterName="Filter" />
-            <FormGroup sx={{height:200}}>
-              <CustomizedSwitches nameSwitch="On sale" />
+            <FormGroup sx={{ height: 200 }}>
+              <CustomizedSwitches
+                nameSwitch="On sale"
+                onChecked={changeChecked}
+              />
               <CustomizedSwitches nameSwitch="In stock" />
             </FormGroup>
           </div>
-          <div className="cards-list"></div>
+          <div className="cards-list">{checked && <p>koka</p>}</div>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ const formStyle = {
 
 const inputStyle = {
   width: "100%",
-  fontFamily: "DM Sans",
+  fontFamily: "DM Sans, sans-serif",
   fontSize: "16px",
   fontWeight: "400",
   color: "#031412",
@@ -24,7 +24,7 @@ const inputStyle = {
 };
 
 const Search = () => {
-  const [setValue] = useState();
+  const [value, setValue] = useState("");
 
   return (
     <Box sx={formStyle}>
@@ -32,13 +32,14 @@ const Search = () => {
         style={inputStyle}
         type="text"
         placeholder="Search..."
-        onChange={(event) => setValue(event.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
       <img
         style={{ height: "17px", width: "17px", marginBottom: "10px" }}
         src={img}
         alt="search"
       />
+      {value && <p>{value}</p>}
     </Box>
   );
 };

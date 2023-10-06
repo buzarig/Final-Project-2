@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
@@ -57,17 +57,26 @@ const IOSSwitch = styled((props) => (
 const formControlLabelStyle = {
   "& .MuiFormControlLabel-label": {
     fontSize: 16,
-    fontFamily: "DM Sans"
+    fontFamily: "DM Sans, sans-serif"
   }
-}
+};
 
-export default function CustomizedSwitches({nameSwitch}) {
+export default function CustomizedSwitches({ nameSwitch, onChecked }) {
+  function changeChecked(event) {
+    onChecked(event.target.checked);
+  }
+
   return (
     <FormControlLabel
-      control={<IOSSwitch />}
+      control={<IOSSwitch onChange={changeChecked} />}
       label={nameSwitch}
       labelPlacement="start"
-      sx={{ m: 0, mt:5, justifyContent:"space-between", ...formControlLabelStyle}}
+      sx={{
+        m: 0,
+        mt: 5,
+        justifyContent: "space-between",
+        ...formControlLabelStyle
+      }}
     />
   );
 }
