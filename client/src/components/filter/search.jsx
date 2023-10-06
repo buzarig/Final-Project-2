@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import img from "../../assets/images/filter/search.png";
 import Box from "@mui/material/Box";
+import img from "../../assets/images/filter/search.png";
 
 const formStyle = {
   display: "flex",
@@ -23,7 +23,7 @@ const inputStyle = {
   marginBottom: "10px"
 };
 
-const Search = () => {
+function Search() {
   const [value, setValue] = useState("");
 
   return (
@@ -42,6 +42,6 @@ const Search = () => {
       {value && <p>{value}</p>}
     </Box>
   );
-};
+}
 
 export default Search;
