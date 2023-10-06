@@ -5,7 +5,7 @@ import searchReducer from "./reducers/searchReducer";
 
 const rootReducer = combineReducers({
   token: tokenReducer,
-   search: searchReducer
+  search: searchReducer
 });
 
 export default rootReducer;
