@@ -8,7 +8,9 @@ function Footer() {
       <div className="footer-wrapper">
         <div className="nav">
           <ul className="help">
-            <li><Link to="/contacts">Contact</Link></li>
+            <li>
+              <Link to="/contacts">Contact</Link>
+            </li>
             <li>Terms Of Services</li>
             <li>Shipping And Returns</li>
           </ul>
