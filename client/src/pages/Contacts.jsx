@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import "../styles/_contactstitle.css";
 import React, { useState } from "react";
 import Box from "@mui/material/Box";

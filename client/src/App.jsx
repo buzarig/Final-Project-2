@@ -29,8 +29,8 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <div>
+    <div>
+      <ThemeProvider theme={theme}>
         <Header />
         <Routes>
           <Route path="/" element={<Outlet />}>
@@ -60,8 +60,8 @@ function App() {
         </Routes>
 
         <Footer />
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </div>
   );
 }
 
