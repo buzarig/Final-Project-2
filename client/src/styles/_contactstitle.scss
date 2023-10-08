@@ -1,100 +1,101 @@
 $color_1: white;
 $background-color_1: black;
 
-
 .contacts_main {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .contacts_title {
-    font-size: 33px;
-    font-weight: 500;
-    line-height: 43px;
-    text-align: left;
-    margin-bottom: 30px;
+  font-family: "DMSans", sans-serif;
+  font-size: 33px;
+  font-weight: 500;
+  line-height: 43px;
+  text-align: left;
+  margin-bottom: 30px;
 }
 .contacts_subtitle {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 26px;
-    text-align: center;
-    max-width: 500px;
-    margin-bottom: 80px;
+  font-family: "DMSans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: center;
+  max-width: 500px;
+  margin-bottom: 80px;
 }
 .contacts_popupopened {
-    z-index: 1000;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .popupopened_title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-top: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 20px;
 }
 .popupopened_btn {
-    background-color: $background-color_1;
-    color: $color_1;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
+  background-color: $background-color_1;
+  color: $color_1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) and (max-width: 1399px) {
-    .contacts_title {
-        font-size: 28px;
-        margin-bottom: 20px;
-    }
-    .contacts_subtitle {
-        font-size: 16px;
-        max-width: 500px;
-        margin-bottom: 60px;
-    }
-    .contacts_popupopened {
-        width: 200px;
-        height: 200px;
-    }
-    .textfieild-adaptive {
-        width: 100%;
-    }
-    .textfieild-adaptive-message {
-        width: 100%;
-    }
+  .contacts_title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  .contacts_subtitle {
+    font-size: 16px;
+    max-width: 500px;
+    margin-bottom: 60px;
+  }
+  .contacts_popupopened {
+    width: 200px;
+    height: 200px;
+  }
+  .textfieild-adaptive {
+    width: 100%;
+  }
+  .textfieild-adaptive-message {
+    width: 100%;
+  }
 }
 @media screen and (max-width: 767px) {
-    .contacts_title {
-        font-size: 20px;
-        margin-bottom: 24px;
-    }
-    .contacts_subtitle {
-        font-size: 14px;
-        max-width: 500px;
-        margin-bottom: 40px;
-    }
-    .contacts_popupopened {
-        width: 150px;
-        height: 150px;
-    }
-    .container {
-        grid-template-columns: 1fr;
-    }
-    .textfieild-adaptive {
-        width: 100%;
-    }
-    .autocomplete-adaptive {
-        width: 100%;
-    }
-    .textfieild-adaptive-message {
-        width: 100%;
-    }
+  .contacts_title {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  .contacts_subtitle {
+    font-size: 14px;
+    max-width: 500px;
+    margin-bottom: 40px;
+  }
+  .contacts_popupopened {
+    width: 150px;
+    height: 150px;
+  }
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .textfieild-adaptive {
+    width: 100%;
+  }
+  .autocomplete-adaptive {
+    width: 100%;
+  }
+  .textfieild-adaptive-message {
+    width: 100%;
+  }
 }
