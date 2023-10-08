@@ -1,4 +1,4 @@
-import "../styles/_contactstitle.css";
+import "../styles/_contactstitle.scss";
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
