@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import img from "../../assets/images/filter/search.png";
 import Box from "@mui/material/Box";
+import img from "../../assets/images/filter/search.png";
 
 const formStyle = {
   display: "flex",
@@ -44,6 +44,6 @@ const Search = ({onValue}) => {
       />
     </Box>
   );
-};
+}
 
 export default Search;

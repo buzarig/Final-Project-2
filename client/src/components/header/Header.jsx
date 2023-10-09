@@ -60,7 +60,7 @@ function Header() {
               </Link>
             </li>
             <li className="account">
-              <Link to="account">
+              <Link to="myAccount/register">
                 <img src="../../assets/icons/Icon-account.png" alt="" />
               </Link>
             </li>

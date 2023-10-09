@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/prop-types */
+import React from "react";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";

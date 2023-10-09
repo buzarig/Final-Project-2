@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 // eslint-disable react/destructuring-assignment
 
 import React, { useState } from "react";
@@ -34,13 +35,13 @@ const PriceSlider = styled(Slider)(({ theme }) => ({
   }
 }));
 
-const FilterSlider = () => {
+function FilterSlider() {
   const [value, setValue] = useState([199.99, 479.99]);
 
   const handleChange = (event, newValue) => {
     let minValue = value[0] !== newValue[0] ? newValue[0] - 0.01 : newValue[0];
     let maxValue = value[1] !== newValue[1] ? newValue[1] - 0.01 : newValue[1];
-    maxValue === 479.98 && (maxValue = maxValue + 0.01);
+    maxValue === 479.98 && (maxValue += 0.01);
     minValue < 49.99 && (minValue = 49.99);
     setValue([minValue, maxValue]);
   };
@@ -57,12 +58,16 @@ const FilterSlider = () => {
           onChangeCommitted={handleChange}
           valueLabelDisplay="auto"
         />
-        <Typography id="non-linear-slider" style={{color:"#707070"}} gutterBottom>
+        <Typography
+          id="non-linear-slider"
+          style={{ color: "#707070" }}
+          gutterBottom
+        >
           Price: ${value[0]} - $ {value[1]}
         </Typography>
       </Box>
     </div>
   );
-};
+}
 
 export default FilterSlider;

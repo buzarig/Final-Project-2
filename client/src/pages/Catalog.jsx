@@ -1,11 +1,12 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { useState } from "react";
 // import { Link } from "react-router-dom";
+import FormGroup from "@mui/material/FormGroup";
+import Stack from "@mui/material/Stack";
 import Search from "../components/filter/search";
 import CheckboxesTags from "../components/filter/checkbox";
 import FilterSlider from "../components/filter/filterSlider";
 import CustomizedSwitches from "../components/filter/switch";
-import Stack from "@mui/material/Stack";
-import FormGroup from "@mui/material/FormGroup";
 import "../styles/_catalog.scss";
 
 function Catalog() {
