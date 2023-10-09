@@ -10,9 +10,14 @@ import "../styles/_catalog.scss";
 
 function Catalog() {
   const [checked, setChecked] = useState(false);
+  const [value, setValue] = useState("");
 
   function changeChecked(e) {
     setChecked(e);
+  }
+
+  function changeValue(e) {
+    setValue(e);
   }
 
   return (
@@ -21,7 +26,7 @@ function Catalog() {
         <h2 className="page__title">Shop The Latest</h2>
         <div className="cards-list__wrapper">
           <div className="sidebar">
-            <Search />
+            <Search onValue={changeValue} />
             <Stack spacing={3} sx={{ width: 262 }}>
               <CheckboxesTags nameCheckboxes="Shop By" />
               <CheckboxesTags nameCheckboxes="Sort By" />
@@ -36,6 +41,7 @@ function Catalog() {
             </FormGroup>
           </div>
           <div className="cards-list">{checked && <p>koka</p>}</div>
+          {value && <p>{value}</p>}
         </div>
       </div>
     </div>

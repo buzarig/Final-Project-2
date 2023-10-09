@@ -23,8 +23,11 @@ const inputStyle = {
   marginBottom: "10px"
 };
 
-const Search = () => {
-  const [value, setValue] = useState("");
+const Search = ({onValue}) => {
+
+  function changeValue(value) {
+    onValue(value);
+  }
 
   return (
     <Box sx={formStyle}>
@@ -32,14 +35,13 @@ const Search = () => {
         style={inputStyle}
         type="text"
         placeholder="Search..."
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => changeValue(e.target.value)}
       />
       <img
         style={{ height: "17px", width: "17px", marginBottom: "10px" }}
         src={img}
         alt="search"
       />
-      {value && <p>{value}</p>}
     </Box>
   );
 };
