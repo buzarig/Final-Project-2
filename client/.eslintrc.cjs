@@ -10,6 +10,7 @@ module.exports = {
   settings: { react: { version: "18.2" } },
   plugins: ["prettier"],
   rules: {
+    "react/jsx-props-no-spreading": "off",
     "arrow-body-style": "off",
     "no-underscore-dangle": [
       "error",
@@ -18,6 +19,6 @@ module.exports = {
     "prefer-arrow-callback": "off",
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "comma-dangle": ["error", "never"],
-    "prettier/prettier": "error"
+    "prettier/prettier": ["error", { endOfLine: "auto" }]
   }
 };
