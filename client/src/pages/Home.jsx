@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CarouselComponent from "../components/carousel/Carousel";
-import "../styles/_home.scss";
 import ProductCard from "../components/productCard/ProductCard";
+import "../styles/_home.scss";
 
-function Home() {
+function Home(products) {
   return (
     <div className="container">
       <main className="home">
-        <CarouselComponent />
+        <CarouselComponent myProducts={products} />
       </main>
       <div className="flex-shop">
         <h2 className="title-shop">Shop The Latest</h2>

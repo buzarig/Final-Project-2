@@ -1,6 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
+import bgPhoto from "../../assets/images/Carousel/Background1.jpg";
+import bgPhotoTwo from "../../assets/images/Carousel/Background2.png";
+import bgPhotoThree from "../../assets/images/Carousel/Background3.jpg";
+import ProductCarouselComponent from "../ProductCarouselComponent/ProductCarouselComponent";
 import "react-multi-carousel/lib/styles.css";
 import "./Carousel.scss";
 
@@ -25,10 +28,26 @@ const responsive = {
 
 function CarouselComponent() {
   const products = [
-    { title: "Gold big hoops", price: "$68,00" },
-    { title: "Gold big hoops", price: "$68,00" },
-    { title: "Gold big hoops", price: "$68,00" },
-    { title: "Gold big hoops", price: "$68,00" }
+    {
+      title: "Gold big hoops",
+      price: "$68.00",
+      img: bgPhoto
+    },
+    {
+      title: "Ollie Earrings",
+      price: "$88.00",
+      img: bgPhotoTwo
+    },
+    {
+      title: "Lira Earrings",
+      price: "$50.00",
+      img: "https://uhd.name/uploads/posts/2022-02/1644635961_1-uhd-name-p-krasivie-kole-iz-zolota-devushka-krasivo-f-1.jpg"
+    },
+    {
+      title: "Gold big hoops 4",
+      price: "$99.00",
+      img: bgPhotoThree
+    }
   ];
 
   return (
@@ -43,15 +62,11 @@ function CarouselComponent() {
         renderDotsOutside
       >
         {products.map((product) => (
-          <div className="carousel">
-            <div className="flex-box">
-              <h2 className="product-title">{product.title}</h2>
-              <p className="product-price">{product.price}</p>
-              <button type="button" className="btn-product">
-                <Link to="/catalog">View Product</Link>
-              </button>
-            </div>
-          </div>
+          <ProductCarouselComponent
+            title={product.title}
+            price={product.price}
+            img={product.img}
+          />
         ))}
       </Carousel>
     </div>
