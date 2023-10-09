@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 // eslint-disable react/destructuring-assignment
 
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
@@ -35,15 +35,16 @@ const PriceSlider = styled(Slider)(({ theme }) => ({
   }
 }));
 
-function FilterSlider() {
-  const [value, setValue] = useState([199.99, 479.99]);
+function FilterSlider({value, changeValue}) {
 
   const handleChange = (event, newValue) => {
     let minValue = value[0] !== newValue[0] ? newValue[0] - 0.01 : newValue[0];
     let maxValue = value[1] !== newValue[1] ? newValue[1] - 0.01 : newValue[1];
+    minValue > maxValue && (minValue = maxValue - 1);
+    maxValue < minValue && (maxValue = minValue + 1);
     maxValue === 479.98 && (maxValue += 0.01);
     minValue < 49.99 && (minValue = 49.99);
-    setValue([minValue, maxValue]);
+    changeValue([minValue, maxValue]);
   };
 
   return (

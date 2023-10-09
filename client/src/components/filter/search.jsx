@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import img from "../../assets/images/filter/search.png";
 
@@ -23,10 +23,10 @@ const inputStyle = {
   marginBottom: "10px"
 };
 
-const Search = ({onValue}) => {
+const Search = ({valueInput, onValue}) => {
 
   function changeValue(value) {
-    onValue(value);
+    onValue(value)
   }
 
   return (
@@ -35,6 +35,7 @@ const Search = ({onValue}) => {
         style={inputStyle}
         type="text"
         placeholder="Search..."
+        value={valueInput}
         onChange={(e) => changeValue(e.target.value)}
       />
       <img

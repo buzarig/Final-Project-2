@@ -63,14 +63,14 @@ const formControlLabelStyle = {
   }
 };
 
-export default function CustomizedSwitches({ nameSwitch, onChecked }) {
+export default function CustomizedSwitches({ nameSwitch, onChecked, checkedSwitch }) {
   function changeChecked(event) {
     onChecked(event.target.checked);
   }
 
   return (
     <FormControlLabel
-      control={<IOSSwitch onChange={changeChecked} />}
+      control={<IOSSwitch onChange={changeChecked} checked={checkedSwitch} />}
       label={nameSwitch}
       labelPlacement="start"
       sx={{
