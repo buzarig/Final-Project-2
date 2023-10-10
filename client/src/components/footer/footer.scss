@@ -1,0 +1,112 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .footer-wrapper {
+    width: 1250px;
+    padding: 0 5px;
+    padding-top: 37px;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top: 1px solid rgba(216, 216, 216, 1);
+    .nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .help {
+        display: flex;
+        li {
+          text-transform: uppercase;
+          font-family: "DM Sans", sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 27px;
+          color: rgba(112, 112, 112, 1);
+          padding-right: 41px;
+        }
+      }
+      .privacy {
+        padding-top: 50px;
+        color: rgba(112, 112, 112, 1);
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        line-height: 27px;
+        span {
+          font-weight: 600;
+          color: rgb(0, 0, 0);
+        }
+      }
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      .socials {
+        a {
+          margin-left: 10px;
+          img {
+            width: 29px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1399px) {
+  .footer {
+    .footer-wrapper {
+      width: 767px;
+      display: flex;
+      .nav {
+        .help {
+          flex-direction: column;
+          li {
+            margin-bottom: 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .footer {
+    .footer-wrapper {
+      width: 320px;
+      display: flex;
+      position: relative;
+      padding-bottom: 60px;
+      padding-top: 80px;
+      justify-content: flex-start;
+      .nav {
+        .help {
+          flex-direction: column;
+          li {
+            font-size: 15px;
+            margin-bottom: 15px;
+          }
+        }
+        .privacy {
+          position: absolute;
+          bottom: 1px;
+          font-size: 13px;
+        }
+      }
+      .info {
+        position: absolute;
+        top: 16px;
+        .socials {
+          display: flex;
+          a {
+            img {
+              width: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
