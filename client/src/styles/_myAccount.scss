@@ -1,0 +1,85 @@
+.wrapper_myAccount {
+  max-width: 500px;
+  margin: 0 auto;
+
+  h3 {
+    font-family: DM Sans, sans-serif;
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 43px;
+    margin-bottom: 64px;
+    margin-top: 158px;
+    text-align: center;
+  }
+
+  .naw_myAccount {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 500px;
+    height: 60px;
+    border-radius: 8px;
+    background: var(--light-colors-light-gray-light, #EFEFEF);
+
+    .activeLink {
+      width: 48%;
+      height: 50px;
+      border-radius: 8px;
+      background: var(--light-colors-white-light, #FFF);
+      box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.10);
+      color: var(--light-colors-black-light, #000);
+      font-family: DM Sans, sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px; /* 130% */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inactiveLink {
+      width: 48%;
+      height: 50px;
+      color: var(--light-colors-black-light, #000);
+      font-family: DM Sans, sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px; /* 130% */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .wrapper_myAccount {
+    width: 288px;
+    margin: 0 auto;
+
+    h3 {
+      font-size: 20px;
+      margin-bottom: 26px;
+      margin-top: 24px;
+    }
+
+    .naw_myAccount {
+      width: 288px;
+      height: 32px;
+
+      .activeLink {
+        font-size: 12px;
+        height: 28px;
+      }
+
+      .inactiveLink {
+        font-size: 12px;
+      }
+
+    }
+  }
+}
