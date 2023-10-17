@@ -1,13 +1,16 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProductsArray } from "../redux/actions/merchandise";
 import FormGroup from "@mui/material/FormGroup";
 import Stack from "@mui/material/Stack";
 import Search from "../components/filter/search";
 import CheckboxesTags from "../components/filter/checkbox";
 import FilterSlider from "../components/filter/filterSlider";
 import CustomizedSwitches from "../components/filter/switch";
+import ProductCard from "../components/productCard/ProductCard";
 import "../styles/_catalog.scss";
 
 function Catalog() {
@@ -16,6 +19,8 @@ function Catalog() {
   const [valueSlider, setValueSlider] = useState([199.99, 479.99]);
   const [shopOptions, setShopOptions] = useState([]);
   const [sortOptions, setSortOptions] = useState([]);
+  const { products } = useSelector((state) => state.merchandise);
+  const dispatch = useDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams({
     valueSearch: "",
@@ -24,11 +29,19 @@ function Catalog() {
   const valueSearch = searchParams.get("valueSearch");
   const checkedStock = searchParams.get("checkedStock") === "true";
 
+  useEffect(() => {
+    dispatch(getProductsArray());
+    console.log("catalog", products);
+  }, []);
+
   function changeValueInput(e) {
-    setSearchParams(prev=>{
-      prev.set("valueSearch", e)
-      return prev
-    }, {replace:true})
+    setSearchParams(
+      (prev) => {
+        prev.set("valueSearch", e);
+        return prev;
+      },
+      { replace: true }
+    );
   }
 
   function changeCheckedSale(e) {
@@ -36,10 +49,13 @@ function Catalog() {
   }
 
   function changeCheckedStock(e) {
-    setSearchParams(prev=>{
-      prev.set("checkedStock", e)
-      return prev
-    }, {replace:true})
+    setSearchParams(
+      (prev) => {
+        prev.set("checkedStock", e);
+        return prev;
+      },
+      { replace: true }
+    );
   }
 
   function changeValueSlider(e) {
@@ -88,9 +104,27 @@ function Catalog() {
               />
             </FormGroup>
           </div>
-          <div className="cards-list">{checkedSale && <p>kokaSale</p>}</div>
+          <div className="cards-list">
+            {products.map((item) => (
+              <ProductCard
+                discount={
+                  item.previousPrice &&
+                  Math.ceil(
+                    ((item.previousPrice - item.currentPrice) /
+                      item.previousPrice) *
+                      100
+                  )
+                }
+                title={item.name}
+                price={item.currentPrice}
+                imageUrl={item.imageUrls[0]}
+                key={item.itemNo}
+              />
+            ))}
+          </div>
+          {/* {checkedSale && <p>kokaSale</p>}
           {valueSearch && <p>{valueSearch}</p>}
-          {shopOptions && shopOptions.map((item) => <p>{item.title}</p>)}
+          {shopOptions && shopOptions.map((item) => <p>{item.title}</p>)} */}
         </div>
       </div>
     </div>

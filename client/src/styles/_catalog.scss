@@ -1,5 +1,5 @@
 .catalog {
-    width: 1248px;
+    width: 1250px;
     padding-top: 37px;
     justify-content: space-between;
     align-items: flex-start;
@@ -21,15 +21,11 @@
 
 .cards-list {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     flex-wrap: wrap;
-    gap: 17px 17px;
-    // height: 100px;
-    // width: 1100px;
-    background-color: aquamarine;
+    gap: 7px 7px;
+    height: min-content;
     &__wrapper {
-        width: 1248px;
-        height: min-content;
        display: flex;
        justify-content: space-between;
     }
