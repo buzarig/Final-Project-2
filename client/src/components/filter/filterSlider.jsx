@@ -42,8 +42,8 @@ function FilterSlider({value, changeValue}) {
     let maxValue = value[1] !== newValue[1] ? newValue[1] - 0.01 : newValue[1];
     minValue > maxValue && (minValue = maxValue - 1);
     maxValue < minValue && (maxValue = minValue + 1);
-    maxValue === 479.98 && (maxValue += 0.01);
-    minValue < 49.99 && (minValue = 49.99);
+    maxValue === 10000 && (maxValue += 0.01);
+    minValue < 1500 && (minValue = 1500);
     changeValue([minValue, maxValue]);
   };
 
@@ -53,9 +53,9 @@ function FilterSlider({value, changeValue}) {
         <PriceSlider
           getAriaLabel={() => "Temperature range"}
           value={value}
-          min={49.99}
-          max={479.99}
-          step={10}
+          min={1500}
+          max={10000}
+          step={100}
           onChangeCommitted={handleChange}
           valueLabelDisplay="auto"
         />

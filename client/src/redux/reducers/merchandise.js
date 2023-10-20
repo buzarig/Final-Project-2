@@ -2,7 +2,8 @@
 import types from "../types";
 
 const initialState = {
-  products: []
+  products: [],
+  isLoading: true
 };
 
 export function merchandiseReducer(state = initialState, action) {

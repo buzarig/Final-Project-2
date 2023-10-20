@@ -21,10 +21,12 @@
 
 .cards-list {
     display: flex;
-    justify-content: end;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 7px 7px;
     height: min-content;
+    width: 100%;
+    margin-left: 45px;
     &__wrapper {
        display: flex;
        justify-content: space-between;

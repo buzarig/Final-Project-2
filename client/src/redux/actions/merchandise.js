@@ -1,11 +1,12 @@
 import api from "../../http/api";
 import types from "../types";
 
-export function getAllProducts(products) {
+export function getAllProducts(products, isLoading) {
   return {
     type: types.GET_ALL_PRODUCTS,
     payload: {
-      products
+      products,
+      isLoading
     }
   };
 }
@@ -14,7 +15,8 @@ export const getProductsArray = () => async (dispatch) => {
   try {
     const data = await api.get(`/products`).then((products) => products);
     console.log('redux', data.data);
-    dispatch(getAllProducts(data.data));
+    const isLoading = false;
+    dispatch(getAllProducts(data.data, isLoading));
   } catch (error) {
     console.log(error);
   }
