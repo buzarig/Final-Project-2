@@ -1,0 +1,30 @@
+.carousel-component {
+  position: relative;
+  margin-bottom: 64px;
+  .custom-dot-list-style {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+     .react-multi-carousel-dot button {
+       width: 10px;
+       height: 10px;
+       margin: 0 8px;
+       background-color: #fff;
+       border: 1px #fff solid;
+       border-radius: 50%;
+      cursor: pointer;
+     }
+
+   .react-multi-carousel-dot--active button{
+    width: 16px;
+    height: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #fff;
+    }
+  }
+}
