@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import "./ProductCarouselComponent.scss";
 
 function ProductCarouselComponent({ title, price, img }) {
@@ -8,9 +9,9 @@ function ProductCarouselComponent({ title, price, img }) {
       <div className="flex-box">
         <h2 className="product-title">{title}</h2>
         <p className="product-price">{price}</p>
-        <p className="product-information">
-          Duis ut diam quam nulla porttitor massa id neque aliquam
-        </p>
+        <button type="button" className="btn-product">
+          <Link to="/catalog">Go to catalog</Link>
+        </button>
       </div>
     </div>
   );

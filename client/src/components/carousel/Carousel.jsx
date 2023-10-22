@@ -32,22 +32,22 @@ function CarouselComponent() {
   const products = [
     {
       title: "Gold big hoops",
-      price: "$68.00",
+      price: "$168.00",
       img: bgPhoto
     },
     {
       title: "Ollie Earrings",
-      price: "$88.00",
+      price: "$488.00",
       img: bgPhotoTwo
     },
     {
       title: "Lira Earrings",
-      price: "$50.00",
+      price: "$150.00",
       img: "https://uhd.name/uploads/posts/2022-02/1644635961_1-uhd-name-p-krasivie-kole-iz-zolota-devushka-krasivo-f-1.jpg"
     },
     {
-      title: "Gold big hoops 4",
-      price: "$99.00",
+      title: "Gold big rings",
+      price: "$299.00",
       img: bgPhotoThree
     }
   ];
@@ -68,6 +68,7 @@ function CarouselComponent() {
       >
         {products.map((product) => (
           <ProductCarouselComponent
+            key={products.index}
             title={product.title}
             price={product.price}
             img={product.img}
