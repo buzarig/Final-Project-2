@@ -1,17 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/_product.scss";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import { ButtonGroup } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Icon } from "@iconify/react";
+import api from "../http/api";
 
 import ImageZoom from "../components/imageZoom/ImageZoom";
 
+import { addProductToCart } from "../redux/actions/cartActions";
+
 function Products() {
+  const dispatch = useDispatch();
+  const { productId } = useParams();
+  const [productData, setProductData] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [cartCounter, setCartCounter] = useState(1);
   const [currentSection, setCurrentSection] = useState("description");
   const [showFullDescription, setShowFullDescription] = useState(false);
+
+  useEffect(() => {
+    async function fetchProductData() {
+      try {
+        const response = await api.get(`/products/${productId}`);
+
+        if (response.status === 200) {
+          const product = response.data;
+          console.log(product);
+          setProductData(product);
+        } else {
+          console.log("Произошла ошибка при получении данных о продукте.");
+        }
+      } catch (error) {
+        console.error("Ошибка при получении данных о продукте:", error);
+      }
+    }
+
+    fetchProductData();
+  }, [productId]);
 
   const incrementCounter = () => {
     setCartCounter(cartCounter + 1);
@@ -27,16 +55,29 @@ function Products() {
     setCurrentSection(section);
   };
 
+  const handleAddToCart = (selectedProduct) => {
+    console.log(selectedProduct);
+    dispatch(addProductToCart(selectedProduct, cartCounter));
+  };
+
   return (
     <div className="product-container">
       <div className="product">
         <div className="product__image-container">
-          <ImageZoom src="https://images.pexels.com/photos/842711/pexels-photo-842711.jpeg?cs=srgb&dl=pexels-christian-heitz-842711.jpg&fm=jpg" />
+          {productData && productData.imageUrls && productData.imageUrls[0] ? (
+            <ImageZoom src={productData.imageUrls[0]} />
+          ) : (
+            <div>Image not found</div>
+          )}
         </div>
         <div className="product__info">
-          <h1 className="product-title">Title!</h1>
-          <span className="product-price">$ 20,00!</span>
-          <div className="product-rate">rating</div>
+          <h1 className="product-title">
+            {productData ? productData.name : "Loading..."}
+          </h1>
+          <span className="product-price">
+            $ {productData ? productData.currentPrice : "Loading..."}
+          </span>
+          {/* <div className="product-rate">rating</div> */}
           <div className="product-description">
             {showFullDescription ? (
               <>
@@ -86,7 +127,12 @@ function Products() {
                 +
               </Button>
             </ButtonGroup>
-            <Button className="add-to-cart__btn">ADD TO CART</Button>
+            <Button
+              onClick={() => handleAddToCart(productData)}
+              className="add-to-cart__btn"
+            >
+              ADD TO CART
+            </Button>
           </div>
           <div className="product-socials">
             <Icon

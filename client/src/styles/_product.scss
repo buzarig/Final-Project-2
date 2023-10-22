@@ -10,14 +10,15 @@
     .product__info {
       margin-left: 65px;
       .product-title {
+        text-transform: capitalize;
         font-family: "DMSans", sans-serif;
         font-size: 26px;
         font-style: normal;
         font-weight: 400;
         line-height: 35px;
+        padding-bottom: 23px;
       }
       .product-price {
-        padding-top: 23px;
         font-family: "DMSans", sans-serif;
         font-size: 20px;
         color: #a18a68;
