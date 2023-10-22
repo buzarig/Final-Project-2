@@ -8,7 +8,7 @@ import "../styles/_home.scss";
 
 function Home() {
   const [products, setProducts] = useState([]);
-  console.log(products);
+
 
   useEffect(() => {
     async function fetchProducts() {
@@ -31,7 +31,7 @@ function Home() {
   return (
     <div className="container home-page">
       <main className="home">
-        <CarouselComponent  myProducts={products} />
+        <CarouselComponent key={products.index} myProducts={products} />
       </main>
       <div className="flex-shop">
         <h2 className="title-shop">Shop The Latest</h2>
@@ -45,7 +45,7 @@ function Home() {
             key={product.itemNo}
             title={product.name}
             price={product.currentPrice}
-            imageUrl={product.imageUrls}
+            imageUrl={product.imageUrls[0]}
             showSaleInfo={false}
             showButtons
           />

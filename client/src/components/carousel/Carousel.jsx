@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from "react";
 import Carousel from "react-multi-carousel";
 import bgPhoto from "../../assets/images/Carousel/Background1.jpg";
@@ -66,9 +67,9 @@ function CarouselComponent() {
         autoPlaySpeed={autoSlide}
         infinite
       >
-        {products.map((product) => (
+        {products.map((product, index) => (
           <ProductCarouselComponent
-            key={products.index}
+            key={index}
             title={product.title}
             price={product.price}
             img={product.img}
