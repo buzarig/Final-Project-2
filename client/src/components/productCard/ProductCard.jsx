@@ -1,5 +1,7 @@
+/* eslint-disable react/require-default-props */
 import React from "react";
 import { useInView } from "react-intersection-observer";
+import PropTypes from "prop-types";
 
 import "./ProductCard.scss";
 
@@ -28,5 +30,12 @@ function ProductCard(props) {
     </div>
   );
 }
+
+ProductCard.propTypes = {
+  discount: PropTypes.number,
+  title: PropTypes.string,
+  price: PropTypes.number,
+  imageUrl: PropTypes.string.isRequired
+};
 
 export default ProductCard;

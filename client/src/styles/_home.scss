@@ -1,0 +1,41 @@
+.container {
+    margin: 0 96px 342px;
+
+    .flex-shop {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .title-shop {
+            font-family: "DM Sans" , sans-serif;
+            font-size: 33px;
+            font-style: normal;
+            font-weight: 500;
+        }
+        .shop-link {
+            color: #A18A68;
+            font-family: "DM Sans" , sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 26px;
+            text-transform: capitalize;
+            text-align: left;
+        }
+    }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+    
+            .product-card {
+                width: 100%;
+            }
+    
+            @media (max-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+}
