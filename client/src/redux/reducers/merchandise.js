@@ -3,7 +3,8 @@ import types from "../types";
 
 const initialState = {
   products: [],
-  isLoading: true
+  isLoading: true,
+  endedProducts: 1
 };
 
 export function merchandiseReducer(state = initialState, action) {

@@ -3,8 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { getProductsArray, getAllProducts } from "../redux/actions/merchandise";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getFilteredProducts,
+  getAllProducts,
+  getSearchProducts
+} from "../redux/actions/merchandise";
 
 import api from "../http/api";
 import FormGroup from "@mui/material/FormGroup";
@@ -26,15 +30,11 @@ const dataOptionsSort = [
 ];
 
 function Catalog() {
-  // const { products, isLoading } = useSelector((state) => state.merchandise);
-  // const dispatch = useDispatch();
-
-  //*test start
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { products, isLoading, endedProducts } = useSelector(
+    (state) => state.merchandise
+  );
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [current, setCurrent] = useState(1);
-  //*test end
 
   const [searchParams, setSearchParams] = useSearchParams({
     valueSearch: "",
@@ -54,57 +54,27 @@ function Catalog() {
   const sortOptions = searchParams.get("sortOptions");
 
   useEffect(() => {
-    if (current > 0) {
+    if (endedProducts > 0) {
       document.addEventListener("scroll", scrollHandler);
       return function () {
         document.removeEventListener("scroll", scrollHandler);
       };
     }
-  }, [current]);
-  //*test filter start
+  }, [endedProducts]);
+
   useEffect(() => {
-    console.log("before", shopOptions);
-    async function axiosMyAPI() {
-      if (current > 0) {
-        console.log("lol");
-        try {
-          setIsLoading(true);
-          const stones = shopOptions ? shopOptions.split(",") : [];
-          const data = await api
-            .get(
-              "/products/filter?minPrice=" +
-                valueSliderMin +
-                "&maxPrice=" +
-                valueSliderMax +
-                (stones.length ? "&stone=" + stones : "") +
-                (checkedSale
-                  ? "&previousPrice=4000,2499,5699,1499,7800,20999,17999"
-                  : "") +
-                (checkedStock
-                  ? "&quantity=1,2,3,4,5,6,7,8,9,10,11,12,13,14"
-                  : "") +
-                `&perPage=9&startPage=${currentPage}` +
-                (sortOptions && "&sort=" + sortOptions + "currentPrice")
-            )
-            .then((response) => response);
-          setProducts(
-            currentPage === 1
-              ? data.data.data
-              : [...products, ...data.data.data]
-          );
-          setCurrent(data.data.data.length);
-          setIsLoading(false);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    }
-    axiosMyAPI();
-    console.log(
-      "after",
-      shopOptions ? shopOptions.split(",") : [],
-      currentPage,
-      products.length
+    dispatch(getAllProducts(products, true, endedProducts));
+    dispatch(
+      getFilteredProducts(
+        products,
+        valueSliderMin,
+        valueSliderMax,
+        shopOptions,
+        sortOptions,
+        checkedSale,
+        checkedStock,
+        currentPage
+      )
     );
   }, [
     valueSliderMin,
@@ -115,27 +85,12 @@ function Catalog() {
     checkedStock,
     currentPage
   ]);
-  //*test filter end
 
-  //*test search start
   useEffect(() => {
-    async function axiosMyAPIinput(valueSearch) {
-      try {
-        if (valueSearch != "") {
-          setIsLoading(true);
-          const data = await api
-            .post(`/products/search`, { query: valueSearch })
-            .then((products) => products);
-          setProducts(data.data);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    axiosMyAPIinput(valueSearch);
+    dispatch(getAllProducts(products, true, endedProducts));
+    dispatch(getSearchProducts(valueSearch));
   }, [valueSearch]);
-  //*test search end
+  
 
   function scrollHandler(e) {
     if (
@@ -149,7 +104,6 @@ function Catalog() {
 
   function changeValueInput(e) {
     setCurrentPage(1);
-    setCurrent(1);
     setSearchParams(
       (prev) => {
         prev.set("valueSearch", e);
@@ -167,7 +121,6 @@ function Catalog() {
 
   function changeCheckedSale(e) {
     setCurrentPage(1);
-    setCurrent(1);
     setSearchParams(
       (prev) => {
         prev.set("checkedSale", e);
@@ -179,7 +132,6 @@ function Catalog() {
 
   function changeCheckedStock(e) {
     setCurrentPage(1);
-    setCurrent(1);
     setSearchParams(
       (prev) => {
         prev.set("checkedStock", e);
@@ -191,7 +143,6 @@ function Catalog() {
 
   function changeValueSlider(e) {
     setCurrentPage(1);
-    setCurrent(1);
     setSearchParams(
       (prev) => {
         prev.set("valueSliderMin", e[0]);
@@ -204,7 +155,6 @@ function Catalog() {
 
   function changeShopOptions(e) {
     setCurrentPage(1);
-    setCurrent(1);
     setSearchParams(
       (prev) => {
         prev.set("shopOptions", e);
@@ -216,7 +166,6 @@ function Catalog() {
 
   function changeSortOptions(e) {
     setCurrentPage(1);
-    setCurrent(1);
     setSearchParams(
       (prev) => {
         prev.set("sortOptions", e.target.value);
@@ -256,6 +205,7 @@ function Catalog() {
               <CustomizedSwitches
                 nameSwitch="On sale"
                 onChecked={changeCheckedSale}
+                checkedSwitch={checkedSale}
               />
               <CustomizedSwitches
                 nameSwitch="In stock"
