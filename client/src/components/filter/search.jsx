@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import React from "react";
 import Box from "@mui/material/Box";
 import img from "../../assets/images/filter/search.png";
 
@@ -8,6 +9,7 @@ const formStyle = {
   alignItems: "center",
   width: "100%",
   borderBottom: "1px solid #03141215",
+  marginTop: "10px",
   marginBottom: "39px",
   "&:hover": {
     borderBottom: "1px solid #031412"
@@ -23,8 +25,10 @@ const inputStyle = {
   marginBottom: "10px"
 };
 
-function Search() {
-  const [value, setValue] = useState("");
+function Search({ valueInput, onValue }) {
+  function changeValue(value) {
+    onValue(value);
+  }
 
   return (
     <Box sx={formStyle}>
@@ -32,14 +36,14 @@ function Search() {
         style={inputStyle}
         type="text"
         placeholder="Search..."
-        onChange={(e) => setValue(e.target.value)}
+        value={valueInput}
+        onChange={(e) => changeValue(e.target.value)}
       />
       <img
         style={{ height: "17px", width: "17px", marginBottom: "10px" }}
         src={img}
         alt="search"
       />
-      {value && <p>{value}</p>}
     </Box>
   );
 }

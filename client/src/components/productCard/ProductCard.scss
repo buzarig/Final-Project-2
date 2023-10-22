@@ -1,21 +1,18 @@
-.catalog {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px;
-  // border: 1px solid #fe0000;
-}
+@import url("https://fonts.cdnfonts.com/css/dm-sans");
 
 .jewelry-card {
+  position: relative;
   padding: 16px;
   text-align: left;
   background-color: #fff;
   transition: box-shadow 0.3s ease-in-out;
   max-width: 300px;
-  margin: 10px;
 }
 
 .jewlry-sale {
+  position: absolute;
+  top: 23px;
+  left: 23px;
   z-index: 2;
   border-radius: 4px;
   border-width: 5px;
@@ -27,7 +24,7 @@
   justify-content: center;
   margin-bottom: 10px;
   .jewlry-sale-info {
-    font-family: "DM Sans";
+    font-family: "DM Sans", sans-serif;
     font-size: 12px;
     color: #ffffff;
   }
@@ -40,14 +37,15 @@
 }
 
 .jewelry-card-title {
-  font-family: "DM Sans";
+  text-transform: capitalize;
+  font-family: "DM Sans", sans-serif;
   font-size: 20px;
   color: #000000;
   margin: 10px;
 }
 
 .jewelry-card-price {
-  font-family: "DM Sans";
+  font-family: "DM Sans", sans-serif;
   font-size: 20px;
   color: #a18a68;
   margin: 10px;
@@ -58,11 +56,13 @@
   z-index: 1;
 }
 
-@media (max-width: 768px) {
-  .catalog {
-    justify-content: center;
-  }
+.jewelry-card-stub {
+  width: 300px;
+  height: 300px;
+  background-color: #a18a68;
+}
 
+@media (max-width: 768px) {
   .jewelry-card {
     max-width: 100%;
   }
