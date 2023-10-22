@@ -1,38 +1,44 @@
-import types from "../types";
+import {
+  REMOVE_PRODUCT,
+  ADD_PRODUCT,
+  INCREASE_COUNT,
+  DECREASE_COUNT,
+  CLEAR
+} from "../actions/cartActions";
 
 const initState = {
-  productsArray: []
+  cartProducts: []
 };
 
-const basketReducer = (state = initState, action = {}) => {
+const cartReducer = (state = initState, action = {}) => {
   switch (action.type) {
-    case types.REMOVE_PRODUCT:
+    case REMOVE_PRODUCT:
       return {
         ...state,
         productsArray: [
-          ...state.productsArray.slice(0, action.payload),
-          ...state.productsArray.slice(action.payload + 1)
+          ...state.cartProducts.slice(0, action.payload),
+          ...state.cartProducts.slice(action.payload + 1)
         ]
       };
-    case types.ADD_PRODUCT: {
-      const existingProductIndex = state.productsArray.findIndex(
+    case ADD_PRODUCT: {
+      const existingProductIndex = state.cartProducts.findIndex(
         (item) => item.product.itemNo === action.payload.productItem.itemNo
       );
 
       if (existingProductIndex !== -1) {
-        const updatedProductsArray = [...state.productsArray];
+        const updatedProductsArray = [...state.cartProducts];
         updatedProductsArray[existingProductIndex].cartQuantity +=
           action.payload.quantity;
 
         return {
           ...state,
-          productsArray: updatedProductsArray
+          cartProducts: updatedProductsArray
         };
       }
       return {
         ...state,
-        productsArray: [
-          ...state.productsArray,
+        cartProducts: [
+          ...state.cartProducts,
           {
             product: action.payload.productItem,
             cartQuantity: action.payload.quantity
@@ -41,7 +47,7 @@ const basketReducer = (state = initState, action = {}) => {
       };
     }
 
-    case types.INCREASE_COUNT:
+    case INCREASE_COUNT:
       return {
         ...state,
         productsArray: state.productsArray.map((product, i) =>
@@ -56,7 +62,7 @@ const basketReducer = (state = initState, action = {}) => {
             : product
         )
       };
-    case types.DECREASE_COUNT:
+    case DECREASE_COUNT:
       return {
         ...state,
         productsArray: state.productsArray.map((product, i) =>
@@ -66,7 +72,7 @@ const basketReducer = (state = initState, action = {}) => {
         )
       };
 
-    case types.CLEAR:
+    case CLEAR:
       return {
         ...state,
         productsArray: []
@@ -76,4 +82,4 @@ const basketReducer = (state = initState, action = {}) => {
   }
 };
 
-export default basketReducer;
+export default cartReducer;

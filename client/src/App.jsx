@@ -19,9 +19,9 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 
 import MyAccount from "./pages/MyAccount";
 import ResetPassword from "./pages/ResetPassword";
-import PageError from "./pages/PageError";
 import SignIn from "./components/signIn/SignIn";
 import Register from "./components/register/Register";
+import PageError from "./pages/PageError";
 
 const theme = createTheme({
   direction: "rtl"
@@ -35,9 +35,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Outlet />}>
             <Route path="/" element={<Home />} />
-            <Route path="catalog" element={<Catalog />}>
-              <Route path=":productId" element={<Product />} />
-            </Route>
+            <Route path="catalog" element={<Catalog />} />
+            <Route
+              path="catalog/:productUrl/:productId"
+              element={<Product />}
+            />
             <Route path="contacts" element={<Contacts />} />
             <Route path="blog" element={<Blog />} />
             <Route path="about-us" element={<AboutUs />} />
@@ -55,7 +57,7 @@ function App() {
             <Route path="resetPassword" element={<ResetPassword />} />
             <Route path="thanks" element={<Thanks />} />
             <Route path="order" element={<Order />} />
-            <Route path="error" element={<PageError />} />
+            <Route path="*" element={<PageError />} />
           </Route>
         </Routes>
 
