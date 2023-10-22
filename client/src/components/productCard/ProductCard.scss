@@ -1,6 +1,7 @@
 @import url("https://fonts.cdnfonts.com/css/dm-sans");
 
 .jewelry-card {
+  position: relative;
   padding: 16px;
   text-align: left;
   background-color: #fff;
@@ -9,6 +10,9 @@
 }
 
 .jewlry-sale {
+  position: absolute;
+  top: 23px;
+  left: 23px;
   z-index: 2;
   border-radius: 4px;
   border-width: 5px;
@@ -33,6 +37,7 @@
 }
 
 .jewelry-card-title {
+  text-transform: capitalize;
   font-family: "DM Sans", sans-serif;
   font-size: 20px;
   color: #000000;
@@ -53,7 +58,7 @@
 
 .jewelry-card-stub {
   width: 300px;
-  height:300px;
+  height: 300px;
   background-color: #a18a68;
 }
 

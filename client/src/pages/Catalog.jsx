@@ -32,7 +32,7 @@ const optionsSort = [
 
 function Catalog() {
   const { products, isLoading, endedProducts } = useSelector(
-    (state) => state.merchandise
+    (state) => state.merchandiseReducer
   );
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
