@@ -1,7 +1,10 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/require-default-props */
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 import "./ProductCard.scss";
 
@@ -11,10 +14,15 @@ function ProductCard(props) {
     triggerOnce: true
   });
 
-  const { discount, title, price, imageUrl } = props;
+  const { discount, title, price, imageUrl, cardUrl, itemNo } = props;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/catalog${cardUrl}/${itemNo}`);
+  };
 
   return (
-    <div ref={ref} className="jewelry-card">
+    <div ref={ref} onClick={handleClick} className="jewelry-card">
       <div className="jewelry-card-image">
         {discount && (
           <div className="jewlry-sale">
@@ -39,7 +47,9 @@ ProductCard.propTypes = {
   discount: PropTypes.number,
   title: PropTypes.string,
   price: PropTypes.number,
-  imageUrl: PropTypes.string.isRequired
+  imageUrl: PropTypes.string.isRequired,
+  cardUrl: PropTypes.string.isRequired,
+  itemNo: PropTypes.number.isRequired
 };
 
 export default ProductCard;
