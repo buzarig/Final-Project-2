@@ -7,7 +7,7 @@
     font-size: 33px;
     margin-top: 96px;
     text-align: center;
-    font-family: 'DMSans', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 500;
 }
 
@@ -15,21 +15,21 @@
     font-size: 16px;
     margin-top: 39px;
     line-height: 27px;
-    font-family: 'DMSans', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 400;
 }
 
 .privacy__security {
     margin-top: 39px;
     font-size: 26px;
-    font-family: 'DMSans', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 400;
 
     &-text {
         font-size: 16px;
         margin-top: 24px;
         line-height: 27px;
-        font-family: 'DMSans', sans-serif;
+        font-family: 'DM Sans', sans-serif;
         font-weight: 400;
     }
 }
@@ -37,31 +37,30 @@
 .privacy__cookies {
     margin-top: 39px;
     font-size: 26px;
-    font-family: 'DMSans', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-weight: 400;
 
 
     &-list {
         list-style-type: circle;
+        margin-bottom: 250px;
     }
     &-list-text {
         font-size: 16px;
-        margin: 20px 30px;
+        margin: 0 30px;
+        margin-top: 24px;
         line-height: 27px;
-        font-family: 'DMSans', sans-serif;
+        font-family: 'DM Sans', sans-serif;
         font-weight: 400;
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1399px) {
-
-
-}
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
     .privacy-h1 {
         font-size: 20px;
         text-align: left;
+        margin-top: 39px;
     }
 
     .privacy-container {
@@ -89,15 +88,15 @@
         font-size: 20px;
         margin-top: 22px;
 
-        &-text {
+        &-list {
+            margin-bottom: 96px;
+        }
+
+        &-text-list {
             font-size: 12px;
             line-height: 20px;
-            margin-top: 13px;
-            margin-bottom: 96px; 
+            margin-top: 11px; 
         }
     }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1399px) {
-    /// The same 
-}
