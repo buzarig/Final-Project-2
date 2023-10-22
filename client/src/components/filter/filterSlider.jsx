@@ -9,6 +9,8 @@ import { styled } from "@mui/material/styles";
 
 const PriceSlider = styled(Slider)(({ theme }) => ({
   color: "#000",
+  width: 262,
+  marginTop: 5,
   "& .MuiSlider-thumb": {
     height: 12,
     width: 4,
@@ -38,24 +40,21 @@ const PriceSlider = styled(Slider)(({ theme }) => ({
 function FilterSlider({value, changeValue}) {
 
   const handleChange = (event, newValue) => {
-    let minValue = value[0] !== newValue[0] ? newValue[0] - 0.01 : newValue[0];
-    let maxValue = value[1] !== newValue[1] ? newValue[1] - 0.01 : newValue[1];
-    minValue > maxValue && (minValue = maxValue - 1);
-    maxValue < minValue && (maxValue = minValue + 1);
-    maxValue === 10000 && (maxValue += 0.01);
-    minValue < 1500 && (minValue = 1500);
+    let minValue = newValue[0];
+    let maxValue = newValue[1];
+    minValue > maxValue && (minValue = maxValue - 10);
+    maxValue < minValue && (maxValue = minValue + 10);
     changeValue([minValue, maxValue]);
   };
 
   return (
-    <div className="filter__wrapper">
+    <>
       <Box sx={{ width: 262, marginTop: 5 }}>
         <PriceSlider
-          getAriaLabel={() => "Temperature range"}
           value={value}
-          min={1500}
-          max={10000}
-          step={100}
+          min={500}
+          max={25000}
+          step={10}
           onChangeCommitted={handleChange}
           valueLabelDisplay="auto"
         />
@@ -67,7 +66,7 @@ function FilterSlider({value, changeValue}) {
           Price: ${value[0]} - $ {value[1]}
         </Typography>
       </Box>
-    </div>
+    </>
   );
 }
 

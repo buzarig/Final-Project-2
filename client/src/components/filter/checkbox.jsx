@@ -10,7 +10,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export default function CheckboxesTags({ nameCheckboxes, dataOptions, onDataOptions }) {
+export default function CheckboxesTags({ nameCheckboxes, dataOptions, value, onDataOptions }) {
 
   return (
     <Autocomplete
@@ -18,11 +18,12 @@ export default function CheckboxesTags({ nameCheckboxes, dataOptions, onDataOpti
       limitTags={3}
       id="checkboxes-tags-demo"
       options={dataOptions}
+      value={value}
       onChange={(event, newValue) => {
         onDataOptions(newValue);
         }}
       disableCloseOnSelect
-      getOptionLabel={(option) => option.title}
+      getOptionLabel={(option) => option}
       renderOption={(props, option, { selected }) => (
         <li {...props}>
           <Checkbox
@@ -31,7 +32,7 @@ export default function CheckboxesTags({ nameCheckboxes, dataOptions, onDataOpti
             style={{ marginRight: 8 }}
             checked={selected}
           />
-          {option.title}
+          {option}
         </li>
       )}
       renderInput={(params) => (

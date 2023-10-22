@@ -11,7 +11,7 @@ export function getAllProducts(products, isLoading) {
   };
 }
 
-export const getProductsArray = () => async (dispatch) => {
+export const getFilteredProducts = () => async (dispatch) => {
   try {
     const data = await api.get(`/products`).then((products) => products);
     console.log('redux', data.data);
