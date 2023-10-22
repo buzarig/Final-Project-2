@@ -7,14 +7,17 @@
         margin-top: 20px;
 
         .title-shop {
-            font-family: "DM Sans" , sans-serif;
+            font-family: "DM Sans", sans-serif;
             font-size: 33px;
             font-style: normal;
             font-weight: 500;
+            margin-bottom: 16px;
+            margin-right: 10px;
         }
+
         .shop-link {
             color: #A18A68;
-            font-family: "DM Sans" , sans-serif;
+            font-family: "DM Sans", sans-serif;
             font-size: 20px;
             font-style: normal;
             font-weight: 500;
@@ -24,18 +27,86 @@
         }
     }
 
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-    
-            .product-card {
-                width: 100%;
-            }
-    
-            @media (max-width: 768px) {
-                grid-template-columns: repeat(2, 1fr);
-            }
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+
+        .product-card {
+            width: 100%;
         }
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+.home-page {
+    .jewerley-card-catalog {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .jewelry-card {
+        text-align: left;
+        background-color: #fff;
+        min-height: 400px;
+        max-width: 400px;
+        position: relative;
+    }
+
+    .jewelry-card-pic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px 4px 0 0;
+
+        &:hover + .icons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .icons-container {
+        display: none;
+    }
+
+    .icon {
+        width: 25px;
+        height: 25px;
+        margin: 0 15px;
+        background-color: transparent;
+    }
+
+    .jewelry-card-info {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        position: relative;
+    }
+
+    .jewelry-card-title {
+        font-family: "DM Sans", sans-serif;
+        font-size: 20px;
+        color: #000000;
+        margin: 10px;
+    }
+
+    .jewelry-card-price {
+        font-family: "DM Sans", sans-serif;
+        font-size: 20px;
+        color: #a18a68;
+        margin: 10px;
+    }
 }
