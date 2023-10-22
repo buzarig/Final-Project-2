@@ -7,7 +7,7 @@ const initialState = {
   endedProducts: 1
 };
 
-export function merchandiseReducer(state = initialState, action) {
+function merchandiseReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_ALL_PRODUCTS:
       return {
@@ -17,3 +17,5 @@ export function merchandiseReducer(state = initialState, action) {
       return state;
   }
 }
+
+export default merchandiseReducer;

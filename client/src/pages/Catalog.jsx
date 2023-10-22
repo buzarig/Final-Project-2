@@ -1,16 +1,20 @@
+/* eslint-disable func-names */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable consistent-return */
+/* eslint-disable no-use-before-define */
 /* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import FormGroup from "@mui/material/FormGroup";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   getFilteredProducts,
   getAllProducts,
   getSearchProducts
 } from "../redux/actions/merchandise";
-
-import FormGroup from "@mui/material/FormGroup";
-import Stack from "@mui/material/Stack";
-import CircularProgress from "@mui/material/CircularProgress";
 import Search from "../components/filter/search";
 import CheckboxesTags from "../components/filter/checkbox";
 import BasicSelect from "../components/filter/basicSelect";
@@ -87,7 +91,6 @@ function Catalog() {
     dispatch(getAllProducts(products, true, endedProducts));
     dispatch(getSearchProducts(valueSearch));
   }, [valueSearch]);
-  
 
   function scrollHandler(e) {
     if (

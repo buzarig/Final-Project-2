@@ -63,7 +63,11 @@ const formControlLabelStyle = {
   }
 };
 
-export default function CustomizedSwitches({ nameSwitch, onChecked, checkedSwitch }) {
+export default function CustomizedSwitches({
+  nameSwitch,
+  onChecked,
+  checkedSwitch
+}) {
   function changeChecked(event) {
     onChecked(event.target.checked);
   }

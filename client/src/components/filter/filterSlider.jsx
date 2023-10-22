@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-expressions */
 // eslint-disable react/destructuring-assignment
 
@@ -37,8 +38,7 @@ const PriceSlider = styled(Slider)(({ theme }) => ({
   }
 }));
 
-function FilterSlider({value, changeValue}) {
-
+function FilterSlider({ value, changeValue }) {
   const handleChange = (event, newValue) => {
     let minValue = newValue[0];
     let maxValue = newValue[1];
@@ -48,25 +48,23 @@ function FilterSlider({value, changeValue}) {
   };
 
   return (
-    <>
-      <Box sx={{ width: 262, marginTop: 5 }}>
-        <PriceSlider
-          value={value}
-          min={500}
-          max={25000}
-          step={10}
-          onChangeCommitted={handleChange}
-          valueLabelDisplay="auto"
-        />
-        <Typography
-          id="non-linear-slider"
-          style={{ color: "#707070" }}
-          gutterBottom
-        >
-          Price: ${value[0]} - $ {value[1]}
-        </Typography>
-      </Box>
-    </>
+    <Box sx={{ width: 262, marginTop: 5 }}>
+      <PriceSlider
+        value={value}
+        min={500}
+        max={25000}
+        step={10}
+        onChangeCommitted={handleChange}
+        valueLabelDisplay="auto"
+      />
+      <Typography
+        id="non-linear-slider"
+        style={{ color: "#707070" }}
+        gutterBottom
+      >
+        Price: ${value[0]} - $ {value[1]}
+      </Typography>
+    </Box>
   );
 }
 

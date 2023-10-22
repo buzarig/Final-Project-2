@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 /* eslint-disable react/prop-types */
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
@@ -10,8 +9,12 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export default function CheckboxesTags({ nameCheckboxes, dataOptions, value, onDataOptions }) {
-
+export default function CheckboxesTags({
+  nameCheckboxes,
+  dataOptions,
+  value,
+  onDataOptions
+}) {
   return (
     <Autocomplete
       multiple
@@ -21,7 +24,7 @@ export default function CheckboxesTags({ nameCheckboxes, dataOptions, value, onD
       value={value}
       onChange={(event, newValue) => {
         onDataOptions(newValue);
-        }}
+      }}
       disableCloseOnSelect
       getOptionLabel={(option) => option}
       renderOption={(props, option, { selected }) => (
@@ -41,4 +44,3 @@ export default function CheckboxesTags({ nameCheckboxes, dataOptions, value, onD
     />
   );
 }
-

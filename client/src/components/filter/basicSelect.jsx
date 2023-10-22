@@ -1,4 +1,4 @@
-/* eslint-disable no-use-before-define */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React from "react";
 import Box from "@mui/material/Box";
@@ -27,7 +27,7 @@ export default function BasicSelect({
           <MenuItem value="">Nothing</MenuItem>
           {listSelect.length &&
             listSelect.map((item, i) => (
-              <MenuItem key={i} value={item.value} >
+              <MenuItem key={i} value={item.value}>
                 {item.name}
               </MenuItem>
             ))}

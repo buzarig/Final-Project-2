@@ -21,7 +21,11 @@ function ProductCard(props) {
             <h2 className="jewlry-sale-info">-{discount}%</h2>
           </div>
         )}
-        {inView ? <img className="jewelry-card-pic" src={imageUrl} alt="jewelry-pic" /> : <div className="jewelry-card-stub"></div>}
+        {inView ? (
+          <img className="jewelry-card-pic" src={imageUrl} alt="jewelry-pic" />
+        ) : (
+          <div className="jewelry-card-stub" />
+        )}
       </div>
       <div className="jewelry-card-info">
         <h2 className="jewelry-card-title">{title}</h2>

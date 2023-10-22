@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-console */
 import api from "../../http/api";
 import types from "../types";
 
@@ -28,20 +30,26 @@ export const getFilteredProducts =
       const stones = shopOptions ? shopOptions.split(",") : [];
       const data = await api
         .get(
-          "/products/filter?minPrice=" +
-            valueSliderMin +
-            "&maxPrice=" +
-            valueSliderMax +
-            (stones.length ? "&stone=" + stones : "") +
-            (checkedSale
+          `/products/filter?minPrice=${valueSliderMin}&maxPrice=${valueSliderMax}${
+            stones.length ? `&stone=${stones}` : ""
+          }${
+            checkedSale
               ? "&previousPrice=4000,2499,5699,1499,7800,20999,17999"
-              : "") +
-            (checkedStock ? "&quantity=1,2,3,4,5,6,7,8,9,10,11,12,13,14" : "") +
-            `&perPage=9&startPage=${currentPage}` +
-            (sortOptions && "&sort=" + sortOptions + "currentPrice")
+              : ""
+          }${
+            checkedStock ? "&quantity=1,2,3,4,5,6,7,8,9,10,11,12,13,14" : ""
+          }&perPage=9&startPage=${currentPage}${
+            sortOptions && `&sort=${sortOptions}currentPrice`
+          }`
         )
         .then((response) => response);
-      dispatch(getAllProducts(currentPage === 1 ? data.data.data : [...products, ...data.data.data], false, data.data.data.length));
+      dispatch(
+        getAllProducts(
+          currentPage === 1 ? data.data.data : [...products, ...data.data.data],
+          false,
+          data.data.data.length
+        )
+      );
     } catch (error) {
       console.log(error);
     }
