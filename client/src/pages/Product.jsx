@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import "../styles/_product.scss";
 import { useParams } from "react-router-dom";
@@ -28,7 +29,6 @@ function Products() {
 
         if (response.status === 200) {
           const product = response.data;
-          console.log(product);
           setProductData(product);
         } else {
           console.log("Произошла ошибка при получении данных о продукте.");
@@ -74,9 +74,20 @@ function Products() {
           <h1 className="product-title">
             {productData ? productData.name : "Loading..."}
           </h1>
-          <span className="product-price">
-            $ {productData ? productData.currentPrice : "Loading..."}
-          </span>
+          <div className="product-prices">
+            {productData ? (
+              <>
+                {productData.previousPrice ? (
+                  <del>$ {productData.previousPrice},00</del>
+                ) : null}
+                <span className="current-price">
+                  $ {productData.currentPrice},00
+                </span>
+              </>
+            ) : (
+              "Loading..."
+            )}
+          </div>
           {/* <div className="product-rate">rating</div> */}
           <div className="product-description">
             {showFullDescription ? (
@@ -157,7 +168,12 @@ function Products() {
             </div>
           </div>
           <div className="product-categories">
-            Categories: <span> categ!</span>
+            Categories:
+            <span>
+              {productData && productData.categories
+                ? productData.categories
+                : "Loading.."}
+            </span>
           </div>
         </div>
       </div>
