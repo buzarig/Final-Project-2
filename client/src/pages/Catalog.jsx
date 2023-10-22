@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-// import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
   getFilteredProducts,
@@ -22,8 +20,8 @@ import ProductCard from "../components/productCard/ProductCard";
 
 import "../styles/_catalog.scss";
 
-const dataOptionsShop = ["diamond", "sapphire"];
-const dataOptionsSort = [
+const optionsShop = ["diamond", "sapphire", "topaz", "emeralds"];
+const optionsSort = [
   { value: "-", name: "Maximum price" },
   { value: "+", name: "Minimum price" }
 ];
@@ -185,14 +183,14 @@ function Catalog() {
               <CheckboxesTags
                 nameCheckboxes="Shop By"
                 onDataOptions={changeShopOptions}
-                dataOptions={dataOptionsShop}
+                dataOptions={optionsShop}
                 value={shopOptions ? shopOptions.split(",") : []}
               />
               <BasicSelect
                 nameCheckboxes="Sort By"
                 valueSelect={sortOptions}
                 onValueSelect={changeSortOptions}
-                listSelect={dataOptionsSort}
+                listSelect={optionsSort}
               />
             </Stack>
             <FilterSlider
