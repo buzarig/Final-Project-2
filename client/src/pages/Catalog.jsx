@@ -10,7 +10,6 @@ import {
   getSearchProducts
 } from "../redux/actions/merchandise";
 
-import api from "../http/api";
 import FormGroup from "@mui/material/FormGroup";
 import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
