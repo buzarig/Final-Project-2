@@ -6,7 +6,7 @@ import "../styles/_home.scss";
 
 function Home(products) {
   return (
-    <div className="container">
+    <div className="container home-page">
       <main className="home">
         <CarouselComponent myProducts={products} />
       </main>
@@ -17,12 +17,36 @@ function Home(products) {
         </Link>
       </div>
       <div className="cards-container">
-        <ProductCard className="product-card" />
-        <ProductCard className="product-card" />
-        <ProductCard className="product-card" />
-        <ProductCard className="product-card" />
-        <ProductCard className="product-card" />
-        <ProductCard className="product-card" />
+        <ProductCard
+          className="product-card"
+          showSaleInfo={false}
+          showButtons
+        />
+        <ProductCard
+          className="product-card"
+          showSaleInfo={false}
+          showButtons
+        />
+        <ProductCard
+          className="product-card"
+          showSaleInfo={false}
+          showButtons
+        />
+        <ProductCard
+          className="product-card"
+          showSaleInfo={false}
+          showButtons
+        />
+        <ProductCard
+          className="product-card"
+          showSaleInfo={false}
+          showButtons
+        />
+        <ProductCard
+          className="product-card"
+          showSaleInfo={false}
+          showButtons
+        />
       </div>
     </div>
   );

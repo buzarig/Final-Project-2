@@ -2,10 +2,8 @@
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
-    width: 100%;
     max-width: 100%;
     background-repeat: no-repeat;
-    width: 1248px;
     height: 646px;
     object-fit: cover;
     padding: 20px;
@@ -33,12 +31,35 @@
             margin-bottom: 48px;
         }
 
-        .btn-product {
+        .product-information {
             color: #fff;
-            background-color:  rgba(0, 0, 0, 0);;
+            background-color: rgba(0, 0, 0, 0);
             border: 2px #fff solid;
             border-radius: 16px;
-            padding: 15px 50px;
+            padding: 15px 10px;
+            text-decoration: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        height: auto;
+    }
+
+    @media (max-width: 480px) {
+        padding: 10px;
+        border-radius: 10px;
+
+        .product-title {
+            font-size: 24px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            margin-bottom: 24px;
+        }
+
+        .btn-product {
+            padding: 10px 30px;
         }
     }
 }

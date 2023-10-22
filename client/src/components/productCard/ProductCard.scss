@@ -1,22 +1,18 @@
-.catalog {
+.jewerley-card-catalog {
     display: flex;
     flex-wrap: wrap;
-    max-width: 250px;
     justify-content: space-between;
-    align-items: flex-start;
-    display: flex;
     padding: 10px;
     // border: 1px solid #fe0000;
 }
 
 .jewelry-card {
     padding: 16px;
-    display: flex;
-    flex-direction: column;
     text-align: left;
     background-color: #fff;
     transition: box-shadow 0.3s ease-in-out;
     max-width: 300px;
+    margin: 10px;
 }
 
 .jewlry-sale {
@@ -32,7 +28,8 @@
     margin-bottom: 10px;
 
     .jewlry-sale-info {
-        font-family: "DM Sans";
+        font-family: "DM Sans",sans-serif;
+        font-size: 12px;
         color: #ffffff;
     }
 }
@@ -40,12 +37,11 @@
 .jewelry-card-info {
     display: flex;
     flex-direction: column;
-
     margin-top: 10px;
 }
 
 .jewelry-card-title {
-    font-family: "DM Sans" , sans-serif;
+    font-family: "DM Sans", sans-serif;
     font-size: 20px;
     color: #000000;
     margin: 10px;
@@ -61,4 +57,14 @@
 .jewelry-card-pic {
     width: 100%;
     z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .jewerley-card-catalog {
+        justify-content: center;
+    }
+
+    .jewelry-card {
+        max-width: 100%;
+    }
 }
