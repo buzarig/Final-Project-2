@@ -63,8 +63,34 @@
   background-color: #a18a68;
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1399px) {
+  .jewelry-card-stub {
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
   .jewelry-card {
-    max-width: 100%;
+    max-width: 140px;
+  }
+  
+  .jewelry-card-info {
+    margin-top: 3px;
+  }
+  
+  .jewelry-card-title {
+    font-size: 15px;
+    margin: 3px;
+  }
+  
+  .jewelry-card-price {
+    font-size: 18px;
+    margin: 3px;
+    
+  }
+  
+  .jewelry-card-stub {
+    width: 100%;
   }
 }

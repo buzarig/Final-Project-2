@@ -39,7 +39,7 @@ ProductCard.propTypes = {
   discount: PropTypes.number,
   title: PropTypes.string,
   price: PropTypes.number,
-  imageUrl: PropTypes.string.isRequired
+  imageUrl: PropTypes.string
 };
 
 export default ProductCard;
