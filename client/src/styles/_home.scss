@@ -3,41 +3,44 @@
     margin-top: 50px;
     margin-bottom: 100px;
     max-width: 1240px;
-
-    .flex-shop {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-
-        .title-shop {
-            font-family: "DM Sans", sans-serif;
-            font-size: 33px;
-            font-style: normal;
-            font-weight: 500;
-            margin-bottom: 16px;
-            margin-right: 10px;
-        }
-
-        .shop-link {
-            color: #A18A68;
-            font-family: "DM Sans", sans-serif;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 26px;
-            text-transform: capitalize;
-            text-align: left;
-        }
+  .flex-shop {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+    .title-shop {
+      font-family: "DM Sans", sans-serif;
+      font-size: 33px;
+      font-style: normal;
+      font-weight: 500;
+      margin-bottom: 16px;
+      margin-right: 10px;
     }
+
+    .shop-link {
+      color: #a18a68;
+      font-family: "DM Sans", sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 26px;
+      text-transform: capitalize;
+      text-align: left;
+    }
+  }
+
 
     .cards-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         margin-top: 20px;
 
-        .product-card {
-            width: 100%;
-        }
+    .product-card {
+      width: calc(33.33% - 20px);
+      @media (max-width: 768px) {
+        width: calc(50% - 20px);
+      }
+    }
 
         @media (max-width: 768px) {
             grid-template-columns: repeat(2, 1fr);
@@ -68,11 +71,11 @@
         position: relative;
     }
 
-    .jewelry-card-pic {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 4px 4px 0 0;
+  .jewelry-card-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px 4px 0 0;
 
         &:hover+.icons-container {
             display: flex;
@@ -87,23 +90,23 @@
         }
     }
 
-    .icons-container {
-        display: none;
-    }
+  .icons-container {
+    display: none;
+  }
 
-    .icon {
-        width: 25px;
-        height: 25px;
-        margin: 0 15px;
-        background-color: transparent;
-    }
+  .icon {
+    width: 25px;
+    height: 25px;
+    margin: 0 15px;
+    background-color: transparent;
+  }
 
-    .jewelry-card-info {
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-        position: relative;
-    }
+  .jewelry-card-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    position: relative;
+  }
 
     .jewelry-card-title {
         font-family: "DM Sans", sans-serif;
