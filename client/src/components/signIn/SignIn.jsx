@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import "./SignIn.scss";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
+import StatusOk from "../statusOk/StatusOk";
 
 function SignIn() {
+  const [showStatus, setShowStatus] = useState(false);
   const { control, handleSubmit, formState } = useForm();
   const { errors } = formState;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -37,27 +40,35 @@ function SignIn() {
       }
 
       const dataResponse = await response.json();
-
-      // localStorage.setItem("accessToken", dataResponse.token);
       setAuthToken(dataResponse.token);
 
       // eslint-disable-next-line no-console
       console.log("Response from server:", dataResponse);
       axios
         .get("http://localhost:4000/api/customers/customer")
-        .then((loggedInCustomer) => {
-          // eslint-disable-next-line no-console
-          console.log("Logged in customer data:", loggedInCustomer);
+        .then((anotherResponse) => {
+          if (anotherResponse.status === 200) {
+            setShowStatus(true);
+            setTimeout(() => {
+              setShowStatus(false);
+              navigate("/");
+            }, 2000);
+          } else {
+            navigate("myAccount/register");
+          }
         })
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.error("Error during request:", err);
+          // eslint-disable-next-line no-alert
+          alert("You need to register");
         });
       dispatch(setAccessToken(dataResponse.token));
-      // history.push("/myAccount/cart");
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error("Authentication error:", error);
+      // eslint-disable-next-line no-alert
+      alert("Please, You need to register!");
     }
   };
 
@@ -114,13 +125,12 @@ function SignIn() {
             )}
           />
         </div>
+        {showStatus ? <StatusOk /> : null}
         <button className="submit_signin" type="submit">
           Sign In
         </button>
       </form>
-      <Link className="reset_pass" to="/resetPassword">
-        Have you forgotten your password?
-      </Link>
+      <div className="status-ok-container" />
     </div>
   );
 }
