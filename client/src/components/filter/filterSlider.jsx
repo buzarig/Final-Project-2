@@ -62,7 +62,7 @@ function FilterSlider({ value, changeValue }) {
         style={{ color: "#707070" }}
         gutterBottom
       >
-        Price: ${value[0]} - $ {value[1]}
+        Price: ${value[1]} - $ {value[0]}
       </Typography>
     </Box>
   );
