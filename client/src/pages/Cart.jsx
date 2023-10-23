@@ -14,34 +14,26 @@ import {
 } from "../redux/actions/cartActions";
 
 
+
+
 function Cart() {
 
   const products = useSelector((state) => state.cartReducer.cartProducts);
-  const dispatch = useDispatch();
-  // const isDeleting = useSelector((state) => state.basket.isDeleting);
   console.log(products);
-  // const isDeleting = useSelector((state) => state.basket.isDeleting);
+  const dispatch = useDispatch();
 
 
 
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
-  const [isShippingInfoVisible, setShippingInfoVisible] = useState(true);
+  const [isShippingInfoVisible, setShippingInfoVisible] = useState(false);
   const [postCode, setPostCode] = useState('');
 
   const toggleShippingInfo = () => {
     setShippingInfoVisible(!isShippingInfoVisible);
   };
 
-  // const handleUpdateTotals = () => {
-  //   if (selectedCountry && selectedState && selectedCity) {
-  //     console.log('Selected Country:', selectedCountry.name);
-  //     console.log('Selected State:', selectedState.name);
-  //     console.log('Selected City:', selectedCity.name);
-  //     console.log('Selected Post code/Zip:', postCode);
-  //   }
-  // };
 
   const handleUpdateTotals = () => {
     if (selectedCountry && selectedState && selectedCity) {
@@ -57,20 +49,6 @@ function Cart() {
     }
   };
 
-  // useEffect(() => {
-  //   products.map((product,index) => {
-  //     console.log(product);
-  //     const handleIncCaunt = (increment) => {
-  //       if (increment > 0) {
-  //         setQty(qty + increment);
-  //       } else if (qty > 1) {
-  //         setQty(qty - 1);
-  //       }
-  //     };
-  //   })  
-
-  // })
-
 
   const handleIncreaseCount = (itemNo) => {
     console.log(itemNo);
@@ -82,9 +60,8 @@ function Cart() {
   };
   
 
-  const handleRemoveProduct = (selectedProduct) => {
-    // console.log(product.product.quantity);
-    dispatch(handleRemoveProduct(selectedProduct));
+  const handleRemoveProduct = (itemNo) => {
+    dispatch(removeProduct(itemNo));
   };
   
 
@@ -95,9 +72,8 @@ function Cart() {
       <div className="cart__container">
         <div className="cart__products">
         <div className="cart__products-items">
-  {products.length > 0 ? ( // Check if the products array is not empty
+  {products.length > 0 ? ( 
     products.map((product, index) => (
-      // Add a null check before accessing the 'product' property
       product && product.product ? (
         <div className="cart__products-item" key={product.product.itemNo}>
           <img
@@ -129,7 +105,7 @@ function Cart() {
             </button>
           </div>
           <button
-            onClick={() => handleRemoveProduct(product.product)}
+            onClick={() => handleRemoveProduct(index)}
             className="remove-button"
           >
             <img
@@ -139,10 +115,10 @@ function Cart() {
             />
           </button>
         </div>
-      ) : null // If 'product' or 'product.product' is null, render nothing
+      ) : null
     ))
   ) : (
-    <p>No products in the cart</p>
+    <p className="empty-cart">No products in the cart</p>
   )}
 </div>
           
@@ -154,12 +130,12 @@ function Cart() {
           <div className="count">
             <span className="count-text">Subtotal</span>
             <span className="count-summ">
-            {/* {products
+            {products
             .reduce(
               (acc, { product, cartQuantity }) =>
                 acc + product.currentPrice * cartQuantity,
               0
-            ).toFixed(2)}{" "} */}
+            ).toFixed(2)}{" "}
               $
             </span>
           </div>
@@ -245,12 +221,12 @@ function Cart() {
          <div className="cart__total">
           <p className="cart__total-text">Total</p>
           <p className="cart__total-number">
-            {/* {products
+            {products
             .reduce(
               (acc, { product, cartQuantity }) =>
                 acc + product.currentPrice * cartQuantity,
               0
-            ).toFixed(2)}{" "} */}
+            ).toFixed(2)}{" "}
             $</p>
           </div>
           <div className="cart__submit">

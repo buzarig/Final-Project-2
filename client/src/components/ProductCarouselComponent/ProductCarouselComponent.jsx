@@ -10,7 +10,7 @@ function ProductCarouselComponent({ title, price, img }) {
         <h2 className="product-title">{title}</h2>
         <p className="product-price">{price}</p>
         <button type="button" className="btn-product">
-          <Link to="/catalog">View Product</Link>
+          <Link to="/catalog">Go to catalog</Link>
         </button>
       </div>
     </div>

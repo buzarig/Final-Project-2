@@ -29,14 +29,15 @@ function Header() {
     let timeoutId;
 
     function handleDocumentClick(event) {
-      const searchInput = document.getElementById("search-bar-mui");
-      if (
-        isToggledSearch &&
-        searchInput &&
-        !searchInput.contains(event.target)
-      ) {
-        // Закрыть поиск при клике вне элемента поиска
-        dispatch(searchToggle(false));
+      const searchInput = document.getElementsByClassName("search-bar")[0];
+      if (isToggledSearch && searchInput) {
+        if (
+          !searchInput.contains(event.target) &&
+          event.target !== searchInput
+        ) {
+          // Закрыть поиск при клике вне элемента поиска
+          dispatch(searchToggle(false));
+        }
       }
     }
 
@@ -70,22 +71,19 @@ function Header() {
   useEffect(() => {
     function handleWheel(event) {
       if (isMenuOpen) {
-        event.preventDefault();
-      }
-    }
-
-    function handleTouchMove(event) {
-      if (isMenuOpen) {
-        event.preventDefault();
+        // Вмешиваемся в прокрутку, если меню открыто
+        const { deltaY } = event;
+        const scrollContainer = document.querySelector(".menu"); // Замените на соответствующий селектор
+        if (scrollContainer) {
+          scrollContainer.scrollTop += deltaY;
+        }
       }
     }
 
     window.addEventListener("wheel", handleWheel);
-    window.addEventListener("touchmove", handleTouchMove);
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, [isMenuOpen]);
 

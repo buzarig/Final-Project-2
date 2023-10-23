@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import api from "../http/api";
 import CarouselComponent from "../components/carousel/Carousel";
 import "../styles/_home.scss";
+import ProductCard from "../components/productCard/ProductCard";
 
 function Home() {
   const [products, setProducts] = useState([]);
-  console.log(products);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -30,7 +30,7 @@ function Home() {
   return (
     <div className="container home-page">
       <main className="home">
-        <CarouselComponent myProducts={products} />
+        <CarouselComponent key={products.index} myProducts={products} />
       </main>
       <div className="flex-shop">
         <h2 className="title-shop">Shop The Latest</h2>
@@ -39,17 +39,16 @@ function Home() {
         </Link>
       </div>
       <div className="cards-container">
-        {products.map(
-          (product) => console.log(product.name)
-          // <ProductCard
-          //   key={product.itemNo}
-          //   title={product.title}
-          //   price={product.price}
-          //   imageUrl={product.imageUrl}
-          //   showSaleInfo={false}
-          //   showButtons
-          // />
-        )}
+        {products.map((product) => (
+          <ProductCard
+            key={product.itemNo}
+            title={product.name}
+            price={product.currentPrice}
+            imageUrl={product.imageUrls[0]}
+            showSaleInfo={false}
+            showButtons
+          />
+        ))}
       </div>
     </div>
   );

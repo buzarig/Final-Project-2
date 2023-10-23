@@ -5,8 +5,6 @@ import {
   DECREASE_COUNT,
   CLEAR
 } from "../actions/cartActions";
-import types from "../types";
-
 
 const initState = {
   cartProducts: []
@@ -49,32 +47,31 @@ const cartReducer = (state = initState, action = {}) => {
       };
     }
 
-    case types.INCREASE_COUNT:
+    case INCREASE_COUNT:
       return {
         ...state,
-        cartProducts: state.cartProducts.map((product, i) =>  
-        i === action.payload
-          
+        cartProducts: state.cartProducts.map((product, i) =>
+          i === action.payload
             ? {
                 ...product,
                 cartQuantity:
-                  product.cartQuantity < product.quantity
+                  product.cartQuantity < product.product.quantity
                     ? product.cartQuantity + 1
                     : product.cartQuantity
               }
             : product
-          
         )
       };
-      case types.DECREASE_COUNT:
-        return {
-          ...state,
-          cartProducts: state.cartProducts.map((product, i) =>
-            i === action.payload && product.cartQuantity > 1
-              ? { ...product, cartQuantity: product.cartQuantity - 1 }
-              : product
-          )
-        };
+    case DECREASE_COUNT:
+      return {
+        ...state,
+        cartProducts: state.cartProducts.map((product, i) =>
+          i === action.payload && product.cartQuantity > 1
+            ? { ...product, cartQuantity: product.cartQuantity - 1 }
+            : product
+        )
+      };
+
     case CLEAR:
       return {
         ...state,
