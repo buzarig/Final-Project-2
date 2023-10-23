@@ -11,6 +11,9 @@ import Contacts from "./pages/Contacts";
 import Blog from "./pages/Blog";
 import AboutUs from "./pages/AboutUs";
 import Privacy from "./pages/Privacy";
+import ShippingAndReturns from "./pages/Shipping";
+import TermsOfService from "./pages/TermsOfService";
+import TermsOfUse from "./pages/TermsOfUse";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Thanks from "./pages/Thanks";
@@ -44,6 +47,12 @@ function App() {
             <Route path="blog" element={<Blog />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="privacy" element={<Privacy />} />
+            <Route
+              path="shipping-and-returns"
+              element={<ShippingAndReturns />}
+            />
+            <Route path="terms-of-service" element={<TermsOfService />} />
+            <Route path="terms-of-use" element={<TermsOfUse />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
             <Route path="order" element={<Order />} />

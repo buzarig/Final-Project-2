@@ -15,7 +15,7 @@ const cartReducer = (state = initState, action = {}) => {
     case REMOVE_PRODUCT:
       return {
         ...state,
-        productsArray: [
+        cartProducts: [
           ...state.cartProducts.slice(0, action.payload),
           ...state.cartProducts.slice(action.payload + 1)
         ]
@@ -50,7 +50,7 @@ const cartReducer = (state = initState, action = {}) => {
     case INCREASE_COUNT:
       return {
         ...state,
-        productsArray: state.productsArray.map((product, i) =>
+        cartProducts: state.productsArray.map((product, i) =>
           i === action.payload
             ? {
                 ...product,
@@ -65,7 +65,7 @@ const cartReducer = (state = initState, action = {}) => {
     case DECREASE_COUNT:
       return {
         ...state,
-        productsArray: state.productsArray.map((product, i) =>
+        cartProducts: state.productsArray.map((product, i) =>
           i === action.payload && product.cartQuantity > 1
             ? { ...product, cartQuantity: product.cartQuantity - 1 }
             : product
@@ -75,7 +75,7 @@ const cartReducer = (state = initState, action = {}) => {
     case CLEAR:
       return {
         ...state,
-        productsArray: []
+        cartProducts: []
       };
     default:
       return state;
