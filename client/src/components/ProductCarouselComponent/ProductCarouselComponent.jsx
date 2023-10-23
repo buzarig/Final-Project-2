@@ -9,9 +9,9 @@ function ProductCarouselComponent({ title, price, img }) {
       <div className="flex-box">
         <h2 className="product-title">{title}</h2>
         <p className="product-price">{price}</p>
-        <button type="button" className="btn-product">
-          <Link to="/catalog">Go to catalog</Link>
-        </button>
+        <Link to="/catalog" className="btn-product">
+          Go to Gatalog
+        </Link>
       </div>
     </div>
   );

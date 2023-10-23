@@ -1,6 +1,7 @@
 .container {
-  margin: 0 96px 342px;
-
+    margin: 0 auto;
+    margin-top: 50px;
+    max-width: 1240px;
   .flex-shop {
     display: flex;
     justify-content: space-between;
@@ -27,11 +28,11 @@
     }
   }
 
-  .cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-top: 20px;
+
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 20px;
 
     .product-card {
       width: calc(33.33% - 20px);
@@ -45,8 +46,17 @@
     }
   }
 }
-
 .home-page {
+
+   
+    .jewelry-card {
+        text-align: left;
+        background-color: #fff;
+        min-height: 400px;
+        max-width: 400px;
+        position: relative;
+    }
+
   .jewerley-card-catalog {
     display: flex;
     flex-wrap: wrap;
