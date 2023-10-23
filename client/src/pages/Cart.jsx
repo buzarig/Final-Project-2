@@ -3,51 +3,24 @@ import "../styles/_cart.scss";
 import { useSelector, useDispatch} from "react-redux";
 import {Country, State, City} from "country-state-city";
 import Select from 'react-select';
-import care from "../assets/images/about-care.png";
 import remove from "../assets/images/remove-cart-item.png";
-import close from "../assets/images/close-shipping.png"
+import close from "../assets/images/close-shipping.png";
+import { Link } from "react-router-dom";
 
 import {
   removeProduct,
   decreaseCount,
   increaseCount
-} from "../redux/actions/basketActions";
-
-
-const products = [
-  {
-    name: "Lira Earrings",
-    price: 20,
-    color: 'black',
-    size: 'medium',
-    number: 1
-  },
-  {
-    name: "Ollie Earrings",
-    price: 20,
-    color: 'white',
-    size: 'small',
-    number: 3
-  }
-]
+} from "../redux/actions/cartActions";
 
 
 function Cart() {
-  // const productsArray = useSelector((state) => state.basket.productsArray);
-  // const isDeleting = useSelector((state) => state.basket.isDeleting);
+
+  const products = useSelector((state) => state.cartReducer.cartProducts);
   const dispatch = useDispatch();
-
-  const handleRemoveProduct = (itemNo) => {
-    dispatch(removeProduct(itemNo));
-  };
-
-  const handleIncreaseCount = (itemNo) => {
-    dispatch(increaseCount(itemNo));
-  };
-
-  const handleDecreaseCount = (itemNo) => {
-    dispatch(decreaseCount(itemNo));
-  };
+  // const isDeleting = useSelector((state) => state.basket.isDeleting);
+  console.log(products);
+  // const isDeleting = useSelector((state) => state.basket.isDeleting);
 
 
 
@@ -56,12 +29,6 @@ function Cart() {
   const [selectedCity, setSelectedCity] = useState(null);
   const [isShippingInfoVisible, setShippingInfoVisible] = useState(true);
   const [postCode, setPostCode] = useState('');
-
-  // useEffect(() => {
-  //   console.log(selectedCountry);
-  //   console.log(selectedCountry?.isoCode);
-  //   console.log(State?.getStatesOfCountry(selectedCountry?.isoCode));
-  // }, [selectedCountry]);
 
   const toggleShippingInfo = () => {
     setShippingInfoVisible(!isShippingInfoVisible);
@@ -90,8 +57,36 @@ function Cart() {
     }
   };
 
+  // useEffect(() => {
+  //   products.map((product,index) => {
+  //     console.log(product);
+  //     const handleIncCaunt = (increment) => {
+  //       if (increment > 0) {
+  //         setQty(qty + increment);
+  //       } else if (qty > 1) {
+  //         setQty(qty - 1);
+  //       }
+  //     };
+  //   })  
+
+  // })
 
 
+  const handleIncreaseCount = (itemNo) => {
+    console.log(itemNo);
+    dispatch(increaseCount(itemNo));
+  };
+
+  const handleDecreaseCount = (itemNo) => {
+    dispatch(decreaseCount(itemNo));
+  };
+  
+
+  const handleRemoveProduct = (selectedProduct) => {
+    // console.log(product.product.quantity);
+    dispatch(handleRemoveProduct(selectedProduct));
+  };
+  
 
   return (
     <div className="cart">
@@ -99,41 +94,58 @@ function Cart() {
 
       <div className="cart__container">
         <div className="cart__products">
-          <div className="cart__products-items">
-          {products.map((product, index) => (
-            <div className="cart__products-item" key={index}>
-              <img className="cart__products-image" src={care} alt={product.name} />
-              <div className="cart__products-text">
-                <h1 className="cart__products-text-title">{product.name}</h1>
-                <p className="cart__products-text-color">{product.color}/{product.size}</p>
-                <p className="cart__products-text-price">{product.price},00 $</p>
-              </div>
-              <div className="cart__products-count">
-                <button className="cart__products-count-minus">-</button>
-                <p className="cart__products-count-number">1</p>
-                <button
-                  type="button"
-                  onClick={() => handleIncreaseCount(index)}
-                 className="cart__products-count-plus"
-                 >+</button>
-              </div>
-              <button className="remove-button">
-                <img className="cart__products-item-remove" src={remove} alt="" />
-              </button>
-              
-            </div>
-
-      ))}
+        <div className="cart__products-items">
+  {products.length > 0 ? ( // Check if the products array is not empty
+    products.map((product, index) => (
+      // Add a null check before accessing the 'product' property
+      product && product.product ? (
+        <div className="cart__products-item" key={product.product.itemNo}>
+          <img
+            className="cart__products-image"
+            src={product.product.imageUrls[0]}
+            alt={product.product.name}
+          />
+          <div className="cart__products-text">
+            <h1 className="cart__products-text-title">{product.product.name}</h1>
+            <p className="cart__products-text-color">{product.product.color}</p>
+            <p className="cart__products-text-price">
+              {product.product.currentPrice}$
+            </p>
           </div>
-          <div className="cart__products-footer">
-            <div className="cart__products-update">
-              <button type="submit" className="cart__products-update-button">Update Cart</button>
-            </div>
-            {/* <div className="cart__products-coupon">
-              <input placeholder="Coupon Code" type="text" className="cart__products-coupon-input" />
-              <button className="cart__products-coupon-button">Apply Coupon</button>
-            </div> */}
+          <div className="cart__products-count">
+            <button
+              onClick={() => handleDecreaseCount(index)}
+              className="cart__products-count-minus"
+            >
+              -
+            </button>
+            <p className="cart__products-count-number">{product.cartQuantity}</p>
+            <button
+              type="button"
+              onClick={() => handleIncreaseCount(index)}
+              className="cart__products-count-plus"
+            >
+              +
+            </button>
           </div>
+          <button
+            onClick={() => handleRemoveProduct(product.product)}
+            className="remove-button"
+          >
+            <img
+              className="cart__products-item-remove"
+              src={remove}
+              alt=""
+            />
+          </button>
+        </div>
+      ) : null // If 'product' or 'product.product' is null, render nothing
+    ))
+  ) : (
+    <p>No products in the cart</p>
+  )}
+</div>
+          
         </div>
         <div className="cart__checkout">
           <div className="checkout-container">
@@ -142,14 +154,13 @@ function Cart() {
           <div className="count">
             <span className="count-text">Subtotal</span>
             <span className="count-summ">
-              {/* {productsArray
-                  .reduce(
-                  (acc, { product, cartQuantity }) =>
-                  acc + product.currentPrice * cartQuantity,
-                  0
-                  )
-                  .toFixed(2)}{" "} */}
-                  num
+            {/* {products
+            .reduce(
+              (acc, { product, cartQuantity }) =>
+                acc + product.currentPrice * cartQuantity,
+              0
+            ).toFixed(2)}{" "} */}
+              $
             </span>
           </div>
         <div className="shipping">
@@ -169,7 +180,7 @@ function Cart() {
             
           </div>
           {isShippingInfoVisible && (
-            <div>
+          <div className="shipping-select">
               <Select
         options={Country.getAllCountries()}
         getOptionLabel={(options) => {
@@ -233,10 +244,20 @@ function Cart() {
           </div>
          <div className="cart__total">
           <p className="cart__total-text">Total</p>
-          <p className="cart__total-number">num</p>
+          <p className="cart__total-number">
+            {/* {products
+            .reduce(
+              (acc, { product, cartQuantity }) =>
+                acc + product.currentPrice * cartQuantity,
+              0
+            ).toFixed(2)}{" "} */}
+            $</p>
           </div>
           <div className="cart__submit">
-            <button type="submit" className="cart__submit-button">Proceed to Checkout</button>
+            <Link to="/checkout">
+              <button type="submit" className="cart__submit-button">Proceed to Checkout</button>
+            </Link>
+            
           </div>
            
         </div>

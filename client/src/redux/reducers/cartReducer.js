@@ -5,6 +5,8 @@ import {
   DECREASE_COUNT,
   CLEAR
 } from "../actions/cartActions";
+import types from "../types";
+
 
 const initState = {
   cartProducts: []
@@ -15,7 +17,7 @@ const cartReducer = (state = initState, action = {}) => {
     case REMOVE_PRODUCT:
       return {
         ...state,
-        productsArray: [
+        cartProducts: [
           ...state.cartProducts.slice(0, action.payload),
           ...state.cartProducts.slice(action.payload + 1)
         ]
@@ -26,13 +28,13 @@ const cartReducer = (state = initState, action = {}) => {
       );
 
       if (existingProductIndex !== -1) {
-        const updatedProductsArray = [...state.cartProducts];
-        updatedProductsArray[existingProductIndex].cartQuantity +=
+        const updatedCartProducts = [...state.cartProducts];
+        updatedCartProducts[existingProductIndex].cartQuantity +=
           action.payload.quantity;
 
         return {
           ...state,
-          cartProducts: updatedProductsArray
+          cartProducts: updatedCartProducts
         };
       }
       return {
@@ -47,35 +49,36 @@ const cartReducer = (state = initState, action = {}) => {
       };
     }
 
-    case INCREASE_COUNT:
+    case types.INCREASE_COUNT:
       return {
         ...state,
-        productsArray: state.productsArray.map((product, i) =>
-          i === action.payload
+        cartProducts: state.cartProducts.map((product, i) =>  
+        i === action.payload
+          
             ? {
                 ...product,
                 cartQuantity:
-                  product.cartQuantity < product.product.quantity
+                  product.cartQuantity < product.quantity
                     ? product.cartQuantity + 1
                     : product.cartQuantity
               }
             : product
+          
         )
       };
-    case DECREASE_COUNT:
-      return {
-        ...state,
-        productsArray: state.productsArray.map((product, i) =>
-          i === action.payload && product.cartQuantity > 1
-            ? { ...product, cartQuantity: product.cartQuantity - 1 }
-            : product
-        )
-      };
-
+      case types.DECREASE_COUNT:
+        return {
+          ...state,
+          cartProducts: state.cartProducts.map((product, i) =>
+            i === action.payload && product.cartQuantity > 1
+              ? { ...product, cartQuantity: product.cartQuantity - 1 }
+              : product
+          )
+        };
     case CLEAR:
       return {
         ...state,
-        productsArray: []
+        cartProducts: []
       };
     default:
       return state;
