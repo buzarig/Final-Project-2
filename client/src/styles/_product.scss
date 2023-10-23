@@ -42,7 +42,15 @@
         }
       }
       .product-rate {
+        font-family: "DMSans", sans-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 27px;
         padding-top: 65px;
+        span {
+          color: #707070;
+        }
       }
       .product-description {
         padding-top: 22px;
@@ -103,6 +111,10 @@
           font-weight: 700;
           line-height: normal;
           border: 1px solid black;
+        }
+        .inCart {
+          background: black;
+          color: #ffffff;
         }
       }
       .product-socials {
