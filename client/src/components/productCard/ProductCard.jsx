@@ -71,7 +71,7 @@ ProductCard.propTypes = {
   title: PropTypes.string,
   price: PropTypes.number,
   imageUrl: PropTypes.string.isRequired,
-  cardUrl: PropTypes.string.isRequired,
+  cardUrl: PropTypes.string,
   itemNo: PropTypes.number.isRequired
 };
 
