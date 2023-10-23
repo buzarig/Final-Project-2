@@ -11,6 +11,9 @@ import Contacts from "./pages/Contacts";
 import Blog from "./pages/Blog";
 import AboutUs from "./pages/AboutUs";
 import Privacy from "./pages/Privacy";
+import ShippingAndReturns from "./pages/Shipping";
+import TermsOfService from "./pages/TermsOfService";
+import TermsOfUse from "./pages/TermsOfUse";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Thanks from "./pages/Thanks";
@@ -19,9 +22,9 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 
 import MyAccount from "./pages/MyAccount";
 import ResetPassword from "./pages/ResetPassword";
-import PageError from "./pages/PageError";
 import SignIn from "./components/signIn/SignIn";
 import Register from "./components/register/Register";
+import PageError from "./pages/PageError";
 
 const theme = createTheme({
   direction: "rtl"
@@ -35,13 +38,21 @@ function App() {
         <Routes>
           <Route path="/" element={<Outlet />}>
             <Route path="/" element={<Home />} />
-            <Route path="catalog" element={<Catalog />}>
-              <Route path=":productId" element={<Product />} />
-            </Route>
+            <Route path="catalog" element={<Catalog />} />
+            <Route
+              path="catalog/:productUrl/:productId"
+              element={<Product />}
+            />
             <Route path="contacts" element={<Contacts />} />
             <Route path="blog" element={<Blog />} />
             <Route path="about-us" element={<AboutUs />} />
             <Route path="privacy" element={<Privacy />} />
+            <Route
+              path="shipping-and-returns"
+              element={<ShippingAndReturns />}
+            />
+            <Route path="terms-of-service" element={<TermsOfService />} />
+            <Route path="terms-of-use" element={<TermsOfUse />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
             <Route path="order" element={<Order />} />
@@ -55,7 +66,7 @@ function App() {
             <Route path="resetPassword" element={<ResetPassword />} />
             <Route path="thanks" element={<Thanks />} />
             <Route path="order" element={<Order />} />
-            <Route path="error" element={<PageError />} />
+            <Route path="*" element={<PageError />} />
           </Route>
         </Routes>
 
