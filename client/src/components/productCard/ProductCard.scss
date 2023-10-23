@@ -13,7 +13,6 @@
   position: absolute;
   top: 23px;
   left: 23px;
-  z-index: 2;
   border-radius: 4px;
   border-width: 5px;
   width: 46px;
@@ -74,22 +73,21 @@
   .jewelry-card {
     max-width: 140px;
   }
-  
+
   .jewelry-card-info {
     margin-top: 3px;
   }
-  
+
   .jewelry-card-title {
     font-size: 15px;
     margin: 3px;
   }
-  
+
   .jewelry-card-price {
     font-size: 18px;
     margin: 3px;
-    
   }
-  
+
   .jewelry-card-stub {
     width: 100%;
   }
