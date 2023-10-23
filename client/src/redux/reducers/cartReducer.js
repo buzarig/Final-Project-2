@@ -26,13 +26,13 @@ const cartReducer = (state = initState, action = {}) => {
       );
 
       if (existingProductIndex !== -1) {
-        const updatedProductsArray = [...state.cartProducts];
-        updatedProductsArray[existingProductIndex].cartQuantity +=
+        const updatedCartProducts = [...state.cartProducts];
+        updatedCartProducts[existingProductIndex].cartQuantity +=
           action.payload.quantity;
 
         return {
           ...state,
-          cartProducts: updatedProductsArray
+          cartProducts: updatedCartProducts
         };
       }
       return {
@@ -50,7 +50,7 @@ const cartReducer = (state = initState, action = {}) => {
     case INCREASE_COUNT:
       return {
         ...state,
-        cartProducts: state.productsArray.map((product, i) =>
+        cartProducts: state.cartProducts.map((product, i) =>
           i === action.payload
             ? {
                 ...product,
@@ -65,7 +65,7 @@ const cartReducer = (state = initState, action = {}) => {
     case DECREASE_COUNT:
       return {
         ...state,
-        cartProducts: state.productsArray.map((product, i) =>
+        cartProducts: state.cartProducts.map((product, i) =>
           i === action.payload && product.cartQuantity > 1
             ? { ...product, cartQuantity: product.cartQuantity - 1 }
             : product
