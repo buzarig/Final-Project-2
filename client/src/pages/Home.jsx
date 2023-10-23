@@ -9,7 +9,6 @@ import "../styles/_home.scss";
 function Home() {
   const [products, setProducts] = useState([]);
 
-
   useEffect(() => {
     async function fetchProducts() {
       try {
