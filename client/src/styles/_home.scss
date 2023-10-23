@@ -44,25 +44,17 @@
 
         @media (max-width: 768px) {
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
         }
     }
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
         .container {
-            max-width: 100%;
+            max-width: 650px;
         }
     }
 }
 
 .home-page {
-    .jewerley-card-catalog {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding: 10px;
-    }
-
     .jewelry-card {
         text-align: left;
         background-color: #fff;
@@ -137,16 +129,9 @@
         .jewelry-card {
             text-align: left;
             background-color: #fff;
-            min-height: 200px;
-            min-width: 200px;
+            max-width: 140px;
             position: relative;
         }
-
-        .jewelry-card-pic {
-            width: 200px;
-            height: 200px;
-        }
-
         .jewelry-card-title {
             height: 20px;
             width: 200px;

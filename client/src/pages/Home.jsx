@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../http/api";
 import CarouselComponent from "../components/carousel/Carousel";
-import "../styles/_home.scss";
 import ProductCard from "../components/productCard/ProductCard";
+import "../styles/_home.scss";
 
 function Home() {
   const [products, setProducts] = useState([]);
