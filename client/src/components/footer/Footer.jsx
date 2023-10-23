@@ -20,7 +20,6 @@ function Footer() {
           </div>
         </div>
         <div className="info">
-          <div className="newsletter">form email</div>
           <div className="socials">
             <a href="https://www.linkedin.com/">
               <img src="../../assets/icons/Icon-linkedin.png" alt="" />

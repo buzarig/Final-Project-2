@@ -1,20 +1,49 @@
 /* eslint-disable react/require-default-props */
-import React from "react";
-import { useInView } from "react-intersection-observer";
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/require-default-props */
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
 
 import "./ProductCard.scss";
 
-function ProductCard(props) {
+function ProductCard({
+  showSaleInfo,
+  showButtons,
+  discount,
+  title,
+  price,
+  imageUrl,
+  itemNo,
+  cardUrl
+}) {
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
+
+  const handleAddToCart = () => {
+    setIsAddedToCart(true);
+  };
+
+  const handleAddToFavorites = () => {
+    setIsAddedToFavorites(true);
+  };
+
   const { ref, inView } = useInView({
     threshold: 0.3,
     triggerOnce: true
   });
 
-  const { discount, title, price, imageUrl } = props;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/catalog${cardUrl}/${itemNo}`);
+  };
 
   return (
-    <div ref={ref} className="jewelry-card">
+    <div ref={ref} onClick={handleClick} className="jewelry-card">
       <div className="jewelry-card-image">
         {discount && (
           <div className="jewlry-sale">
@@ -36,10 +65,23 @@ function ProductCard(props) {
 }
 
 ProductCard.propTypes = {
+  showSaleInfo: PropTypes.bool,
+  showButtons: PropTypes.bool,
   discount: PropTypes.number,
   title: PropTypes.string,
   price: PropTypes.number,
+<<<<<<< HEAD
   imageUrl: PropTypes.string
+=======
+  imageUrl: PropTypes.string.isRequired,
+  cardUrl: PropTypes.string.isRequired,
+  itemNo: PropTypes.number.isRequired
+};
+
+ProductCard.defaultProps = {
+  showSaleInfo: true,
+  showButtons: false
+>>>>>>> 972a8b7df307d7bd94dbced737e2ce488d2c37f3
 };
 
 export default ProductCard;

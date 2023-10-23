@@ -1,10 +1,10 @@
-const { isNumber } = require('lodash');
-const mongoose = require('mongoose');
+const { isNumber } = require("lodash");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema(
   {
-    id: {
+    itemNo: {
       type: Number,
       required: true,
     },
@@ -68,6 +68,6 @@ const ProductSchema = new Schema(
   { strict: false }
 );
 
-ProductSchema.index({ '$**': 'text' });
+ProductSchema.index({ "$**": "text" });
 
-module.exports = Product = mongoose.model('products', ProductSchema);
+module.exports = Product = mongoose.model("products", ProductSchema);

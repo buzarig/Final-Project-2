@@ -271,6 +271,8 @@ function Catalog() {
                     title={item.name}
                     price={item.currentPrice}
                     imageUrl={item.imageUrls[0]}
+                    itemNo={item.itemNo}
+                    cardUrl={item.productUrl}
                     key={item.itemNo}
                   />
                 ))
