@@ -49,12 +49,15 @@ mongoose
 app.use(passport.initialize());
 
 // Passport Config
+const totalResults = 100;
 require('./config/passport')(passport);
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
   res.setHeader('Access-Control-Allow-Credentials', true);
+  res.append('X-Total-Count', totalResults.toString());
+  res.append('Access-Control-Expose-Headers', 'X-Total-Count');
   next();
 });
 

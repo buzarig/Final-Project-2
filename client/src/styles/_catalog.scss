@@ -1,0 +1,130 @@
+.catalog {
+    width: 1250px;
+    padding-top: 37px;
+    justify-content: space-between;
+    align-items: flex-start;
+    &__wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.page {
+    &__title {
+        font-family: "DM Sans", sans-serif;
+        font-size: 33px;
+        font-weight: 500;
+        margin: 39px 0;
+    }
+}
+
+.cards-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7px 7px;
+    height: min-content;
+    width: 100%;
+    margin-left: 45px;
+    &__wrapper {
+       display: flex;
+       justify-content: space-between;
+    }
+}
+
+.sidebar {
+    width: 262px;
+    min-height: 336px;
+} 
+
+.filter_btn {
+    display: none;
+    border: none;
+    background: none;
+    &__text {
+        font-family: "DM Sans", sans-serif;
+        color: #A18A68;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 166.667% */
+    }
+    &__img {
+        height: 20px;
+        width: 20px;
+        margin-right: 7px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1399px) {
+    .catalog {
+        max-width: 650px;
+    }
+    .search__wrapper {
+        margin: 0 16px;
+    }
+    .page {
+        &__title {
+            margin-left: 16px;
+            font-size: 23px;
+        }
+    }
+    .filter_btn {
+        display: flex;
+        margin: 0 25px 25px 16px;
+    }
+    .cards-list {
+        margin: 0;
+        gap: 7px 50px;
+    }
+    .cards-list__wrapper {
+        position: relative;
+    }
+    .sidebar {
+        position: absolute;
+        top: -10px;
+        right: 360px;
+        border: 1px solid #A18A68;
+        background-color: #ffffff;
+        width: 276px;
+        padding: 7px;
+        z-index: 3;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .catalog {
+        width: 288px;
+    }
+    .search__wrapper {
+        margin: 0 16px;
+    }
+    .page {
+        &__title {
+            margin-left: 16px;
+            font-size: 23px;
+        }
+    }
+    .filter_btn {
+        display: flex;
+        margin: 0 25px 25px 16px;
+    }
+    .cards-list {
+        margin: 0;
+        gap: 1px 4px;
+    }
+    .cards-list__wrapper {
+        position: relative;
+    }
+    .sidebar {
+        position: absolute;
+        top: -10px;
+        right: 0px;
+        border: 1px solid #A18A68;
+        background-color: #ffffff;
+        width: 276px;
+        padding: 7px;
+        z-index: 3;
+    }
+}
