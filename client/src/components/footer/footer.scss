@@ -2,12 +2,14 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 10px;
   .footer-wrapper {
+    display: flex;
     width: 1250px;
     padding: 0 5px;
     padding-top: 37px;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
     border-top: 1px solid rgba(216, 216, 216, 1);
     .nav {
       display: flex;
@@ -80,7 +82,7 @@
       position: relative;
       padding-bottom: 60px;
       padding-top: 80px;
-      justify-content: flex-start;
+      justify-content: center;
       .nav {
         .help {
           flex-direction: column;
@@ -90,6 +92,7 @@
           }
         }
         .privacy {
+          padding: 0;
           position: absolute;
           bottom: 1px;
           font-size: 13px;

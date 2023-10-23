@@ -11,16 +11,21 @@ function Footer() {
             <li>
               <Link to="/contacts">Contact</Link>
             </li>
-            <li>Terms Of Services</li>
-            <li>Shipping And Returns</li>
+            <li>
+              <Link to="terms-of-service">Terms Of Services</Link>
+            </li>
+            <li>
+              <Link to="shipping-and-returns">Shipping And Returns</Link>
+            </li>
           </ul>
           <div className="privacy">
-            <span>© 2021 Shelly.</span> Terms of use <span>and</span> privacy
-            policy.
+            <span>© 2021 Shelly.</span>{" "}
+            <Link to="terms-of-use">Terms of use </Link>
+            <span>and</span>
+            <Link to="privacy"> privacy policy</Link>.
           </div>
         </div>
         <div className="info">
-          <div className="newsletter">form email</div>
           <div className="socials">
             <a href="https://www.linkedin.com/">
               <img src="../../assets/icons/Icon-linkedin.png" alt="" />
