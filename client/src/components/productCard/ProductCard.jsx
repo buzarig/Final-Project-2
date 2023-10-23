@@ -70,9 +70,6 @@ ProductCard.propTypes = {
   discount: PropTypes.number,
   title: PropTypes.string,
   price: PropTypes.number,
-<<<<<<< HEAD
-  imageUrl: PropTypes.string
-=======
   imageUrl: PropTypes.string.isRequired,
   cardUrl: PropTypes.string.isRequired,
   itemNo: PropTypes.number.isRequired
@@ -81,7 +78,6 @@ ProductCard.propTypes = {
 ProductCard.defaultProps = {
   showSaleInfo: true,
   showButtons: false
->>>>>>> 972a8b7df307d7bd94dbced737e2ce488d2c37f3
 };
 
 export default ProductCard;
