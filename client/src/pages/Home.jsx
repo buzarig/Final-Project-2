@@ -47,6 +47,8 @@ function Home() {
             imageUrl={product.imageUrls[0]}
             showSaleInfo={false}
             showButtons
+            itemNo={product.itemNo}
+            cardUrl={product.productUrl}
           />
         ))}
       </div>

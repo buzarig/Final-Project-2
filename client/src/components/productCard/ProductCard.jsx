@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -71,8 +72,7 @@ ProductCard.propTypes = {
   title: PropTypes.string,
   price: PropTypes.number,
   imageUrl: PropTypes.string.isRequired,
-  cardUrl: PropTypes.string,
-  itemNo: PropTypes.number.isRequired
+  cardUrl: PropTypes.string
 };
 
 ProductCard.defaultProps = {

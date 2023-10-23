@@ -22,7 +22,9 @@ function Header() {
 
   function handleSearch(e) {
     e.preventDefault();
-    navigate(`/${searchQuery}`);
+    navigate(
+      `/catalog?valueSearch=${searchQuery}&checkedStock=false&checkedSale=false&valueSliderMin=500&valueSliderMax=25000&sortOptions=&shopOptions=`
+    );
   }
 
   useEffect(() => {
@@ -181,11 +183,6 @@ function Header() {
                       Blog
                     </Link>
                   </li>
-                  <li className="help-mobile">
-                    <Link to="help" onClick={toggleMenu}>
-                      Help
-                    </Link>
-                  </li>
                   <li className="contact-mobile">
                     <Link to="contacts" onClick={toggleMenu}>
                       Contact
@@ -208,22 +205,24 @@ function Header() {
           </div>
         </div>
         <div className="header-wrapper__search">
-          <form className="menu-search-bar" onSubmit={handleSearch}>
-            <TextField
-              id="search-bar-mui"
-              className="text"
-              onInput={(e) => {
-                setSearchQuery(e.target.value);
-              }}
-              label="Search"
-              variant="outlined"
-              placeholder="Search..."
-              size="small"
-            />
-            <IconButton type="submit" aria-label="search">
-              <SearchIcon style={{ fill: "black" }} />
-            </IconButton>
-          </form>
+          {!window.location.pathname.startsWith("/catalog") && (
+            <form className="menu-search-bar" onSubmit={handleSearch}>
+              <TextField
+                id="search-bar-mui"
+                className="text"
+                onInput={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
+                label="Search"
+                variant="outlined"
+                placeholder="Search..."
+                size="small"
+              />
+              <IconButton type="submit" aria-label="search">
+                <SearchIcon style={{ fill: "black" }} />
+              </IconButton>
+            </form>
+          )}
           {isToggledSearch && (
             <form className="search-bar" onSubmit={handleSearch}>
               <TextField
