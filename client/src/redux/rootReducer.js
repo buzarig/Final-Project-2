@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   token: tokenReducer,
   search: searchReducer,
   merchandiseReducer,
-  cartReducer:cartReducer,
+  cartReducer
 });
 
 export default rootReducer;
