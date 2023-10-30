@@ -37,20 +37,17 @@ function Header() {
           !searchInput.contains(event.target) &&
           event.target !== searchInput
         ) {
-          // Закрыть поиск при клике вне элемента поиска
           dispatch(searchToggle(false));
         }
       }
     }
 
-    // Добавьте обработчик события click при открытой строке поиска с небольшой задержкой
     if (isToggledSearch) {
       timeoutId = setTimeout(() => {
         window.addEventListener("click", handleDocumentClick);
-      }, 100); // Используйте нужное значение задержки (в миллисекундах)
+      }, 100);
     }
 
-    // Удалите обработчик события click и отмените таймаут при закрытом поиске
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
@@ -73,9 +70,8 @@ function Header() {
   useEffect(() => {
     function handleWheel(event) {
       if (isMenuOpen) {
-        // Вмешиваемся в прокрутку, если меню открыто
         const { deltaY } = event;
-        const scrollContainer = document.querySelector(".menu"); // Замените на соответствующий селектор
+        const scrollContainer = document.querySelector(".menu");
         if (scrollContainer) {
           scrollContainer.scrollTop += deltaY;
         }

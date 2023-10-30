@@ -60,60 +60,61 @@ function Cart() {
         <div className="cart__products">
           <div className="cart__products-items">
             {products.length > 0 ? (
-              products.map((product, index) =>
-                product && product.product ? (
-                  <div
-                    className="cart__products-item"
-                    key={product.product.itemNo}
-                  >
-                    <img
-                      className="cart__products-image"
-                      src={product.product.imageUrls[0]}
-                      alt={product.product.name}
-                    />
-                    <div className="cart__products-text">
-                      <h1 className="cart__products-text-title">
-                        {product.product.name}
-                      </h1>
-                      <p className="cart__products-text-color">
-                        {product.product.color}
-                      </p>
-                      <p className="cart__products-text-price">
-                        {product.product.currentPrice}$
-                      </p>
-                    </div>
-                    <div className="cart__products-count">
-                      <button
-                        type="button"
-                        onClick={() => handleDecreaseCount(index)}
-                        className="cart__products-count-minus"
-                      >
-                        -
-                      </button>
-                      <p className="cart__products-count-number">
-                        {product.cartQuantity}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => handleIncreaseCount(index)}
-                        className="cart__products-count-plus"
-                      >
-                        +
-                      </button>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveProduct(index)}
-                      className="remove-button"
+              products.map(
+                (product, index) =>
+                  product?.product && (
+                    <div
+                      className="cart__products-item"
+                      key={product.product.itemNo}
                     >
                       <img
-                        className="cart__products-item-remove"
-                        src={remove}
-                        alt=""
+                        className="cart__products-image"
+                        src={product.product.imageUrls[0]}
+                        alt={product.product.name}
                       />
-                    </button>
-                  </div>
-                ) : null
+                      <div className="cart__products-text">
+                        <h1 className="cart__products-text-title">
+                          {product.product.name}
+                        </h1>
+                        <p className="cart__products-text-color">
+                          {product.product.color}
+                        </p>
+                        <p className="cart__products-text-price">
+                          {product.product.currentPrice}$
+                        </p>
+                      </div>
+                      <div className="cart__products-count">
+                        <button
+                          type="button"
+                          onClick={() => handleDecreaseCount(index)}
+                          className="cart__products-count-minus"
+                        >
+                          -
+                        </button>
+                        <p className="cart__products-count-number">
+                          {product.cartQuantity}
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => handleIncreaseCount(index)}
+                          className="cart__products-count-plus"
+                        >
+                          +
+                        </button>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveProduct(index)}
+                        className="remove-button"
+                      >
+                        <img
+                          className="cart__products-item-remove"
+                          src={remove}
+                          alt=""
+                        />
+                      </button>
+                    </div>
+                  )
               )
             ) : (
               <p className="empty-cart">No products in the cart</p>
