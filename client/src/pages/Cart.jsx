@@ -21,24 +21,24 @@ function Cart() {
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [isShippingInfoVisible, setShippingInfoVisible] = useState(false);
-  const [setPostCode] = useState("");
+  const [setPostCode, postCode] = useState("");
 
   const toggleShippingInfo = () => {
     setShippingInfoVisible(!isShippingInfoVisible);
   };
 
-  // const handleUpdateTotals = () => {
-  //   if (selectedCountry && selectedState && selectedCity) {
-  //     return (
-  //       <div className="shipping-info">
-  //         <div>Selected Country: {selectedCountry.name}</div>
-  //         <div>Selected State: {selectedState.name}</div>
-  //         <div>Selected City: {selectedCity.name}</div>
-  //         <div>Selected Post code/Zip: {postCode}</div>
-  //       </div>
-  //     );
-  //   }
-  // };
+  const handleUpdateTotals = () => {
+    if (selectedCountry && selectedState && selectedCity) {
+      return (
+        <div className="shipping-info">
+          <div>Selected Country: {selectedCountry.name}</div>
+          <div>Selected State: {selectedState.name}</div>
+          <div>Selected City: {selectedCity.name}</div>
+          <div>Selected Post code/Zip: {postCode}</div>
+        </div>
+      );
+    }
+  };
 
   const handleIncreaseCount = (itemNo) => {
     dispatch(increaseCount(itemNo));
@@ -228,7 +228,7 @@ function Cart() {
 
                   <button
                     type="button"
-                    // onClick={handleUpdateTotals}
+                    onClick={handleUpdateTotals}
                     className="shipping-submit"
                   >
                     Update Totals
@@ -236,7 +236,7 @@ function Cart() {
                 </div>
               )}
             </div>
-            {/* {handleUpdateTotals()} */}
+            {handleUpdateTotals()}
           </div>
           <div className="cart__total">
             <p className="cart__total-text">Total</p>
