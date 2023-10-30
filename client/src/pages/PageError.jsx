@@ -10,10 +10,16 @@ function PageError() {
       <h2 className="error-page__title">404 ERROR</h2>
       <p className="error-page__description">
         This page not found;
-        <br/>
+        <br />
         back to home and start again
       </p>
-      <button className="error-page__button" onClick={()=> navigate('/')}>HOMEPAGE</button>
+      <button
+        className="error-page__button"
+        type="button"
+        onClick={() => navigate("/")}
+      >
+        HOMEPAGE
+      </button>
     </div>
   );
 }
