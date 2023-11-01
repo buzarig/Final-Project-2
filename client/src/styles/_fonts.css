@@ -4,7 +4,7 @@
   font-family: "DMSans";
   font-style: normal;
   font-weight: 200;
-  src: url("../fonts/dm-sans-v14-latin-200.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("./fonts/dm-sans-v14-latin-200.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* dm-sans-300 - latin */
 @font-face {
@@ -12,7 +12,7 @@
   font-family: "DMSans";
   font-style: normal;
   font-weight: 300;
-  src: url("../fonts/dm-sans-v14-latin-300.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("./fonts/dm-sans-v14-latin-300.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* dm-sans-regular - latin */
 @font-face {
@@ -20,7 +20,7 @@
   font-family: "DMSans";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/dm-sans-v14-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("./fonts/dm-sans-v14-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* dm-sans-500 - latin */
 @font-face {
@@ -28,7 +28,7 @@
   font-family: "DMSans";
   font-style: normal;
   font-weight: 500;
-  src: url("../fonts/dm-sans-v14-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("./fonts/dm-sans-v14-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* dm-sans-600 - latin */
 @font-face {
@@ -36,7 +36,7 @@
   font-family: "DMSans";
   font-style: normal;
   font-weight: 600;
-  src: url("../fonts/dm-sans-v14-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("./fonts/dm-sans-v14-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* dm-sans-700 - latin */
 @font-face {
@@ -44,7 +44,7 @@
   font-family: "DMSans";
   font-style: normal;
   font-weight: 700;
-  src: url("../fonts/dm-sans-v14-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("./fonts/dm-sans-v14-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* dm-sans-800 - latin */
 @font-face {
@@ -52,5 +52,5 @@
   font-family: "DMSans";
   font-style: normal;
   font-weight: 800;
-  src: url("../fonts/dm-sans-v14-latin-800.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("./fonts/dm-sans-v14-latin-800.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }

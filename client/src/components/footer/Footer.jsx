@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./footer.scss";
 
+import linkedInLogo from "../../assets/icons/Icon-linkedin.png";
+import facebookLogo from "../../assets/icons/Icon-facebook.png";
+import instagramLogo from "../../assets/icons/Icon-instagram.png";
+import twitterLogo from "../../assets/icons/Icon-twitter.png";
+
 function Footer() {
   return (
     <footer className="footer">
@@ -28,16 +33,16 @@ function Footer() {
         <div className="info">
           <div className="socials">
             <a href="https://www.linkedin.com/">
-              <img src="../../assets/icons/Icon-linkedin.png" alt="" />
+              <img src={linkedInLogo} alt="" />
             </a>
             <a href="https://www.facebook.com/">
-              <img src="../../assets/icons/Icon-facebook.png" alt="" />
+              <img src={facebookLogo} alt="" />
             </a>
             <a href="https://www.instagram.com/">
-              <img src="../../assets/icons/Icon-instagram.png" alt="" />
+              <img src={instagramLogo} alt="" />
             </a>
             <a href="https://twitter.com/">
-              <img src="../../assets/icons/Icon-twitter.png" alt="" />
+              <img src={twitterLogo} alt="" />
             </a>
           </div>
         </div>
