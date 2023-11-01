@@ -38,7 +38,7 @@ export const getFilteredProducts =
               : ""
           }${
             checkedStock ? "&quantity=1,2,3,4,5,6,7,8,9,10,11,12,13,14" : ""
-          }&perPage=9&startPage=${currentPage}${
+          }&perPage=6&startPage=${currentPage}${
             sortOptions && `&sort=${sortOptions}currentPrice`
           }`
         )
