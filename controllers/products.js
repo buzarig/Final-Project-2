@@ -143,12 +143,27 @@ exports.getProductsFilterParams = async (req, res, next) => {
   const sort = req.query.sort;
 
   try {
-    const data = await Product.find(mongooseQuery)
+    const queryConditions = {};
+    for (const key in mongooseQuery) {
+      if (mongooseQuery[key] === "*") {
+        queryConditions[key] = { $exists: true };
+      } else {
+        if (key === "inStock" && mongooseQuery[key] === "true") {
+          queryConditions["quantity"] = { $gt: 0 };
+        } else {
+          queryConditions[key] = mongooseQuery[key];
+        }
+      }
+    }
+
+    const query = Product.find(queryConditions);
+
+    const data = await query
       .skip(startPage * perPage - perPage)
       .limit(perPage)
       .sort(sort);
 
-    const productsQuantity = await Product.find(mongooseQuery);
+    const productsQuantity = await Product.find(queryConditions);
 
     res.json({ data, productsQuantity: productsQuantity.length });
   } catch (err) {
