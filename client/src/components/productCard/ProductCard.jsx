@@ -33,7 +33,7 @@ function ProductCard({
   };
 
   const { ref, inView } = useInView({
-    threshold: 0.3,
+    threshold: 0,
     triggerOnce: true
   });
 

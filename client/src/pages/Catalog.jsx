@@ -97,7 +97,7 @@ function Catalog() {
     if (
       e.target.documentElement.scrollHeight -
         (e.target.documentElement.scrollTop + window.innerHeight) <
-      100
+      1
     ) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
@@ -256,7 +256,6 @@ function Catalog() {
             </div>
           )}
           <div className="cards-list">
-            {isLoading && <CircularProgress style={{ color: "#a18a68" }} />}
             {products.length
               ? products.map((item) => (
                   <ProductCard
@@ -269,7 +268,7 @@ function Catalog() {
                       )
                     }
                     title={item.name}
-                    price={item.currentPrice}
+                    price={item.previousPrice || item.currentPrice}
                     imageUrl={item.imageUrls[0]}
                     itemNo={item.itemNo}
                     cardUrl={item.productUrl}
@@ -279,7 +278,24 @@ function Catalog() {
               : "More products coming soon"}
           </div>
         </div>
+        {endedProducts === 0 && (
+          <p className="catalog__information-text">
+            At the moment, this is all we have,
+            <br />
+            but we are working on expanding our assortment.
+          </p>
+        )}
       </div>
+      {isLoading && (
+        <CircularProgress
+          style={{
+            color: "#a18a68",
+            position: "fixed",
+            bottom: 10,
+            right: 10
+          }}
+        />
+      )}
     </div>
   );
 }

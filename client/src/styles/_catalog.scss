@@ -8,6 +8,18 @@
         display: flex;
         justify-content: center;
     }
+    &__information-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        line-height: 20px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        height: 50px;
+        color: #A18A68;
+    }
 }
 
 .page {

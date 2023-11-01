@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const api = axios.create({
   mode: "no-cors",
@@ -7,7 +8,7 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   const newConfig = { ...config };
-  const token = localStorage.getItem("token") || null;
+  const token = useSelector((state) => state.accessToken) || null;
 
   if (token) {
     newConfig.headers.authorization = token.replace("Bearer ", "");
