@@ -10,7 +10,8 @@ export default defineConfig({
     // configure build options
     outDir: "../dist", // change build folder to 'docs
     minify: "esbuild", // minify build with 'esbuild
-    chunkSizeWarningLimit: 20000
+    chunkSizeWarningLimit: 20000,
+    assetsInlineLimit: 0
   },
   server: {
     // configure dev server
