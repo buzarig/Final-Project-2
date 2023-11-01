@@ -1,25 +1,27 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 const api = axios.create({
   mode: "no-cors",
   baseURL: "https://final-project-backend-snpn.onrender.com/api"
 });
 
-api.interceptors.request.use((config) => {
-  const newConfig = { ...config };
-  const token = useSelector((state) => state.accessToken) || null;
-
+export const setAuthorizationHeader = (token) => {
   if (token) {
-    newConfig.headers.authorization = token.replace("Bearer ", "");
+    api.defaults.headers.authorization = token.replace("Bearer ", "");
   } else {
-    delete newConfig.headers.authorization;
+    delete api.defaults.headers.authorization;
   }
-
-  return newConfig;
-});
+};
 
 export default api;
+
+// TOKEN
+
+// const token = useSelector((state) => state.accessToken);
+
+// useEffect(() => {
+//   setAuthorizationHeader(token);
+// }, [token]);
 
 // example
 
