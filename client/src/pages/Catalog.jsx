@@ -278,6 +278,13 @@ function Catalog() {
               : "More products coming soon"}
           </div>
         </div>
+        {endedProducts === 0 && (
+          <p className="catalog__information-text">
+            At the moment, this is all we have,
+            <br />
+            but we are working on expanding our assortment.
+          </p>
+        )}
       </div>
       {isLoading && (
         <CircularProgress
