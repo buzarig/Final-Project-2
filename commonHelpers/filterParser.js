@@ -6,7 +6,7 @@ module.exports = function filterParser(filtersQueryString) {
   if (filtersQueryString.minPrice || filtersQueryString.maxPrice) {
     mongooseQuery.currentPrice = {
       $gte: Number(filtersQueryString.minPrice),
-      $lte: Number(filtersQueryString.maxPrice)
+      $lte: Number(filtersQueryString.maxPrice),
     };
   }
 
@@ -16,7 +16,7 @@ module.exports = function filterParser(filtersQueryString) {
         mongooseQuery[filterParam] = {
           $in: filtersQueryString[filterParam]
             .split(",")
-            .map(item => decodeURI(item))
+            .map((item) => decodeURI(item)),
         };
       } else if (!excludedParams.includes(filterParam)) {
         mongooseQuery[filterParam] = decodeURI(filtersQueryString[filterParam]);
