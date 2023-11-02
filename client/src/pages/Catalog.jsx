@@ -314,8 +314,8 @@ function Catalog() {
           style={{
             color: "#a18a68",
             position: "fixed",
-            bottom: 10,
-            right: 10
+            bottom: "20vh",
+            right: "50vw"
           }}
         />
       )}
