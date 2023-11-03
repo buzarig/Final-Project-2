@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   mode: "no-cors",
-  baseURL: "http://localhost:4000/api"
+  baseURL: "https://final-project-backend-snpn.onrender.com/api"
 });
 
 api.interceptors.request.use((config) => {
