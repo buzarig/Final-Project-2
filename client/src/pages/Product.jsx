@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/_product.scss";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
 import { ButtonGroup } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -16,11 +16,16 @@ import { addProductToCart } from "../redux/actions/cartActions";
 function Products() {
   const dispatch = useDispatch();
   const { productId } = useParams();
+  const numericProductId = +productId;
   const [productData, setProductData] = useState(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [cartCounter, setCartCounter] = useState(1);
   const [currentSection, setCurrentSection] = useState("description");
   const [showFullDescription, setShowFullDescription] = useState(false);
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
+  const isProductInCart = cartProducts.some(
+    (product) => product.product.itemNo === numericProductId
+  );
 
   useEffect(() => {
     async function fetchProductData() {
@@ -42,7 +47,9 @@ function Products() {
   }, [productId]);
 
   const incrementCounter = () => {
-    setCartCounter(cartCounter + 1);
+    if (cartCounter < productData.quantity) {
+      setCartCounter(cartCounter + 1);
+    }
   };
 
   const decrementCounter = () => {
@@ -88,7 +95,10 @@ function Products() {
               "Loading..."
             )}
           </div>
-          {/* <div className="product-rate">rating</div> */}
+          <div className="product-rate">
+            <span>Quantity:</span>{" "}
+            {productData ? productData.quantity : "Loading..."}
+          </div>
           <div className="product-description">
             {showFullDescription ? (
               <>
@@ -122,29 +132,42 @@ function Products() {
               View more
             </button>
           )}
-          <div className="product-cart">
-            <ButtonGroup className="cart-btn-group">
-              <Button
-                className="counter counter-btn"
-                onClick={decrementCounter}
-              >
-                -
+          {isProductInCart ? (
+            <div className="product-cart">
+              <ButtonGroup className="cart-btn-group">
+                <Button className="counter counter-btn">-</Button>
+                <Box className="counter cart-counter">{cartCounter}</Box>
+                <Button className="counter counter-btn">+</Button>
+              </ButtonGroup>
+              <Button className="add-to-cart__btn inCart">
+                Already In Cart
               </Button>
-              <Box className="counter cart-counter">{cartCounter}</Box>
+            </div>
+          ) : (
+            <div className="product-cart">
+              <ButtonGroup className="cart-btn-group">
+                <Button
+                  className="counter counter-btn"
+                  onClick={decrementCounter}
+                >
+                  -
+                </Button>
+                <Box className="counter cart-counter">{cartCounter}</Box>
+                <Button
+                  className="counter counter-btn"
+                  onClick={incrementCounter}
+                >
+                  +
+                </Button>
+              </ButtonGroup>
               <Button
-                className="counter counter-btn"
-                onClick={incrementCounter}
+                onClick={() => handleAddToCart(productData)}
+                className="add-to-cart__btn"
               >
-                +
+                ADD TO CART
               </Button>
-            </ButtonGroup>
-            <Button
-              onClick={() => handleAddToCart(productData)}
-              className="add-to-cart__btn"
-            >
-              ADD TO CART
-            </Button>
-          </div>
+            </div>
+          )}
           <div className="product-socials">
             <Icon
               icon={isFavorite ? "mdi:heart" : "mdi:heart-outline"}

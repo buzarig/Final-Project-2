@@ -21,27 +21,24 @@ const cartReducer = (state = initState, action = {}) => {
         ]
       };
     case ADD_PRODUCT: {
+      const productToAdd = action.payload.productItem;
+      const quantityToAdd = action.payload.quantity;
+
       const existingProductIndex = state.cartProducts.findIndex(
-        (item) => item.product.itemNo === action.payload.productItem.itemNo
+        (item) => item.product.itemNo === productToAdd.itemNo
       );
 
       if (existingProductIndex !== -1) {
-        const updatedProductsArray = [...state.cartProducts];
-        updatedProductsArray[existingProductIndex].cartQuantity +=
-          action.payload.quantity;
-
-        return {
-          ...state,
-          cartProducts: updatedProductsArray
-        };
+        return state;
       }
+
       return {
         ...state,
         cartProducts: [
           ...state.cartProducts,
           {
-            product: action.payload.productItem,
-            cartQuantity: action.payload.quantity
+            product: productToAdd,
+            cartQuantity: quantityToAdd
           }
         ]
       };
@@ -50,7 +47,7 @@ const cartReducer = (state = initState, action = {}) => {
     case INCREASE_COUNT:
       return {
         ...state,
-        cartProducts: state.productsArray.map((product, i) =>
+        cartProducts: state.cartProducts.map((product, i) =>
           i === action.payload
             ? {
                 ...product,
@@ -65,7 +62,7 @@ const cartReducer = (state = initState, action = {}) => {
     case DECREASE_COUNT:
       return {
         ...state,
-        cartProducts: state.productsArray.map((product, i) =>
+        cartProducts: state.cartProducts.map((product, i) =>
           i === action.payload && product.cartQuantity > 1
             ? { ...product, cartQuantity: product.cartQuantity - 1 }
             : product

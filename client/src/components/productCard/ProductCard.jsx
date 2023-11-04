@@ -1,4 +1,5 @@
-/* eslint-disable react/require-default-props */
+/* eslint-disable react/prop-types */
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -32,7 +33,7 @@ function ProductCard({
   };
 
   const { ref, inView } = useInView({
-    threshold: 0.3,
+    threshold: 0,
     triggerOnce: true
   });
 
@@ -109,8 +110,7 @@ ProductCard.propTypes = {
   title: PropTypes.string,
   price: PropTypes.number,
   imageUrl: PropTypes.string.isRequired,
-  cardUrl: PropTypes.string,
-  itemNo: PropTypes.number.isRequired
+  cardUrl: PropTypes.string
 };
 
 ProductCard.defaultProps = {

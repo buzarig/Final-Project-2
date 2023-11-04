@@ -41,7 +41,7 @@ function Home() {
         </Link>
       </div>
       <div className="cards-container">
-        {Array.isArray(products) && products.length > 0 ? (
+       {Array.isArray(products) && products.length > 0 ? (
           products.map((product) => (
             <ProductCard
               key={product.itemNo}

@@ -6,6 +6,13 @@ import { TextField, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import searchToggle from "../../redux/actions/searchActions";
 
+import logo from "../../assets/images/SHOPPE.png";
+import searchIcon from "../../assets/icons/Icon-search.png";
+import favoriteIcon from "../../assets/icons/Icon-favorite.png";
+import cartIcon from "../../assets/icons/Icon-cart.png";
+import accountIcon from "../../assets/icons/Icon-account.png";
+import logOutIcon from "../../assets/icons/logOut-icon.png";
+
 import "./header.scss";
 
 function Header() {
@@ -22,7 +29,9 @@ function Header() {
 
   function handleSearch(e) {
     e.preventDefault();
-    navigate(`/${searchQuery}`);
+    navigate(
+      `/catalog?valueSearch=${searchQuery}&checkedStock=false&checkedSale=false&valueSliderMin=500&valueSliderMax=25000&sortOptions=&shopOptions=`
+    );
   }
 
   useEffect(() => {
@@ -35,20 +44,17 @@ function Header() {
           !searchInput.contains(event.target) &&
           event.target !== searchInput
         ) {
-          // Закрыть поиск при клике вне элемента поиска
           dispatch(searchToggle(false));
         }
       }
     }
 
-    // Добавьте обработчик события click при открытой строке поиска с небольшой задержкой
     if (isToggledSearch) {
       timeoutId = setTimeout(() => {
         window.addEventListener("click", handleDocumentClick);
-      }, 100); // Используйте нужное значение задержки (в миллисекундах)
+      }, 100);
     }
 
-    // Удалите обработчик события click и отмените таймаут при закрытом поиске
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
@@ -71,9 +77,8 @@ function Header() {
   useEffect(() => {
     function handleWheel(event) {
       if (isMenuOpen) {
-        // Вмешиваемся в прокрутку, если меню открыто
         const { deltaY } = event;
-        const scrollContainer = document.querySelector(".menu"); // Замените на соответствующий селектор
+        const scrollContainer = document.querySelector(".menu");
         if (scrollContainer) {
           scrollContainer.scrollTop += deltaY;
         }
@@ -92,7 +97,7 @@ function Header() {
       <div className="header-wrapper">
         <div className="header-wrapper__content">
           <Link className="logo" to="/">
-            <img src="../../assets/images/SHOPPE.png" alt="" />
+            <img src={logo} alt="" />
           </Link>
           <div className="nav">
             <ul className="links">
@@ -122,17 +127,17 @@ function Header() {
             <ul className="personal">
               <li className="search">
                 <button type="button" onClick={toggleSearchBar}>
-                  <img src="../../assets/icons/Icon-search.png" alt="" />
+                  <img src={searchIcon} alt="" />
                 </button>
               </li>
               <li className="favorite">
                 <Link to="favorite">
-                  <img src="../../assets/icons/Icon-favorite.png" alt="" />
+                  <img src={favoriteIcon} alt="" />
                 </Link>
               </li>
               <li className="cart">
                 <Link to="cart">
-                  <img src="../../assets/icons/Icon-cart.png" alt="" />
+                  <img src={cartIcon} alt="" />
                 </Link>
               </li>
               <li className="account">
@@ -144,7 +149,7 @@ function Header() {
             {/* MENU */}
             <li className="menu-cart">
               <Link to="cart">
-                <img src="../../assets/icons/Icon-cart.png" alt="" />
+                <img src={cartIcon} alt="" />
               </Link>
             </li>
             <button
@@ -181,11 +186,6 @@ function Header() {
                       Blog
                     </Link>
                   </li>
-                  <li className="help-mobile">
-                    <Link to="help" onClick={toggleMenu}>
-                      Help
-                    </Link>
-                  </li>
                   <li className="contact-mobile">
                     <Link to="contacts" onClick={toggleMenu}>
                       Contact
@@ -194,11 +194,11 @@ function Header() {
                 </ul>
                 <ul className="menu-account">
                   <Link to="myAccount/signIn" onClick={toggleMenu}>
-                    <img src="../../assets/icons/Icon-account.png" alt="" />
+                    <img src={accountIcon} alt="" />
                     My Account
                   </Link>
                   <Link to="*" onClick={toggleMenu}>
-                    <img src="../../assets/icons/logOut-icon.png" alt="" />
+                    <img src={logOutIcon} alt="" />
                     Logout
                   </Link>
                 </ul>
@@ -208,22 +208,24 @@ function Header() {
           </div>
         </div>
         <div className="header-wrapper__search">
-          <form className="menu-search-bar" onSubmit={handleSearch}>
-            <TextField
-              id="search-bar-mui"
-              className="text"
-              onInput={(e) => {
-                setSearchQuery(e.target.value);
-              }}
-              label="Search"
-              variant="outlined"
-              placeholder="Search..."
-              size="small"
-            />
-            <IconButton type="submit" aria-label="search">
-              <SearchIcon style={{ fill: "black" }} />
-            </IconButton>
-          </form>
+          {!window.location.pathname.startsWith("/catalog") && (
+            <form className="menu-search-bar" onSubmit={handleSearch}>
+              <TextField
+                id="search-bar-mui"
+                className="text"
+                onInput={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
+                label="Search"
+                variant="outlined"
+                placeholder="Search..."
+                size="small"
+              />
+              <IconButton type="submit" aria-label="search">
+                <SearchIcon style={{ fill: "black" }} />
+              </IconButton>
+            </form>
+          )}
           {isToggledSearch && (
             <form className="search-bar" onSubmit={handleSearch}>
               <TextField
