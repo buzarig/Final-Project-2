@@ -6,3 +6,7 @@ export default function setAccessToken(token) {
     payload: token
   };
 }
+
+export const removeAccessToken = () => ({
+  type: types.REMOVE_ACCESS_TOKEN
+});
