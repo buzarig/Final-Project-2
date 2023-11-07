@@ -13,7 +13,6 @@ function MyAccount() {
   return (
     <div className="wrapper_myAccount">
       <h3>My Account</h3>
-
       <div className="naw_myAccount">
         <Link
           to="/myAccount/signIn"

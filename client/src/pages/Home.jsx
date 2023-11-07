@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../http/api";
@@ -41,7 +41,7 @@ function Home() {
         </Link>
       </div>
       <div className="cards-container">
-       {Array.isArray(products) && products.length > 0 ? (
+        {Array.isArray(products) && products.length > 0 ? (
           products.map((product) => (
             <ProductCard
               key={product.itemNo}
