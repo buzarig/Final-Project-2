@@ -17,7 +17,7 @@
   border-width: 5px;
   width: 46px;
   height: 24px;
-  background-color: #a18a68;
+  background-color: rgba(255, 0, 0, 0.648);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,6 +52,10 @@
   margin-top: 0;
 }
 
+.discounted-price {
+  color: red;
+}
+
 .jewelry-card-pic {
   width: 100%;
   z-index: 1;
@@ -84,7 +88,7 @@
     font-size: 15px;
     margin: 3px;
   }
-  
+
   .jewelry-card-price {
     font-size: 18px;
     margin: 3px;

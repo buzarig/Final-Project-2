@@ -23,6 +23,10 @@ function ProductCard({
 }) {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
+  const [originalPrice, setOriginalPrice] = useState(Math.floor(price));
+  const [discountedPrice, setDiscountedPrice] = useState(
+    discount ? Math.floor(price - price * (discount / 100)) : null
+  );
 
   const handleAddToCart = () => {
     setIsAddedToCart(true);
@@ -97,7 +101,16 @@ function ProductCard({
       </div>
       <div className="jewelry-card-info">
         <h2 className="jewelry-card-title">{title}</h2>
-        <p className="jewelry-card-price">${price}</p>
+        <p className="jewelry-card-price">
+          {discountedPrice !== null ? (
+            <>
+              {/* <span className="discounted-price">${originalPrice}</span> */}
+              <span className="discounted-price">${discountedPrice}</span>
+            </>
+          ) : (
+            <span className="original-price">${originalPrice}</span>
+          )}
+        </p>
       </div>
     </div>
   );
