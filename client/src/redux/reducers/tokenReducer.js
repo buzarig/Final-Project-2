@@ -11,6 +11,11 @@ const tokenReducer = (state = initialState, { type, payload } = {}) => {
         ...state,
         accessToken: payload
       };
+    case types.REMOVE_ACCESS_TOKEN:
+      return {
+        ...state,
+        accessToken: null
+      };
     default:
       return state;
   }
