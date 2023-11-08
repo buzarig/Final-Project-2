@@ -6,21 +6,25 @@ const CommentSchema = new Schema(
     customer: {
       type: Schema.Types.ObjectId,
       ref: "customers",
-      required: true
+      required: true,
     },
     product: {
       type: Schema.Types.ObjectId,
       ref: "products",
-      required: true
+      required: true,
     },
     category: {
       type: Schema.Types.ObjectId,
-      ref: "catalogs"
+      ref: "catalogs",
     },
     content: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
+    date: {
+      type: Date,
+      default: Date.now,
+    },
   },
   { strict: false }
 );
