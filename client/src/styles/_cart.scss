@@ -234,6 +234,15 @@
         align-items: center;
     }
 
+    &-display-item {
+        font-size: 16px;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 400;
+        margin-bottom: 5px;
+        margin-left: 40px;
+        color: rgba(112, 112, 112, 1);
+    }
+
     &-text {
         max-width: 250px;
         text-align: justify;

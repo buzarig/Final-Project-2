@@ -20,24 +20,27 @@ function Cart() {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
-  const [isShippingInfoVisible, setShippingInfoVisible] = useState(false);
-  const [setPostCode, postCode] = useState("");
+  const [isShippingInfoVisible, setShippingInfoVisible] = useState(true);
+  const [postCode, setPostCode] = useState('');
 
   const toggleShippingInfo = () => {
     setShippingInfoVisible(!isShippingInfoVisible);
   };
 
   const handleUpdateTotals = () => {
-    if (selectedCountry && selectedState && selectedCity) {
-      return (
-        <div className="shipping-info">
-          <div>Selected Country: {selectedCountry.name}</div>
-          <div>Selected State: {selectedState.name}</div>
-          <div>Selected City: {selectedCity.name}</div>
-          <div>Selected Post code/Zip: {postCode}</div>
-        </div>
-      );
-    }
+    
+    const selectedCountryValue = selectedCountry ? selectedCountry.name : 'N/A';
+    const selectedStateValue = selectedState ? selectedState.name : 'N/A';
+    const selectedCityValue = selectedCity ? selectedCity.name : 'N/A';
+
+    
+    const infoString = `Selected Country: ${selectedCountryValue}\n
+      Selected State: ${selectedStateValue}\n
+      Selected City: ${selectedCityValue}\n
+      Post code/Zip: ${postCode}`;
+
+    console.log(infoString);
+
   };
 
   const handleIncreaseCount = (itemNo) => {
@@ -59,10 +62,9 @@ function Cart() {
       <div className="cart__container">
         <div className="cart__products">
           <div className="cart__products-items">
-            {products.length > 0 ? (
+            {products.length ? (
               products.map(
-                (product, index) =>
-                  product?.product && (
+                (product, index) => (
                     <div
                       className="cart__products-item"
                       key={product.product.itemNo}
@@ -229,15 +231,22 @@ function Cart() {
 
                   <button
                     type="button"
-                    onClick={handleUpdateTotals}
                     className="shipping-submit"
+                    onClick={handleUpdateTotals}
                   >
                     Update Totals
                   </button>
                 </div>
               )}
             </div>
-            {handleUpdateTotals()}
+            {!isShippingInfoVisible && (
+              <div>
+                <p className="shipping-display-item">Selected Country: {selectedCountry?.name}</p>
+                <p className="shipping-display-item">Selected State: {selectedState?.name}</p>
+                <p className="shipping-display-item">Selected City: {selectedCity?.name}</p>
+                <p className="shipping-display-item">Post code/Zip: {postCode}</p>
+              </div>
+      )}
           </div>
           <div className="cart__total">
             <p className="cart__total-text">Total</p>
