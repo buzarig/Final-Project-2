@@ -371,7 +371,7 @@ function Register() {
         <div>
           {showStatus ? <StatusOk /> : null}
           <button className="submit_register" type="submit">
-            Sign In
+            Registration
           </button>
         </div>
       </form>
