@@ -32,13 +32,9 @@ export const getFilteredProducts =
         .get(
           `/products/filter?minPrice=${valueSliderMin}&maxPrice=${valueSliderMax}${
             stones.length ? `&stone=${stones}` : ""
-          }${
-            checkedSale
-              ? "&previousPrice=4000,2499,5699,1499,7800,20999,17999"
-              : ""
-          }${
-            checkedStock ? "&quantity=1,2,3,4,5,6,7,8,9,10,11,12,13,14" : ""
-          }&perPage=9&startPage=${currentPage}${
+          }${checkedSale ? "&previousPrice=*" : ""}${
+            checkedStock ? "&inStock=true" : ""
+          }&perPage=6&startPage=${currentPage}${
             sortOptions && `&sort=${sortOptions}currentPrice`
           }`
         )

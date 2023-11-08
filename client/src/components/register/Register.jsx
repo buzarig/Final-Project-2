@@ -17,7 +17,7 @@ function Register() {
     // eslint-disable-next-line no-console
     console.log(data);
 
-    const url = "http://localhost:4000/api/customers";
+    const url = "https://final-project-backend-snpn.onrender.com/api/customers";
     const requestData = JSON.stringify(data);
 
     const requestOptions = {

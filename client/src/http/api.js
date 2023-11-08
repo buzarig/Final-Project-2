@@ -5,20 +5,23 @@ const api = axios.create({
   baseURL: "https://final-project-backend-snpn.onrender.com/api"
 });
 
-api.interceptors.request.use((config) => {
-  const newConfig = { ...config };
-  const token = localStorage.getItem("token") || null;
-
+export const setAuthorizationHeader = (token) => {
   if (token) {
-    newConfig.headers.authorization = token.replace("Bearer ", "");
+    api.defaults.headers.authorization = token.replace("Bearer ", "");
   } else {
-    delete newConfig.headers.authorization;
+    delete api.defaults.headers.authorization;
   }
-
-  return newConfig;
-});
+};
 
 export default api;
+
+// TOKEN
+
+// const token = useSelector((state) => state.accessToken);
+
+// useEffect(() => {
+//   setAuthorizationHeader(token);
+// }, [token]);
 
 // example
 

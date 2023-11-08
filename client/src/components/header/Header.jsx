@@ -6,6 +6,13 @@ import { TextField, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import searchToggle from "../../redux/actions/searchActions";
 
+import logo from "../../assets/images/SHOPPE.png";
+import searchIcon from "../../assets/icons/Icon-search.png";
+import favoriteIcon from "../../assets/icons/Icon-favorite.png";
+import cartIcon from "../../assets/icons/Icon-cart.png";
+import accountIcon from "../../assets/icons/Icon-account.png";
+import logOutIcon from "../../assets/icons/logOut-icon.png";
+
 import "./header.scss";
 
 function Header() {
@@ -90,7 +97,7 @@ function Header() {
       <div className="header-wrapper">
         <div className="header-wrapper__content">
           <Link className="logo" to="/">
-            <img src="../../assets/images/SHOPPE.png" alt="" />
+            <img src={logo} alt="" />
           </Link>
           <div className="nav">
             <ul className="links">
@@ -120,17 +127,17 @@ function Header() {
             <ul className="personal">
               <li className="search">
                 <button type="button" onClick={toggleSearchBar}>
-                  <img src="../../assets/icons/Icon-search.png" alt="" />
+                  <img src={searchIcon} alt="" />
                 </button>
               </li>
               <li className="favorite">
                 <Link to="favorite">
-                  <img src="../../assets/icons/Icon-favorite.png" alt="" />
+                  <img src={favoriteIcon} alt="" />
                 </Link>
               </li>
               <li className="cart">
                 <Link to="cart">
-                  <img src="../../assets/icons/Icon-cart.png" alt="" />
+                  <img src={cartIcon} alt="" />
                 </Link>
               </li>
               <li className="account">
@@ -142,7 +149,7 @@ function Header() {
             {/* MENU */}
             <li className="menu-cart">
               <Link to="cart">
-                <img src="../../assets/icons/Icon-cart.png" alt="" />
+                <img src={cartIcon} alt="" />
               </Link>
             </li>
             <button
@@ -187,11 +194,11 @@ function Header() {
                 </ul>
                 <ul className="menu-account">
                   <Link to="myAccount/signIn" onClick={toggleMenu}>
-                    <img src="../../assets/icons/Icon-account.png" alt="" />
+                    <img src={accountIcon} alt="" />
                     My Account
                   </Link>
                   <Link to="*" onClick={toggleMenu}>
-                    <img src="../../assets/icons/logOut-icon.png" alt="" />
+                    <img src={logOutIcon} alt="" />
                     Logout
                   </Link>
                 </ul>
