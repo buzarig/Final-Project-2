@@ -23,7 +23,6 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import Cabinet from "./pages/Cabinet";
 import Dashboard from "./pages/navCabinet/Dashboard";
 import Orders from "./pages/navCabinet/Orders";
-import Addresses from "./pages/navCabinet/Addresses";
 import AccountDetails from "./pages/navCabinet/AccountDetails";
 import MyAccount from "./pages/MyAccount";
 
@@ -72,7 +71,6 @@ function App() {
             <Route path="cabinet" element={<Cabinet />}>
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="orders" element={<Orders />} />
-              <Route path="addresses" element={<Addresses />} />
               <Route path="accountDetails" element={<AccountDetails />} />
             </Route>
 
