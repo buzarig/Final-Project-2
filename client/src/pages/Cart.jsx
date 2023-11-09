@@ -13,7 +13,20 @@ import {
   increaseCount
 } from "../redux/actions/cartActions";
 
+import {
+  countryAddress,
+  stateAddress,
+  cityAddress,
+  codeAddress
+} from "../redux/actions/addressActions";
+
 function Cart() {
+  // const token = useSelector((state) => state.accessToken);
+
+  // useEffect(() => {
+  //   setAuthorizationHeader(token);
+  // }, [token]);
+
   const products = useSelector((state) => state.cart.cartProducts);
   const dispatch = useDispatch();
 
@@ -21,26 +34,38 @@ function Cart() {
   const [selectedState, setSelectedState] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
   const [isShippingInfoVisible, setShippingInfoVisible] = useState(true);
-  const [postCode, setPostCode] = useState('');
+  const [postCode, setPostCode] = useState("");
+
+  const handleUpdateTotals = () => {
+    // const selectedCountryValue = selectedCountry ? selectedCountry.name : "N/A";
+    // const selectedStateValue = selectedState ? selectedState.name : "N/A";
+    // const selectedCityValue = selectedCity ? selectedCity.name : "N/A";
+
+    setShippingInfoVisible(!isShippingInfoVisible);
+  };
 
   const toggleShippingInfo = () => {
     setShippingInfoVisible(!isShippingInfoVisible);
   };
 
-  const handleUpdateTotals = () => {
-    
-    const selectedCountryValue = selectedCountry ? selectedCountry.name : 'N/A';
-    const selectedStateValue = selectedState ? selectedState.name : 'N/A';
-    const selectedCityValue = selectedCity ? selectedCity.name : 'N/A';
+  const handleCountryAddress = (country) => {
+    dispatch(countryAddress(country));
+    setSelectedCountry(country);
+  };
 
-    
-    const infoString = `Selected Country: ${selectedCountryValue}\n
-      Selected State: ${selectedStateValue}\n
-      Selected City: ${selectedCityValue}\n
-      Post code/Zip: ${postCode}`;
+  const handleStateAddress = (state) => {
+    dispatch(stateAddress(state));
+    setSelectedState(state);
+  };
 
-    console.log(infoString);
+  const handleCityAddress = (city) => {
+    dispatch(cityAddress(city));
+    setSelectedCity(city);
+  };
 
+  const handleCodeAddress = (code) => {
+    dispatch(codeAddress(code));
+    setPostCode(code);
   };
 
   const handleIncreaseCount = (itemNo) => {
@@ -63,61 +88,59 @@ function Cart() {
         <div className="cart__products">
           <div className="cart__products-items">
             {products.length ? (
-              products.map(
-                (product, index) => (
-                    <div
-                      className="cart__products-item"
-                      key={product.product.itemNo}
+              products.map((product, index) => (
+                <div
+                  className="cart__products-item"
+                  key={product.product.itemNo}
+                >
+                  <img
+                    className="cart__products-image"
+                    src={product.product.imageUrls[0]}
+                    alt={product.product.name}
+                  />
+                  <div className="cart__products-text">
+                    <h1 className="cart__products-text-title">
+                      {product.product.name}
+                    </h1>
+                    <p className="cart__products-text-color">
+                      {product.product.color}
+                    </p>
+                    <p className="cart__products-text-price">
+                      {product.product.currentPrice}$
+                    </p>
+                  </div>
+                  <div className="cart__products-count">
+                    <button
+                      type="button"
+                      onClick={() => handleDecreaseCount(index)}
+                      className="cart__products-count-minus"
                     >
-                      <img
-                        className="cart__products-image"
-                        src={product.product.imageUrls[0]}
-                        alt={product.product.name}
-                      />
-                      <div className="cart__products-text">
-                        <h1 className="cart__products-text-title">
-                          {product.product.name}
-                        </h1>
-                        <p className="cart__products-text-color">
-                          {product.product.color}
-                        </p>
-                        <p className="cart__products-text-price">
-                          {product.product.currentPrice}$
-                        </p>
-                      </div>
-                      <div className="cart__products-count">
-                        <button
-                          type="button"
-                          onClick={() => handleDecreaseCount(index)}
-                          className="cart__products-count-minus"
-                        >
-                          -
-                        </button>
-                        <p className="cart__products-count-number">
-                          {product.cartQuantity}
-                        </p>
-                        <button
-                          type="button"
-                          onClick={() => handleIncreaseCount(index)}
-                          className="cart__products-count-plus"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveProduct(index)}
-                        className="remove-button"
-                      >
-                        <img
-                          className="cart__products-item-remove"
-                          src={remove}
-                          alt=""
-                        />
-                      </button>
-                    </div>
-                  )
-              )
+                      -
+                    </button>
+                    <p className="cart__products-count-number">
+                      {product.cartQuantity}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => handleIncreaseCount(index)}
+                      className="cart__products-count-plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveProduct(index)}
+                    className="remove-button"
+                  >
+                    <img
+                      className="cart__products-item-remove"
+                      src={remove}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              ))
             ) : (
               <p className="empty-cart">No products in the cart</p>
             )}
@@ -176,7 +199,7 @@ function Cart() {
                     }}
                     value={selectedCountry}
                     onChange={(item) => {
-                      setSelectedCountry(item);
+                      handleCountryAddress(item);
                     }}
                     placeholder="Select a Country"
                     className="shipping-country-select"
@@ -193,7 +216,7 @@ function Cart() {
                     }}
                     value={selectedState}
                     onChange={(item) => {
-                      setSelectedState(item);
+                      handleStateAddress(item);
                     }}
                     placeholder="Select a State"
                     className="shipping-country-select"
@@ -216,14 +239,14 @@ function Cart() {
                       return options.name;
                     }}
                     value={selectedCity}
-                    onChange={(item) => {
-                      setSelectedCity(item);
+                    onChange={(name) => {
+                      handleCityAddress(name);
                     }}
                     placeholder="Select a City"
                     className="shipping-country-select"
                   />
                   <input
-                    onChange={(e) => setPostCode(e.target.value)}
+                    onChange={(e) => handleCodeAddress(e.target.value)}
                     className="shipping-zip"
                     type="text"
                     placeholder="Post code/Zip"
@@ -241,12 +264,20 @@ function Cart() {
             </div>
             {!isShippingInfoVisible && (
               <div>
-                <p className="shipping-display-item">Selected Country: {selectedCountry?.name}</p>
-                <p className="shipping-display-item">Selected State: {selectedState?.name}</p>
-                <p className="shipping-display-item">Selected City: {selectedCity?.name}</p>
-                <p className="shipping-display-item">Post code/Zip: {postCode}</p>
+                <p className="shipping-display-item">
+                  Selected Country: {selectedCountry?.name}
+                </p>
+                <p className="shipping-display-item">
+                  Selected State: {selectedState?.name}
+                </p>
+                <p className="shipping-display-item">
+                  Selected City: {selectedCity?.name}
+                </p>
+                <p className="shipping-display-item">
+                  Post code/Zip: {postCode}
+                </p>
               </div>
-      )}
+            )}
           </div>
           <div className="cart__total">
             <p className="cart__total-text">Total</p>
