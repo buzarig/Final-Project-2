@@ -94,6 +94,9 @@
           justify-content: space-between;
           display: flex;
           .billing_textfield-item{
+            height: 24px;
+            width: 270px;
+            border-bottom: 1px solid #9a9a9a;
           }
         }
         .billing_title{
@@ -103,8 +106,6 @@
           font-weight: 400;
           line-height: 35px;
           text-align: left;
-
-
         }
       }
       .billing_info-items{
@@ -112,8 +113,14 @@
         flex-direction: column;
 
         .billing_info-item{
-          padding: 10px 10px 10px 0;
-
+          margin-top: 32px;
+          width: 580px;
+          height: 28px;
+          border-bottom: 1px solid #9a9a9a;
+        }
+        .billing_info-select{
+          margin-top: 32px;
+          border: none;
         }
       }
       .billing_checkbox{
@@ -121,7 +128,6 @@
       }
     }
 
-    //---------------------------------------------------//
     .main-bottom_order{
       width: 580px;
       margin-left: 50px;
@@ -166,7 +172,6 @@
           color: #707070;
 
         }
-
         .box-subtotal{
           display: flex;
           justify-content: space-between;
@@ -250,9 +255,6 @@
         }
         .action-check{
           margin-bottom: 40px;
-        }
-        .action-btn{
-
         }
       }
     }

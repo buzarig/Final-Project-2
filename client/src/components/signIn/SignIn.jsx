@@ -6,6 +6,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
+import getUserInfo from "../../redux/actions/customer";
 import StatusOk from "../statusOk/StatusOk";
 
 function SignIn() {
@@ -57,6 +58,7 @@ function SignIn() {
             navigate("myAccount/register");
           }
         })
+        //*! .then((data)=>dispatch(getUserInfo(data)))
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.error("Error during request:", err);
