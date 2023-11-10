@@ -41,7 +41,7 @@ function Checkout() {
   // const [orderNo, setOrderNo] = useState();
   // const dispatch = useDispatch();
   const productsArray = useSelector((state) => state.cart.cartProducts);
-  const adress = useSelector((state) => state.shippingInfo);
+  const adress = useSelector((state) => state.shippingInfo.shippingInfo);
   const userInfo = useSelector((state) => state.customerReducer.customer);
 
   const [selectedPromo, setSelectedPromo] = useState("");
@@ -68,6 +68,7 @@ function Checkout() {
     watch,
     formState: { errors }
   } = useForm();
+
   const usePromo = (e) => {
     // console.log(getValues().promo);
     e.preventDefault();
@@ -101,9 +102,11 @@ function Checkout() {
 
   const onSubmit = (data) => {
     const formData = {
-      firstName: data.name,
-      lastName: data.lastname,
-      country: selectedCountry,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      country: adress.selectedCountry.name
+        ? adress.selectedCountry.name
+        : selectedCountry,
       address: data.address,
       city: data.city,
       postal: data.postal,
@@ -111,6 +114,7 @@ function Checkout() {
       email: data.email,
       promo: data.promo,
       payment: data.payment,
+
       letterSubject: "Thank you for order! You are welcome!",
       letterHtml: `<h1>Your order is placed. Your order was successful!. You are welcome!</h1><p>{Other details about order in your HTML}</p>`
     };
@@ -120,15 +124,15 @@ function Checkout() {
 
       products: productsArray
     };
-
+    console.log("blalalala", formData);
     api
       .post("/orders", orderData)
       .then((response) => {
         console.log(response);
-        // if (!response.ok) {
-        //   throw new Error("Network response was not ok");
-        // }
-        // return response.json();
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
       })
       // .then((dataFetch) => {
       //   setOrderNo(dataFetch.order.orderNo);
@@ -204,13 +208,11 @@ function Checkout() {
                 <Controller
                   name="firstName"
                   control={control}
-                  defaultValue=""
+                  defaultValue={userInfo.firstName ? userInfo.firstName : ""}
                   render={({ field }) => (
                     <input
                       className="billing_textfield-item"
                       placeholder="First name *"
-                      //* ! check on name!!!!!!
-                      value={userInfo.firstName ? userInfo.firstName : null}
                       {...register("firstName", { required: true })}
                       {...field}
                       required
@@ -228,13 +230,11 @@ function Checkout() {
                 <Controller
                   name="lastName"
                   control={control}
-                  defaultValue=""
+                  defaultValue={userInfo.lastName ? userInfo.lastName : ""}
                   render={({ field }) => (
                     <input
                       className="billing_textfield-item"
                       placeholder="Last name *"
-                      //* ! check on name!!!!!!
-                      value={userInfo.lastName ? userInfo.lastName : null}
                       {...register("lastName", { required: true })}
                       {...field}
                     />
@@ -260,11 +260,12 @@ function Checkout() {
                   return options.name;
                 }}
                 value={
-                  adress.selectedCountry
-                    ? adress.selectedCountry
+                  adress.selectedCountry.name
+                    ? { name: adress.selectedCountry.name }
                     : selectedCountry
                 }
                 onChange={(item) => {
+                  console.log(item);
                   setSelectedCountry(item);
                 }}
                 placeholder="Country *"
@@ -293,12 +294,11 @@ function Checkout() {
               <Controller
                 name="postal"
                 control={control}
-                defaultValue=""
+                defaultValue={adress.postCode ? adress.postCode : ""}
                 render={({ field }) => (
                   <input
                     className="billing_info-item"
                     placeholder="Postcode / ZIP *"
-                    value={adress.postalCode ? adress.postalCode : null}
                     {...register("postal", { required: true })}
                     {...field}
                   />
@@ -314,12 +314,13 @@ function Checkout() {
               <Controller
                 name="city"
                 control={control}
-                defaultValue=""
+                defaultValue={
+                  adress.selectedCity.name ? adress.selectedCity.name : ""
+                }
                 render={({ field }) => (
                   <input
                     className="billing_info-item"
                     placeholder="Town / City *"
-                    value={adress.selectedCity ? adress.selectedCity : null}
                     {...register("city", { required: true })}
                     {...field}
                   />
@@ -337,7 +338,7 @@ function Checkout() {
               <Controller
                 name="mobile"
                 control={control}
-                defaultValue=""
+                defaultValue={userInfo.telephone ? userInfo.telephone : ""}
                 render={({ field }) => (
                   <input
                     className="billing_info-item"
@@ -358,7 +359,7 @@ function Checkout() {
               <Controller
                 name="email"
                 control={control}
-                defaultValue=""
+                defaultValue={userInfo.email ? userInfo.email : ""}
                 render={({ field }) => (
                   <input
                     className="billing_info-item"
@@ -427,8 +428,11 @@ function Checkout() {
                     <RadioGroup
                       aria-labelledby="payment-method"
                       defaultValue="Direct bank transfer"
-                      // onChange={handleChange}
+                //       onChange={(item) => {
+                //   console.log(item);
+                // }}
                       name="radio-buttons-group"
+                      {...register("payment", { required: true })}
                     >
                       <FormControlLabel
                         value="Direct bank transfer"
@@ -485,6 +489,7 @@ function Checkout() {
                         backgroundColor: "grey"
                       }
                     }}
+                    type="submit"
                   >
                     PLACE ORDER
                   </Button>

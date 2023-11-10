@@ -38,6 +38,7 @@ function SignIn() {
         )
         .then((anotherResponse) => {
           if (anotherResponse.status === 200) {
+            console.log(anotherResponse);
             dispatch(getUserInfo(anotherResponse.data));
             setShowStatus(true);
             setTimeout(() => {
