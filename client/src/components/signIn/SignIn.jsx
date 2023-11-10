@@ -38,6 +38,7 @@ function SignIn() {
         )
         .then((anotherResponse) => {
           if (anotherResponse.status === 200) {
+            dispatch(getUserInfo(anotherResponse.data))
             setShowStatus(true);
             setTimeout(() => {
               setShowStatus(false);
@@ -47,7 +48,6 @@ function SignIn() {
             navigate("myAccount/register");
           }
         })
-        //*! .then((data)=>dispatch(getUserInfo(data)))
         .catch((err) => {
           // eslint-disable-next-line no-console
           console.error("Error during request");

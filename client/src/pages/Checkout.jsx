@@ -3,7 +3,13 @@ import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Country } from "country-state-city";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  countryAddress,
+  stateAddress,
+  cityAddress,
+  codeAddress
+} from "../redux/actions/addressActions";
 
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -37,7 +43,9 @@ function Checkout() {
   const [selectedCountry, setSelectedCountry] = useState(null);
 
   const [orderNo, setOrderNo] = useState();
+  const dispatch = useDispatch();
   const productsArray = useSelector((state) => state.cart.cartProducts);
+  const adress = useSelector((state) => state.shippingInfo);
 
   const {
     control,
@@ -48,8 +56,8 @@ function Checkout() {
 
   const onSubmit = (data) => {
     const formData = {
-      name: data.name,
-      lastname: data.lastname,
+      firstName: data.name,
+      lastName: data.lastname,
       country: selectedCountry,
       address: data.address,
       city: data.city,
@@ -143,7 +151,7 @@ function Checkout() {
               <h3 className="billing_title">Billing Details</h3>
               <div className="billing_textfield-items">
                 <Controller
-                  name="name"
+                  name="firstName"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
@@ -151,7 +159,7 @@ function Checkout() {
                       className="billing_textfield-item"
                       placeholder="First name *"
                       // value={redux}
-                      {...register("name", { required: true })}
+                      {...register("firstName", { required: true })}
                       {...field}
                       required
                     />
@@ -164,7 +172,7 @@ function Checkout() {
                     }
                   }}
                 />
-                {errors.name && <span>{errors.name.message}</span>}
+                {errors.name && <span>{errors.firstName.message}</span>}
                 <Controller
                   name="lastName"
                   control={control}
@@ -174,7 +182,7 @@ function Checkout() {
                       className="billing_textfield-item"
                       placeholder="Last name *"
                       // value={redux}
-                      {...register("lastname", { required: true })}
+                      {...register("lastName", { required: true })}
                       {...field}
                     />
                   )}
@@ -198,9 +206,19 @@ function Checkout() {
                 getOptionValue={(options) => {
                   return options.name;
                 }}
-                value={selectedCountry}
-                // value={redux}!!!
+                value={adress.selectedCountry}
                 onChange={(item) => {
+                  countryAddress
+
+
+
+
+
+
+
+
+
+
                   setSelectedCountry(item);
                 }}
                 placeholder="Country *"
@@ -246,7 +264,6 @@ function Checkout() {
                 }}
               />
               {errors.postal && <span>{errors.postal.message}</span>}
-
               <Controller
                 name="city"
                 control={control}
