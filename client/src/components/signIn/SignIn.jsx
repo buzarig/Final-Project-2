@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import api from "../../http/api";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
+import { getUserInfo } from "../../redux/actions/customer";
 import StatusOk from "../statusOk/StatusOk";
 
 function SignIn() {
@@ -37,7 +38,7 @@ function SignIn() {
         )
         .then((anotherResponse) => {
           if (anotherResponse.status === 200) {
-            dispatch(getUserInfo(anotherResponse.data))
+            dispatch(getUserInfo(anotherResponse.data));
             setShowStatus(true);
             setTimeout(() => {
               setShowStatus(false);
@@ -47,7 +48,7 @@ function SignIn() {
             navigate("myAccount/register");
           }
         })
-        .catch((err) => {
+        .catch(() => {
           // eslint-disable-next-line no-console
           console.error("Error during request");
           // eslint-disable-next-line no-alert

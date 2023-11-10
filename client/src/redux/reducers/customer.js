@@ -4,7 +4,7 @@ const initialState = {
   customer: {}
 };
 
-function customerReducer(state = initialState, action) {
+function customerReducer(state = initialState, action = {}) {
   switch (action.type) {
     case types.GET_USER_INFO:
       return {
@@ -12,7 +12,6 @@ function customerReducer(state = initialState, action) {
       };
     case types.REMOVE_USER_INFO:
       return {
-        ...state,
         customer: {}
       };
     default:

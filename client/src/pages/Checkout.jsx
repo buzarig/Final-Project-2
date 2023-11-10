@@ -3,15 +3,15 @@ import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Country } from "country-state-city";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "../styles/_checkout.scss";
-import { useSelector } from "react-redux";
 import FormControl from "@mui/material/FormControl";
 import { FormLabel, Radio, RadioGroup } from "@mui/material";
+import api from "../http/api";
 
 const customStyles = {
   // eslint-disable-next-line no-unused-vars
@@ -39,7 +39,7 @@ const customStyles = {
 function Checkout() {
   const [selectedCountry, setSelectedCountry] = useState(null);
   // const [orderNo, setOrderNo] = useState();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const productsArray = useSelector((state) => state.cart.cartProducts);
   const adress = useSelector((state) => state.shippingInfo);
   const userInfo = useSelector((state) => state.customerReducer.customer);
@@ -121,23 +121,17 @@ function Checkout() {
       products: productsArray
     };
 
-    fetch("http://localhost:4000/api/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(orderData)
-    })
+    api
+      .post("/orders", orderData)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
+        console.log(response);
+        // if (!response.ok) {
+        //   throw new Error("Network response was not ok");
+        // }
+        // return response.json();
       })
       // .then((dataFetch) => {
       //   setOrderNo(dataFetch.order.orderNo);
-      //
-      //   // dispatch(clear()); для очищення корзини
       // })
       .catch((error) => {
         // eslint-disable-next-line no-console
@@ -215,8 +209,8 @@ function Checkout() {
                     <input
                       className="billing_textfield-item"
                       placeholder="First name *"
-                      //*! check on name!!!!!!
-                      value={userInfo.firstName?userInfo.firstName:null}
+                      //* ! check on name!!!!!!
+                      value={userInfo.firstName ? userInfo.firstName : null}
                       {...register("firstName", { required: true })}
                       {...field}
                       required
@@ -230,7 +224,7 @@ function Checkout() {
                     }
                   }}
                 />
-                {errors.name && <span>{errors.firstName.message}</span>}
+                {errors.firstName && <span>{errors.firstName.message}</span>}
                 <Controller
                   name="lastName"
                   control={control}
@@ -239,8 +233,8 @@ function Checkout() {
                     <input
                       className="billing_textfield-item"
                       placeholder="Last name *"
-                      //*! check on name!!!!!!
-                      value={userInfo.lastName?userInfo.lastName:null}
+                      //* ! check on name!!!!!!
+                      value={userInfo.lastName ? userInfo.lastName : null}
                       {...register("lastName", { required: true })}
                       {...field}
                     />
@@ -265,9 +259,13 @@ function Checkout() {
                 getOptionValue={(options) => {
                   return options.name;
                 }}
-                value={adress.selectedCountry?adress.selectedCountry:selectedCountry}
+                value={
+                  adress.selectedCountry
+                    ? adress.selectedCountry
+                    : selectedCountry
+                }
                 onChange={(item) => {
-                  setSelectedCountry(item)
+                  setSelectedCountry(item);
                 }}
                 placeholder="Country *"
                 styles={customStyles}
