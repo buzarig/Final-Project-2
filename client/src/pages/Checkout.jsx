@@ -439,6 +439,7 @@ function Checkout() {
                         control={<Radio />}
                         label="Cash on delivery"
                       />
+
                       <FormControlLabel
                         value="PayPal"
                         control={<Radio />}
