@@ -38,6 +38,7 @@ const customStyles = {
 
 function Checkout() {
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [activePayment, setActivePayment] = useState("PayPal");
   // const [orderNo, setOrderNo] = useState();
   // const dispatch = useDispatch();
   const productsArray = useSelector((state) => state.cart.cartProducts);
@@ -70,12 +71,9 @@ function Checkout() {
   } = useForm();
 
   const usePromo = (e) => {
-    // console.log(getValues().promo);
     e.preventDefault();
     const promoCode = getValues().promo;
     const promoItem = promoData.find((promo) => promo.title === promoCode);
-
-    // console.log(promoItem);
     if (promoItem) {
       setSelectedPromo(`${promoItem.sum}`);
     } else if (promoItem === undefined) {
@@ -113,7 +111,7 @@ function Checkout() {
       mobile: data.mobile,
       email: data.email,
       promo: data.promo,
-      payment: data.payment,
+      payment: activePayment,
 
       letterSubject: "Thank you for order! You are welcome!",
       letterHtml: `<h1>Your order is placed. Your order was successful!. You are welcome!</h1><p>{Other details about order in your HTML}</p>`
@@ -265,7 +263,6 @@ function Checkout() {
                     : selectedCountry
                 }
                 onChange={(item) => {
-                  console.log(item);
                   setSelectedCountry(item);
                 }}
                 placeholder="Country *"
@@ -427,12 +424,10 @@ function Checkout() {
                     <FormLabel id="payment-method" />
                     <RadioGroup
                       aria-labelledby="payment-method"
-                      defaultValue="Direct bank transfer"
-                //       onChange={(item) => {
-                //   console.log(item);
-                // }}
+                      onChange={(e) => {
+                        setActivePayment(e.target.value);
+                      }}
                       name="radio-buttons-group"
-                      {...register("payment", { required: true })}
                     >
                       <FormControlLabel
                         value="Direct bank transfer"
