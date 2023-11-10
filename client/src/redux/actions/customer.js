@@ -11,7 +11,7 @@ export function getUserInfo(customer) {
 
 export function removeUserInfo() {
   return {
-    type: types.REMOVE_USER_INFO,
+    type: types.REMOVE_USER_INFO
   };
 }
 

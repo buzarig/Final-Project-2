@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+
   .checkout_main-top {
     .main-top_title {
       display: flex;
@@ -25,6 +26,7 @@
       text-align: left;
       margin-bottom: 20px;
       color: #707070;
+
       .login-mark-text {
         cursor: pointer;
         margin-left: 5px;
@@ -42,6 +44,7 @@
         text-align: left;
         color: #707070;
         margin-bottom: 20px;
+
         .login-mark-text {
           margin-left: 5px;
           color: #000000;
@@ -55,6 +58,8 @@
         border: solid 1px rgba(134, 134, 134, 0.53);
         display: flex;
         flex-direction: column;
+        position: relative;
+
         .box-title {
           font-size: 16px;
           font-weight: 400;
@@ -63,14 +68,27 @@
           color: #707070;
           margin: 20px;
         }
-        .box-flex-action{
+
+        .box-flex-action {
           display: flex;
           flex-direction: row;
-          align-items: center;
+          align-items: flex-end;
           margin: 20px;
 
           .box-textfield {
             width: 100%;
+
+            .promo_select {
+              position: absolute;
+              top: 50px;
+              left: 20px;
+              color: var(--light-colors-black-light, #000);
+              font-family: DM Sans, sans-serif;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 27px; /* 168.75% */
+            }
           }
 
         }
@@ -78,28 +96,32 @@
     }
   }
 
-  .checkout_main-bottom{
+  .checkout_main-bottom {
 
 
     display: flex;
-    .main-bottom_billing{
+
+    .main-bottom_billing {
 
       width: 580px;
-      .billing_names{
+
+      .billing_names {
         display: flex;
         flex-direction: column;
 
 
-        .billing_textfield-items{
+        .billing_textfield-items {
           justify-content: space-between;
           display: flex;
-          .billing_textfield-item{
+
+          .billing_textfield-item {
             height: 24px;
             width: 270px;
             border-bottom: 1px solid #9a9a9a;
           }
         }
-        .billing_title{
+
+        .billing_title {
           margin-top: 50px;
           margin-bottom: 30px;
           font-size: 26px;
@@ -108,30 +130,35 @@
           text-align: left;
         }
       }
-      .billing_info-items{
+
+      .billing_info-items {
         display: flex;
         flex-direction: column;
 
-        .billing_info-item{
+        .billing_info-item {
           margin-top: 32px;
           width: 580px;
           height: 28px;
           border-bottom: 1px solid #9a9a9a;
         }
-        .billing_info-select{
+
+        .billing_info-select {
           margin-top: 32px;
           border: none;
         }
       }
-      .billing_checkbox{
+
+      .billing_checkbox {
         margin: 20px 0 20px 0;
       }
     }
 
-    .main-bottom_order{
+    .main-bottom_order {
       width: 580px;
       margin-left: 50px;
-      .order_title{
+      margin-bottom: 30px;
+
+      .order_title {
         margin-bottom: 30px;
         margin-top: 50px;
         font-size: 26px;
@@ -139,18 +166,22 @@
         line-height: 35px;
         text-align: left;
       }
-      .order_product-box{
-        background: rgba(134, 134, 134, 0.34);
+
+      .order_product-box {
+        background: var(--light-colors-light-gray-light, #EFEFEF);
+        //background: rgba(134, 134, 134, 0.34);
         padding: 60px;
         font-size: 16px;
         font-weight: 400;
         line-height: 27px;
-        .box-total_title{
+
+        .box-total_title {
           display: flex;
           justify-content: space-between;
           padding: 20px 0 20px 0;
           text-transform: uppercase;
           position: relative;
+
           &::after {
             content: "";
             display: block;
@@ -162,7 +193,7 @@
           }
         }
 
-        .box-items{
+        .box-items {
           display: flex;
           justify-content: space-between;
           padding: 20px 0 20px 0;
@@ -172,16 +203,18 @@
           color: #707070;
 
         }
-        .box-subtotal{
+
+        .box-subtotal {
           display: flex;
           justify-content: space-between;
           padding: 20px 0 20px 0;
           position: relative;
+
           &::before,
           &::after {
             content: "";
             display: block;
-            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
             position: absolute;
             left: 0;
             right: 0;
@@ -194,10 +227,12 @@
           &::after {
             bottom: 0;
           }
-          .subtotal-title{
+
+          .subtotal-title {
             text-transform: uppercase;
           }
-          .subtotal-price{
+
+          .subtotal-price {
             font-size: 16px;
             font-weight: 400;
             line-height: 27px;
@@ -205,11 +240,12 @@
           }
         }
 
-        .box-shipping{
+        .box-shipping {
           display: flex;
           justify-content: space-between;
           padding: 20px 0 20px 0;
           position: relative;
+
           &::after {
             content: "";
             display: block;
@@ -219,32 +255,38 @@
             left: 0;
             right: 0;
           }
-          .shipping-title{
+
+          .shipping-title {
             text-transform: uppercase;
           }
-          .shipping-subtitle{
+
+          .shipping-subtitle {
             font-size: 16px;
             font-weight: 400;
             line-height: 27px;
             color: #707070;
           }
         }
-        .box-total-sum{
+
+        .box-total-sum {
           display: flex;
           justify-content: space-between;
           padding: 20px 0 20px 0;
-          .total-sum-title{
+
+          .total-sum-title {
             text-transform: uppercase;
           }
-          .total-sum-total{
+
+          .total-sum-total {
             font-size: 16px;
             font-weight: 400;
             line-height: 27px;
             color: #707070;
           }
         }
-        .box-action{
-          .bank-title{
+
+        .box-action {
+          .bank-title {
             font-size: 12px;
             font-weight: 400;
             line-height: 20px;
@@ -253,12 +295,15 @@
             padding: 16px;
           }
         }
-        .action-check{
+
+        .action-check {
           margin-bottom: 40px;
         }
       }
     }
   }
 
-
+  .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
+    color: black;
+  }
 }
