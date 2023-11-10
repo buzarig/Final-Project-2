@@ -2,6 +2,7 @@ export const COUTNRY_ADDRESS = "COUTNRY_ADDRESS";
 export const STATE_ADDRESS = "STATE_ADDRESS";
 export const CITY_ADDRESS = "CITY_ADDRESS";
 export const CODE_ADDRESS = "CODE_ADDRESS";
+export const UPDATE_SHIPPING_INFO = "UPDATE_SHIPPING_INFO";
 
 export const countryAddress = (country) => {
   return { type: COUTNRY_ADDRESS, country };
@@ -17,4 +18,7 @@ export const cityAddress = (city) => {
 
 export const codeAddress = (code) => {
   return { type: CODE_ADDRESS, code };
+};
+export const updateShippingInfo = (shippingInfo) => {
+  return { type: UPDATE_SHIPPING_INFO, payload: shippingInfo };
 };

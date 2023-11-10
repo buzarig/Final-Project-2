@@ -13,12 +13,7 @@ import {
   increaseCount
 } from "../redux/actions/cartActions";
 
-import {
-  countryAddress,
-  stateAddress,
-  cityAddress,
-  codeAddress
-} from "../redux/actions/addressActions";
+import { updateShippingInfo } from "../redux/actions/addressActions";
 
 function Cart() {
   // const token = useSelector((state) => state.accessToken);
@@ -37,10 +32,14 @@ function Cart() {
   const [postCode, setPostCode] = useState("");
 
   const handleUpdateTotals = () => {
-    // const selectedCountryValue = selectedCountry ? selectedCountry.name : "N/A";
-    // const selectedStateValue = selectedState ? selectedState.name : "N/A";
-    // const selectedCityValue = selectedCity ? selectedCity.name : "N/A";
+    const updatedShippingInfo = {
+      selectedCountry,
+      selectedState,
+      selectedCity,
+      postCode
+    };
 
+    dispatch(updateShippingInfo(updatedShippingInfo));
     setShippingInfoVisible(!isShippingInfoVisible);
   };
 
@@ -48,23 +47,19 @@ function Cart() {
     setShippingInfoVisible(!isShippingInfoVisible);
   };
 
-  const handleCountryAddress = (country) => {
-    dispatch(countryAddress(country));
+  const changeCountry = (country) => {
     setSelectedCountry(country);
   };
 
-  const handleStateAddress = (state) => {
-    dispatch(stateAddress(state));
+  const changeState = (state) => {
     setSelectedState(state);
   };
 
-  const handleCityAddress = (city) => {
-    dispatch(cityAddress(city));
+  const changeCity = (city) => {
     setSelectedCity(city);
   };
 
-  const handleCodeAddress = (code) => {
-    dispatch(codeAddress(code));
+  const changeCode = (code) => {
     setPostCode(code);
   };
 
@@ -188,7 +183,7 @@ function Cart() {
                 </button>
               </div>
               {isShippingInfoVisible && (
-                <div className="shipping-select">
+                <form className="shipping-select">
                   <Select
                     options={Country.getAllCountries()}
                     getOptionLabel={(options) => {
@@ -199,7 +194,7 @@ function Cart() {
                     }}
                     value={selectedCountry}
                     onChange={(item) => {
-                      handleCountryAddress(item);
+                      changeCountry(item);
                     }}
                     placeholder="Select a Country"
                     className="shipping-country-select"
@@ -216,7 +211,7 @@ function Cart() {
                     }}
                     value={selectedState}
                     onChange={(item) => {
-                      handleStateAddress(item);
+                      changeState(item);
                     }}
                     placeholder="Select a State"
                     className="shipping-country-select"
@@ -240,13 +235,13 @@ function Cart() {
                     }}
                     value={selectedCity}
                     onChange={(name) => {
-                      handleCityAddress(name);
+                      changeCity(name);
                     }}
                     placeholder="Select a City"
                     className="shipping-country-select"
                   />
                   <input
-                    onChange={(e) => handleCodeAddress(e.target.value)}
+                    onChange={(e) => changeCode(e.target.value)}
                     className="shipping-zip"
                     type="text"
                     placeholder="Post code/Zip"
@@ -259,11 +254,11 @@ function Cart() {
                   >
                     Update Totals
                   </button>
-                </div>
+                </form>
               )}
             </div>
             {!isShippingInfoVisible && (
-              <div>
+              <div className="shipping-display">
                 <p className="shipping-display-item">
                   Selected Country: {selectedCountry?.name}
                 </p>
