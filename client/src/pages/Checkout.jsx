@@ -37,6 +37,7 @@ function Checkout() {
   const [selectedCountry, setSelectedCountry] = useState(null);
 
   const [orderNo, setOrderNo] = useState();
+  const productsArray = useSelector((state) => state.cart.cartProducts);
 
   const {
     control,
@@ -63,7 +64,7 @@ function Checkout() {
     const orderData = {
       ...formData,
 
-      products: 0
+      products: productsArray
     };
 
     fetch("http://localhost:4000/api/orders", {
