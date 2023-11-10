@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import api from "../../http/api";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
-import getUserInfo from "../../redux/actions/customer";
 import StatusOk from "../statusOk/StatusOk";
 
 function SignIn() {
