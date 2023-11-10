@@ -4,12 +4,6 @@ import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Country } from "country-state-city";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  countryAddress,
-  stateAddress,
-  cityAddress,
-  codeAddress
-} from "../redux/actions/addressActions";
 
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
@@ -48,6 +42,7 @@ function Checkout() {
   const dispatch = useDispatch();
   const productsArray = useSelector((state) => state.cart.cartProducts);
   const adress = useSelector((state) => state.shippingInfo);
+  const userInfo = useSelector((state) => state.customerReducer.customer);
 
   const [selectedPromo, setSelectedPromo] = useState("");
   const promoData = [
@@ -220,7 +215,8 @@ function Checkout() {
                     <input
                       className="billing_textfield-item"
                       placeholder="First name *"
-                      // value={redux}
+                      //*! check on name!!!!!!
+                      value={userInfo.firstName?userInfo.firstName:null}
                       {...register("firstName", { required: true })}
                       {...field}
                       required
@@ -243,7 +239,8 @@ function Checkout() {
                     <input
                       className="billing_textfield-item"
                       placeholder="Last name *"
-                      // value={redux}
+                      //*! check on name!!!!!!
+                      value={userInfo.lastName?userInfo.lastName:null}
                       {...register("lastName", { required: true })}
                       {...field}
                     />
@@ -268,20 +265,9 @@ function Checkout() {
                 getOptionValue={(options) => {
                   return options.name;
                 }}
-                value={adress.selectedCountry}
+                value={adress.selectedCountry?adress.selectedCountry:selectedCountry}
                 onChange={(item) => {
-                  // countryAddress
-
-
-
-
-
-
-
-
-
-
-                  setSelectedCountry(item);
+                  setSelectedCountry(item)
                 }}
                 placeholder="Country *"
                 styles={customStyles}
@@ -314,6 +300,7 @@ function Checkout() {
                   <input
                     className="billing_info-item"
                     placeholder="Postcode / ZIP *"
+                    value={adress.postalCode ? adress.postalCode : null}
                     {...register("postal", { required: true })}
                     {...field}
                   />
@@ -334,6 +321,7 @@ function Checkout() {
                   <input
                     className="billing_info-item"
                     placeholder="Town / City *"
+                    value={adress.selectedCity ? adress.selectedCity : null}
                     {...register("city", { required: true })}
                     {...field}
                   />
