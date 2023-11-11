@@ -9,7 +9,7 @@ function Modal({ isOpen, closeModal, handleLogout }) {
 
   return (
     <div>
-      {isOpen && ( // Отображаем модальное окно только если isOpen равно true
+      {isOpen && (
         <div className="modal">
           <div className="modal-content">
             <p className="modal-text">Modal Content</p>

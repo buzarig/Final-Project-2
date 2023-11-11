@@ -61,7 +61,7 @@ function CarouselComponent() {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item"
         renderDotsOutside
-        autoPlay
+        // autoPlay
         infinite
       >
         {products.map((product, index) => (

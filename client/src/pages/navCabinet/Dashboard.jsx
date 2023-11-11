@@ -17,12 +17,7 @@ function Dashboard() {
           {" "}
           <Link to="/cabinet/orders">recent orders</Link>
         </span>{" "}
-        , manage your
-        <span className="dashboard links">
-          {" "}
-          <Link to="/cabinet/addresses">shipping and billing addresses</Link>
-        </span>{" "}
-        , and edit your
+        , manage you shipping and billing addresses , and edit your
         <span className="dashboard links">
           {" "}
           <Link to="/cabinet/accountDetails">password and account details</Link>
