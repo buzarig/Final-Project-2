@@ -50,6 +50,7 @@ function Contacts() {
       ...prevData,
       [name]: value
     }));
+    console.log(`${name}: ${value}`);
   };
 
   const handlePopupOpen = () => {
@@ -62,6 +63,8 @@ function Contacts() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log("Form Data Submitted:", formData);
 
     setFormData({
       firstName: "",
