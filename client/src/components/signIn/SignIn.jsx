@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import "./SignIn.scss";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import Button from "@mui/material/Button";
 import api from "../../http/api";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
 import { getUserInfo } from "../../redux/actions/customer";
 import StatusOk from "../statusOk/StatusOk";
+import { productsFromServer } from "../../redux/actions/cartActions";
 
 function SignIn() {
   const [showStatus, setShowStatus] = useState(false);
@@ -17,6 +19,27 @@ function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
+
+  const cartFromServer = async (token) => {
+    try {
+      const headers = {
+        Authorization: token
+      };
+
+      const response = await api.get("/cart", {
+        headers
+      });
+
+      if (response.status === 200) {
+        const cart = response.data;
+        dispatch(productsFromServer(cart.products));
+      } else {
+        console.log("Произошла ошибка при получении данных о корзине.");
+      }
+    } catch (error) {
+      console.error("Ошибка при получении данных о корзине:", error);
+    }
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -31,6 +54,7 @@ function SignIn() {
       }
       const dataResponse = response.data;
       setAuthToken(dataResponse.token);
+      cartFromServer(dataResponse.token);
 
       axios
         .get(
@@ -43,8 +67,8 @@ function SignIn() {
             setShowStatus(true);
             setTimeout(() => {
               setShowStatus(false);
-              navigate("/");
-            }, 1000);
+              navigate("/cabinet/dashboard");
+            }, 2000);
           } else {
             navigate("myAccount/register");
           }
@@ -91,7 +115,7 @@ function SignIn() {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <div>
+              <div className="input_pass">
                 <input
                   className="input"
                   {...field}
@@ -102,7 +126,7 @@ function SignIn() {
                   type={isPasswordVisible ? "text" : "password"}
                 />
                 <span
-                  className="password-visibility-icon"
+                  className="password-visibility-icon_pass"
                   role="button"
                   tabIndex={0}
                   onClick={() => setPasswordVisibility(!isPasswordVisible)}
@@ -178,24 +202,34 @@ function SignIn() {
           />
           {errors.password && <span>{errors.password.message}</span>}
         </div>
-        <div className="checkbox">
-          <Controller
-            name="rememberMe"
-            control={control}
-            defaultValue={false}
-            render={({ field }) => (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label className="checkbox">
-                <input type="checkbox" {...field} />
-                Remember Me
-              </label>
-            )}
-          />
-        </div>
+        {/* <div className="checkbox"> */}
+        {/*  <Controller */}
+        {/*    name="rememberMe" */}
+        {/*    control={control} */}
+        {/*    defaultValue={false} */}
+        {/*    render={({ field }) => ( */}
+        {/*      // eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        {/*      <label className="checkbox"> */}
+        {/*        <input type="checkbox" {...field} /> */}
+        {/*        Remember Me */}
+        {/*      </label> */}
+        {/*    )} */}
+        {/*  /> */}
+        {/* </div> */}
         {showStatus ? <StatusOk /> : null}
-        <button className="submit_signin" type="submit">
-          Sign In
-        </button>
+        <Button
+          className="submit_signin"
+          variant="contained"
+          type="submit"
+          sx={{
+            backgroundColor: "black",
+            "&:hover": {
+              backgroundColor: "grey"
+            }
+          }}
+        >
+          Sign in
+        </Button>
       </form>
       <div className="status-ok-container" />
     </div>
