@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import api from "../../http/api";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
+import { getUserInfo } from "../../redux/actions/customer";
 import StatusOk from "../statusOk/StatusOk";
 import { productsFromServer } from "../../redux/actions/cartActions";
 
@@ -60,6 +61,8 @@ function SignIn() {
         )
         .then((anotherResponse) => {
           if (anotherResponse.status === 200) {
+            console.log(anotherResponse);
+            dispatch(getUserInfo(anotherResponse.data));
             setShowStatus(true);
             setTimeout(() => {
               setShowStatus(false);
