@@ -98,6 +98,23 @@ function Checkout() {
     return totalPrice;
   };
 
+  async function submitOrder(orderData) {
+    try {
+      const response = await api.post('/orders', orderData);
+  
+      if (response.status === 201) {
+        console.log('Заказ успешно размещен:', response.data);
+        // Дополнительная логика после успешного размещения заказа
+      } else {
+        console.log('Произошла ошибка при размещении заказа.');
+        // Обработка ошибки при размещении заказа
+      }
+    } catch (error) {
+      console.error('Ошибка при размещении заказа:', error);
+      // Обработка ошибки при размещении заказа
+    }
+  }
+
   const onSubmit = (data) => {
     const formData = {
       firstName: data.firstName,
@@ -122,23 +139,26 @@ function Checkout() {
 
       products: productsArray
     };
-    console.log("blalalala", formData);
-    api
-      .post("/orders", orderData)
-      .then((response) => {
-        console.log(response);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      // .then((dataFetch) => {
-      //   setOrderNo(dataFetch.order.orderNo);
-      // })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error("Error:", error);
-      });
+    console.log("blalalala", orderData);
+
+    submitOrder(orderData);
+
+    // api
+    //   .post("/orders", orderData)
+    //   .then((response) => {
+    //     console.log(response);
+    //     if (!response.ok) {
+    //       throw new Error("Network response was not ok");
+    //     }
+    //     return response.json();
+    //   })
+    //   // .then((dataFetch) => {
+    //   //   setOrderNo(dataFetch.order.orderNo);
+    //   // })
+    //   .catch((error) => {
+    //     // eslint-disable-next-line no-console
+    //     console.error("Error:", error);
+    //   });
   };
 
   return (
