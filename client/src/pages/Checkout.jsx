@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
@@ -42,8 +43,9 @@ function Checkout() {
   // const [orderNo, setOrderNo] = useState();
   // const dispatch = useDispatch();
   const productsArray = useSelector((state) => state.cart.cartProducts);
-  const adress = useSelector((state) => state.shippingInfo.shippingInfo);
+  const adress = useSelector((state) => state.shippingInfo);
   const userInfo = useSelector((state) => state.customerReducer.customer);
+  const token = useSelector((state) => state.token.accessToken);
 
   const [selectedPromo, setSelectedPromo] = useState("");
   const promoData = [
@@ -98,45 +100,35 @@ function Checkout() {
     return totalPrice;
   };
 
+  console.log(productsArray);
   const onSubmit = (data) => {
     const formData = {
+      products: productsArray,
       firstName: data.firstName,
       lastName: data.lastName,
-      country: adress.selectedCountry.name
-        ? adress.selectedCountry.name
-        : selectedCountry,
-      address: data.address,
-      city: data.city,
-      postal: data.postal,
+      deliveryAddress: {
+        country: adress.selectedCountry
+          ? adress.selectedCountry
+          : selectedCountry,
+        city: data.city,
+        address: data.address,
+        postal: data.postal
+      },
       mobile: data.mobile,
       email: data.email,
       promo: data.promo,
       payment: activePayment,
-
+      canceled: false,
       letterSubject: "Thank you for order! You are welcome!",
-      letterHtml: `<h1>Your order is placed. Your order was successful!. You are welcome!</h1><p>{Other details about order in your HTML}</p>`
+      letterHtml: `<h1>Your order is placed. Your order was successful!. You are welcome!</h1><h2>Thank for order!</h2>`
     };
-
-    const orderData = {
-      ...formData,
-
-      products: productsArray
+    const headers = {
+      Authorization: token
     };
-    console.log("blalalala", formData);
     api
-      .post("/orders", orderData)
-      .then((response) => {
-        console.log(response);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      // .then((dataFetch) => {
-      //   setOrderNo(dataFetch.order.orderNo);
-      // })
+      .post("/orders", formData, { headers })
+      .then()
       .catch((error) => {
-        // eslint-disable-next-line no-console
         console.error("Error:", error);
       });
   };
@@ -258,8 +250,8 @@ function Checkout() {
                   return options.name;
                 }}
                 value={
-                  adress.selectedCountry.name
-                    ? { name: adress.selectedCountry.name }
+                  adress.selectedCountry
+                    ? { name: adress.selectedCountry }
                     : selectedCountry
                 }
                 onChange={(item) => {
@@ -311,9 +303,7 @@ function Checkout() {
               <Controller
                 name="city"
                 control={control}
-                defaultValue={
-                  adress.selectedCity.name ? adress.selectedCity.name : ""
-                }
+                defaultValue={adress.selectedCity ? adress.selectedCity : ""}
                 render={({ field }) => (
                   <input
                     className="billing_info-item"
