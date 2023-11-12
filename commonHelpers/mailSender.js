@@ -5,7 +5,6 @@ const getConfigs = require("../config/getConfigs");
 module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
   const configs = await getConfigs();
 
-  //authorization for sending email
   let transporter = nodemailer.createTransport({
     service:
       process.env.NODE_ENV === "production"
@@ -19,9 +18,10 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
       pass:
         process.env.NODE_ENV === "production"
           ? configs.production.email.mailPassword
-          : configs.development.email.mailPassword
-    }
+          : configs.development.email.mailPassword,
+    },
   });
+  console.log(transporter);
 
   const mailOptions = {
     from:
@@ -30,7 +30,7 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
         : configs.development.email.mailUser,
     to: subscriberMail,
     subject: letterSubject,
-    html: letterHtml
+    html: letterHtml,
   };
 
   const result = await transporter.sendMail(mailOptions);
