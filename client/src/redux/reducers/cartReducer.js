@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import {
+  PRODUCTS_FROM_SERVER,
   REMOVE_PRODUCT,
   ADD_PRODUCT,
   INCREASE_COUNT,
@@ -82,6 +83,21 @@ const decreaseFromServer = async (data) => {
 
 const cartReducer = (state = initState, action = {}) => {
   switch (action.type) {
+    case PRODUCTS_FROM_SERVER: {
+      const { products } = action.payload;
+
+      console.log(products);
+      return {
+        ...state,
+        cartProducts: [
+          ...state.cartProducts,
+          ...products.map((product) => ({
+            product: product.product,
+            cartQuantity: product.cartQuantity
+          }))
+        ]
+      };
+    }
     case REMOVE_PRODUCT: {
       const { productItem, itemNo, token } = action.payload;
 

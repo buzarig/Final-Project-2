@@ -8,6 +8,7 @@ import api from "../../http/api";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
 import StatusOk from "../statusOk/StatusOk";
+import { productsFromServer } from "../../redux/actions/cartActions";
 
 function SignIn() {
   const [showStatus, setShowStatus] = useState(false);
@@ -16,6 +17,27 @@ function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
+
+  const cartFromServer = async (token) => {
+    try {
+      const headers = {
+        Authorization: token
+      };
+
+      const response = await api.get("/cart", {
+        headers
+      });
+
+      if (response.status === 200) {
+        const cart = response.data;
+        dispatch(productsFromServer(cart.products));
+      } else {
+        console.log("Произошла ошибка при получении данных о корзине.");
+      }
+    } catch (error) {
+      console.error("Ошибка при получении данных о корзине:", error);
+    }
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -30,6 +52,7 @@ function SignIn() {
       }
       const dataResponse = response.data;
       setAuthToken(dataResponse.token);
+      cartFromServer(dataResponse.token);
 
       axios
         .get(
