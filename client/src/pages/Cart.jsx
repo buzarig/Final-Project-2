@@ -13,43 +13,61 @@ import {
   increaseCount
 } from "../redux/actions/cartActions";
 
+import { updateShippingInfo } from "../redux/actions/addressActions";
+
 function Cart() {
   const products = useSelector((state) => state.cart.cartProducts);
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.token.accessToken);
 
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [selectedState, setSelectedState] = useState(null);
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [isShippingInfoVisible, setShippingInfoVisible] = useState(false);
-  const [setPostCode] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [isShippingInfoVisible, setShippingInfoVisible] = useState(true);
+  const [postCode, setPostCode] = useState("");
+
+  const handleUpdateTotals = () => {
+    const updatedShippingInfo = {
+      selectedCountry: selectedCountry.name,
+      selectedState: selectedState.name,
+      selectedCity: selectedCity.name,
+      postCode
+    };
+
+    dispatch(updateShippingInfo(updatedShippingInfo));
+    setShippingInfoVisible(!isShippingInfoVisible);
+  };
 
   const toggleShippingInfo = () => {
     setShippingInfoVisible(!isShippingInfoVisible);
   };
 
-  // const handleUpdateTotals = () => {
-  //   if (selectedCountry && selectedState && selectedCity) {
-  //     return (
-  //       <div className="shipping-info">
-  //         <div>Selected Country: {selectedCountry.name}</div>
-  //         <div>Selected State: {selectedState.name}</div>
-  //         <div>Selected City: {selectedCity.name}</div>
-  //         <div>Selected Post code/Zip: {postCode}</div>
-  //       </div>
-  //     );
-  //   }
-  // };
-
-  const handleIncreaseCount = (itemNo) => {
-    dispatch(increaseCount(itemNo));
+  const changeCountry = (country) => {
+    setSelectedCountry(country);
   };
 
-  const handleDecreaseCount = (itemNo) => {
-    dispatch(decreaseCount(itemNo));
+  const changeState = (state) => {
+    setSelectedState(state);
   };
 
-  const handleRemoveProduct = (itemNo) => {
-    dispatch(removeProduct(itemNo));
+  const changeCity = (city) => {
+    setSelectedCity(city);
+  };
+
+  const changeCode = (code) => {
+    setPostCode(code);
+  };
+
+  const handleIncreaseCount = (product, itemNo) => {
+    dispatch(increaseCount(product, itemNo, token));
+  };
+
+  const handleDecreaseCount = (product, itemNo) => {
+    dispatch(decreaseCount(product, itemNo, token));
+  };
+
+  const handleRemoveProduct = (product, itemNo) => {
+    dispatch(removeProduct(product, itemNo, token));
   };
 
   return (
@@ -59,63 +77,64 @@ function Cart() {
       <div className="cart__container">
         <div className="cart__products">
           <div className="cart__products-items">
-            {products.length > 0 ? (
-              products.map(
-                (product, index) =>
-                  product?.product && (
-                    <div
-                      className="cart__products-item"
-                      key={product.product.itemNo}
+            {products.length ? (
+              products.map((product, index) => (
+                <div
+                  className="cart__products-item"
+                  key={product.product.itemNo}
+                >
+                  <img
+                    className="cart__products-image"
+                    src={product.product.imageUrls[0]}
+                    alt={product.product.name}
+                  />
+                  <div className="cart__products-text">
+                    <h1 className="cart__products-text-title">
+                      {product.product.name}
+                    </h1>
+                    <p className="cart__products-text-color">
+                      {product.product.color}
+                    </p>
+                    <p className="cart__products-text-price">
+                      {product.product.currentPrice}$
+                    </p>
+                  </div>
+                  <div className="cart__products-count">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleDecreaseCount(product.product, index)
+                      }
+                      className="cart__products-count-minus"
                     >
-                      <img
-                        className="cart__products-image"
-                        src={product.product.imageUrls[0]}
-                        alt={product.product.name}
-                      />
-                      <div className="cart__products-text">
-                        <h1 className="cart__products-text-title">
-                          {product.product.name}
-                        </h1>
-                        <p className="cart__products-text-color">
-                          {product.product.color}
-                        </p>
-                        <p className="cart__products-text-price">
-                          {product.product.currentPrice}$
-                        </p>
-                      </div>
-                      <div className="cart__products-count">
-                        <button
-                          type="button"
-                          onClick={() => handleDecreaseCount(index)}
-                          className="cart__products-count-minus"
-                        >
-                          -
-                        </button>
-                        <p className="cart__products-count-number">
-                          {product.cartQuantity}
-                        </p>
-                        <button
-                          type="button"
-                          onClick={() => handleIncreaseCount(index)}
-                          className="cart__products-count-plus"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveProduct(index)}
-                        className="remove-button"
-                      >
-                        <img
-                          className="cart__products-item-remove"
-                          src={remove}
-                          alt=""
-                        />
-                      </button>
-                    </div>
-                  )
-              )
+                      -
+                    </button>
+                    <p className="cart__products-count-number">
+                      {product.cartQuantity}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleIncreaseCount(product.product, index)
+                      }
+                      className="cart__products-count-plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveProduct(product.product, index)}
+                    className="remove-button"
+                  >
+                    <img
+                      className="cart__products-item-remove"
+                      src={remove}
+                      alt=""
+                    />
+                  </button>
+                </div>
+              ))
             ) : (
               <p className="empty-cart">No products in the cart</p>
             )}
@@ -163,7 +182,7 @@ function Cart() {
                 </button>
               </div>
               {isShippingInfoVisible && (
-                <div className="shipping-select">
+                <form className="shipping-select">
                   <Select
                     options={Country.getAllCountries()}
                     getOptionLabel={(options) => {
@@ -174,7 +193,7 @@ function Cart() {
                     }}
                     value={selectedCountry}
                     onChange={(item) => {
-                      setSelectedCountry(item);
+                      changeCountry(item);
                     }}
                     placeholder="Select a Country"
                     className="shipping-country-select"
@@ -191,7 +210,7 @@ function Cart() {
                     }}
                     value={selectedState}
                     onChange={(item) => {
-                      setSelectedState(item);
+                      changeState(item);
                     }}
                     placeholder="Select a State"
                     className="shipping-country-select"
@@ -214,14 +233,14 @@ function Cart() {
                       return options.name;
                     }}
                     value={selectedCity}
-                    onChange={(item) => {
-                      setSelectedCity(item);
+                    onChange={(name) => {
+                      changeCity(name);
                     }}
                     placeholder="Select a City"
                     className="shipping-country-select"
                   />
                   <input
-                    onChange={(e) => setPostCode(e.target.value)}
+                    onChange={(e) => changeCode(e.target.value)}
                     className="shipping-zip"
                     type="text"
                     placeholder="Post code/Zip"
@@ -229,15 +248,30 @@ function Cart() {
 
                   <button
                     type="button"
-                    // onClick={handleUpdateTotals}
                     className="shipping-submit"
+                    onClick={handleUpdateTotals}
                   >
                     Update Totals
                   </button>
-                </div>
+                </form>
               )}
             </div>
-            {/* {handleUpdateTotals()} */}
+            {!isShippingInfoVisible && (
+              <div className="shipping-display">
+                <p className="shipping-display-item">
+                  Selected Country: {selectedCountry?.name}
+                </p>
+                <p className="shipping-display-item">
+                  Selected State: {selectedState?.name}
+                </p>
+                <p className="shipping-display-item">
+                  Selected City: {selectedCity?.name}
+                </p>
+                <p className="shipping-display-item">
+                  Post code/Zip: {postCode}
+                </p>
+              </div>
+            )}
           </div>
           <div className="cart__total">
             <p className="cart__total-text">Total</p>
