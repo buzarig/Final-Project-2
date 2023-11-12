@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./SignIn.scss";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import Button from "@mui/material/Button";
 import api from "../../http/api";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
@@ -63,8 +64,8 @@ function SignIn() {
             setShowStatus(true);
             setTimeout(() => {
               setShowStatus(false);
-              navigate("/");
-            }, 1000);
+              navigate("/cabinet/dashboard");
+            }, 2000);
           } else {
             navigate("myAccount/register");
           }
@@ -111,7 +112,7 @@ function SignIn() {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <div>
+              <div className="input_pass">
                 <input
                   className="input"
                   {...field}
@@ -122,7 +123,7 @@ function SignIn() {
                   type={isPasswordVisible ? "text" : "password"}
                 />
                 <span
-                  className="password-visibility-icon"
+                  className="password-visibility-icon_pass"
                   role="button"
                   tabIndex={0}
                   onClick={() => setPasswordVisibility(!isPasswordVisible)}
@@ -198,24 +199,34 @@ function SignIn() {
           />
           {errors.password && <span>{errors.password.message}</span>}
         </div>
-        <div className="checkbox">
-          <Controller
-            name="rememberMe"
-            control={control}
-            defaultValue={false}
-            render={({ field }) => (
-              // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label className="checkbox">
-                <input type="checkbox" {...field} />
-                Remember Me
-              </label>
-            )}
-          />
-        </div>
+        {/* <div className="checkbox"> */}
+        {/*  <Controller */}
+        {/*    name="rememberMe" */}
+        {/*    control={control} */}
+        {/*    defaultValue={false} */}
+        {/*    render={({ field }) => ( */}
+        {/*      // eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        {/*      <label className="checkbox"> */}
+        {/*        <input type="checkbox" {...field} /> */}
+        {/*        Remember Me */}
+        {/*      </label> */}
+        {/*    )} */}
+        {/*  /> */}
+        {/* </div> */}
         {showStatus ? <StatusOk /> : null}
-        <button className="submit_signin" type="submit">
-          Sign In
-        </button>
+        <Button
+          className="submit_signin"
+          variant="contained"
+          type="submit"
+          sx={{
+            backgroundColor: "black",
+            "&:hover": {
+              backgroundColor: "grey"
+            }
+          }}
+        >
+          Sign in
+        </Button>
       </form>
       <div className="status-ok-container" />
     </div>
