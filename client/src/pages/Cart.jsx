@@ -16,26 +16,21 @@ import {
 import { updateShippingInfo } from "../redux/actions/addressActions";
 
 function Cart() {
-  // const token = useSelector((state) => state.accessToken);
-
-  // useEffect(() => {
-  //   setAuthorizationHeader(token);
-  // }, [token]);
-
   const products = useSelector((state) => state.cart.cartProducts);
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.token.accessToken);
 
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [selectedState, setSelectedState] = useState(null);
-  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
   const [isShippingInfoVisible, setShippingInfoVisible] = useState(true);
   const [postCode, setPostCode] = useState("");
 
   const handleUpdateTotals = () => {
     const updatedShippingInfo = {
-      selectedCountry,
-      selectedState,
-      selectedCity,
+      selectedCountry: selectedCountry.name,
+      selectedState: selectedState.name,
+      selectedCity: selectedCity.name,
       postCode
     };
 
@@ -63,16 +58,16 @@ function Cart() {
     setPostCode(code);
   };
 
-  const handleIncreaseCount = (itemNo) => {
-    dispatch(increaseCount(itemNo));
+  const handleIncreaseCount = (product, itemNo) => {
+    dispatch(increaseCount(product, itemNo, token));
   };
 
-  const handleDecreaseCount = (itemNo) => {
-    dispatch(decreaseCount(itemNo));
+  const handleDecreaseCount = (product, itemNo) => {
+    dispatch(decreaseCount(product, itemNo, token));
   };
 
-  const handleRemoveProduct = (itemNo) => {
-    dispatch(removeProduct(itemNo));
+  const handleRemoveProduct = (product, itemNo) => {
+    dispatch(removeProduct(product, itemNo, token));
   };
 
   return (
@@ -107,7 +102,9 @@ function Cart() {
                   <div className="cart__products-count">
                     <button
                       type="button"
-                      onClick={() => handleDecreaseCount(index)}
+                      onClick={() =>
+                        handleDecreaseCount(product.product, index)
+                      }
                       className="cart__products-count-minus"
                     >
                       -
@@ -117,7 +114,9 @@ function Cart() {
                     </p>
                     <button
                       type="button"
-                      onClick={() => handleIncreaseCount(index)}
+                      onClick={() =>
+                        handleIncreaseCount(product.product, index)
+                      }
                       className="cart__products-count-plus"
                     >
                       +
@@ -125,7 +124,7 @@ function Cart() {
                   </div>
                   <button
                     type="button"
-                    onClick={() => handleRemoveProduct(index)}
+                    onClick={() => handleRemoveProduct(product.product, index)}
                     className="remove-button"
                   >
                     <img
