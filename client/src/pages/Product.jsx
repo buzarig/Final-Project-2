@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import "../styles/_product.scss";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { ButtonGroup } from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { Icon } from "@iconify/react";
@@ -19,8 +18,6 @@ function Products() {
   const numericProductId = +productNo;
   const [productData, setProductData] = useState({});
   const [reviewData, setReviewData] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [cartCounter, setCartCounter] = useState(1);
   const [currentSection, setCurrentSection] = useState("description");
   const [showFullDescription, setShowFullDescription] = useState(false);
   const cartProducts = useSelector((state) => state.cart.cartProducts);
@@ -97,25 +94,13 @@ function Products() {
     fetchReviewData();
   }, [productData, fetchReviewData]);
 
-  const incrementCounter = () => {
-    if (cartCounter < productData.quantity) {
-      setCartCounter(cartCounter + 1);
-    }
-  };
-
-  const decrementCounter = () => {
-    if (cartCounter > 1) {
-      setCartCounter(cartCounter - 1);
-    }
-  };
-
   const handleSectionChange = (section) => {
     setCurrentSection(section);
   };
 
   const handleAddToCart = (selectedProduct) => {
     console.log(selectedProduct);
-    dispatch(addProductToCart(selectedProduct, cartCounter));
+    dispatch(addProductToCart(selectedProduct, 1, token));
   };
 
   const handleFormSubmit = async (event) => {
@@ -175,6 +160,7 @@ function Products() {
   const handleReviewerNameChange = (e) => {
     const name = e.target.value;
     setReviewerName(name);
+    console.log(name);
     validateName(name);
   };
 
@@ -251,32 +237,14 @@ function Products() {
           )}
           {isProductInCart ? (
             <div className="product-cart">
-              <ButtonGroup className="cart-btn-group">
-                <Button className="counter counter-btn">-</Button>
-                <Box className="counter cart-counter">{cartCounter}</Box>
-                <Button className="counter counter-btn">+</Button>
-              </ButtonGroup>
-              <Button className="add-to-cart__btn inCart">
-                Already In Cart
-              </Button>
+              <Link to="/cart">
+                <Button className="add-to-cart__btn inCart">
+                  Already In Cart
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="product-cart">
-              <ButtonGroup className="cart-btn-group">
-                <Button
-                  className="counter counter-btn"
-                  onClick={decrementCounter}
-                >
-                  -
-                </Button>
-                <Box className="counter cart-counter">{cartCounter}</Box>
-                <Button
-                  className="counter counter-btn"
-                  onClick={incrementCounter}
-                >
-                  +
-                </Button>
-              </ButtonGroup>
               <Button
                 onClick={() => handleAddToCart(productData)}
                 className="add-to-cart__btn"
@@ -286,14 +254,6 @@ function Products() {
             </div>
           )}
           <div className="product-socials">
-            <Icon
-              icon={isFavorite ? "mdi:heart" : "mdi:heart-outline"}
-              fontSize={23}
-              color="#707070"
-              onClick={() => {
-                setIsFavorite(!isFavorite);
-              }}
-            />
             <div className="straight" />
             <div className="socials-links">
               <a href="https://www.facebook.com/">

@@ -1,30 +1,36 @@
+export const PRODUCTS_FROM_SERVER = "PRODUCTS_FROM_SERVER";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const INCREASE_COUNT = "INCREASE_COUNT";
 export const DECREASE_COUNT = "DECREASE_COUNT";
 export const CLEAR = "CLEAR";
-export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
 
-export const removeProduct = (itemNo) => ({
+export const productsFromServer = (products) => ({
+  type: PRODUCTS_FROM_SERVER,
+  payload: { products }
+});
+
+export const removeProduct = (productItem, itemNo, token) => ({
   type: REMOVE_PRODUCT,
-  payload: itemNo
+  payload: { productItem, itemNo, token }
 });
 
-export const addProductToCart = (productItem, quantity) => ({
+export const addProductToCart = (productItem, quantity, token) => ({
   type: ADD_PRODUCT,
-  payload: { productItem, quantity }
+  payload: { productItem, quantity, token }
 });
 
-export const increaseCount = (itemNo) => ({
+export const increaseCount = (productItem, itemNo, token) => ({
   type: INCREASE_COUNT,
-  payload: itemNo
+  payload: { productItem, itemNo, token }
 });
 
-export const decreaseCount = (itemNo) => ({
+export const decreaseCount = (productItem, itemNo, token) => ({
   type: DECREASE_COUNT,
-  payload: itemNo
+  payload: { productItem, itemNo, token }
 });
 
-export const clear = () => ({
-  type: CLEAR
+export const clear = (token) => ({
+  type: CLEAR,
+  payload: { token }
 });
