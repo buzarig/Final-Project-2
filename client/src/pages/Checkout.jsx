@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
