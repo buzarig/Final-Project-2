@@ -198,6 +198,9 @@
       }
     }
   }
+  .search-bar {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -353,7 +356,7 @@
       .header-wrapper__search {
         padding-bottom: 50px;
         .menu-search-bar {
-          display: block;
+          display: none;
         }
       }
     }

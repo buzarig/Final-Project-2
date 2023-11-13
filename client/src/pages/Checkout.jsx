@@ -100,7 +100,6 @@ function Checkout() {
     return totalPrice;
   };
 
-  console.log(productsArray);
   const onSubmit = (data) => {
     const formData = {
       products: productsArray,
@@ -164,7 +163,7 @@ function Checkout() {
                     id="standard-basic"
                     label="Coupon Code"
                     variant="standard"
-                    sx={{ width: 350 }}
+                    sx={{ width: 270 }}
                     {...register("promo", { required: false })}
                   />
                 </div>
@@ -216,7 +215,6 @@ function Checkout() {
                     }
                   }}
                 />
-                {errors.firstName && <span>{errors.firstName.message}</span>}
                 <Controller
                   name="lastName"
                   control={control}
@@ -237,8 +235,13 @@ function Checkout() {
                     }
                   }}
                 />
-                {errors.lastName && <span>{errors.lastName.message}</span>}
               </div>
+              {errors.firstName && (
+                <p style={{ color: "red" }}>{errors.firstName.message}</p>
+              )}
+              {errors.lastName && (
+                <p style={{ color: "red" }}>{errors.lastName.message}</p>
+              )}
             </div>
             <div className="billing_info-items">
               <Select
@@ -336,8 +339,9 @@ function Checkout() {
                 )}
                 rules={{
                   pattern: {
-                    value: /^\d{10}$/i,
-                    message: "Incorrect phone number."
+                    value: /^\+\d{12}$/i,
+                    message:
+                      "Enter the correct format for the phone number(+380)."
                   }
                 }}
               />
@@ -468,7 +472,7 @@ function Checkout() {
                   <Button
                     variant="contained"
                     sx={{
-                      width: 462,
+                      width: "100%",
                       backgroundColor: "black",
                       "&:hover": {
                         backgroundColor: "grey"
