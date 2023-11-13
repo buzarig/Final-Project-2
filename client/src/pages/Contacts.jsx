@@ -1,15 +1,7 @@
 import "../styles/_contactstitle.scss";
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import Button from "@mui/material/Button";
-
-const SelectType = [
-  { label: "choise1", choiseNumb: 1 },
-  { label: "choise2", choiseNumb: 2 },
-  { label: "choise3", choiseNumb: 3 }
-];
+import MyForm from "./MyForm";
 
 const centerContentStyle = {
   display: "flex",
@@ -22,9 +14,8 @@ const centerContentStyle = {
 const containerStyle = {
   maxWidth: "800px",
   width: "100%",
-  display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gap: "60px"
+  display: "flex",
+  flexDirection: "column"
 };
 
 const buttonContainerStyle = {
@@ -34,6 +25,7 @@ const buttonContainerStyle = {
 };
 
 function Contacts() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -41,16 +33,6 @@ function Contacts() {
     subject: null,
     message: ""
   });
-
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
 
   const handlePopupOpen = () => {
     setIsPopupOpen(true);
@@ -60,119 +42,66 @@ function Contacts() {
     setIsPopupOpen(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async (formData) => {
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
 
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      subject: null,
-      message: ""
-    });
+      if (response.ok) {
+        const result = await response.json();
 
-    handlePopupOpen();
+        console.log("Response from server:", response);
+        console.log("Result parsed from JSON:", result);
+
+        if (result.success) {
+          handlePopupOpen();
+        } else {
+          console.error("Failed to send email:", result.error);
+        }
+      } else {
+        console.error(
+          "Failed to send email. Server responded with status:",
+          response.status
+        );
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
-  return (
-    <div style={centerContentStyle}>
-      <div className="contacts_main">
-        <div className="contacts_title">Contacts Us</div>
-        <div className="contacts_subtitle">
-          Say Hello send us your thoughts about our products or share your ideas
-          with our Team!
-        </div>
-      </div>
-      <Box style={containerStyle} className="container">
-        <TextField
-          id="first-name"
-          name="firstName"
-          label="First name"
-          variant="standard"
-          className="textfieild-adaptive"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
-        <TextField
-          id="last-name"
-          name="lastName"
-          label="Last Name"
-          className="textfieild-adaptive"
-          variant="standard"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
-        <TextField
-          id="email"
-          name="email"
-          label="Email"
-          variant="standard"
-          className="textfieild-adaptive"
-          value={formData.email}
-          onChange={handleChange}
-        />
 
-        <Autocomplete
-          disableCloseOnSelect
-          id="disable-close-on-select"
-          className="autocomplete-adaptive"
-          options={SelectType}
-          sx={{ width: "100%" }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Subject"
-              sx={{
-                "& .MuiInput-underline:before": {
-                  borderBottom: "none"
-                },
-                "& .MuiInput-underline:after": {
-                  borderBottom: "1px solid black"
-                }
-              }}
-            />
-          )}
-        />
-        <TextField
-          id="message"
-          name="message"
-          label="Message"
-          variant="standard"
-          className="textfieild-adaptive-message"
-          sx={{ gridColumn: "span 2", width: "100%" }}
-          value={formData.message}
-          onChange={handleChange}
-        />
-        <div style={buttonContainerStyle}>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{
-              width: "400px",
-              backgroundColor: "black",
-              color: "white",
-              "&:hover": {
-                backgroundColor: "grey"
-              }
-            }}
-            onClick={handleSubmit}
-          >
-            Send
-          </Button>
-        </div>
-        {isPopupOpen && (
-          <div className="contacts_popupopened">
-            <div className="popupopened_title">Complete</div>
-            <button
-              className="popupopened_btn"
-              type="button"
-              onClick={handlePopupClose}
-            >
-              OK
-            </button>
+  return (
+      <div style={centerContentStyle}>
+        <div className="contacts_main">
+          <div className="contacts_title">Contacts Us</div>
+          <div className="contacts_subtitle">
+            Say Hello, send us your thoughts about our products, or share your
+            ideas with our Team!
           </div>
-        )}
-      </Box>
-    </div>
+        </div>
+        <Box style={containerStyle} className="container">
+          <MyForm formData={formData} setFormData={setFormData} handleFormSubmit={handleFormSubmit} />
+
+          <div style={buttonContainerStyle}>
+            {isPopupOpen && (
+                <div className="contacts_popupopened">
+                  <div className="popupopened_title">Complete</div>
+                  <button
+                      className="popupopened_btn"
+                      type="button"
+                      onClick={handlePopupClose}
+                  >
+                    OK
+                  </button>
+                </div>
+            )}
+          </div>
+        </Box>
+      </div>
   );
 }
 
