@@ -88,6 +88,7 @@ function Products() {
 
   useEffect(() => {
     fetchProductData();
+    window.scrollTo(0, 0);
   }, [fetchProductData]);
 
   useEffect(() => {

@@ -1,3 +1,6 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
 
 /* eslint-disable no-unused-vars */
@@ -7,6 +10,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductToCart } from "../../redux/actions/cartActions";
 
 import "./ProductCard.scss";
 
@@ -15,25 +20,23 @@ function ProductCard({
   showButtons,
   discount,
   title,
-  price,
+  currentPrice,
+  previousPrice,
   imageUrl,
   itemNo,
-  cardUrl
+  cardUrl,
+  quantity
 }) {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
-  const [originalPrice, setOriginalPrice] = useState(Math.floor(price));
   const [discountedPrice, setDiscountedPrice] = useState(
-    discount ? Math.floor(price - price * (discount / 100)) : null
+    previousPrice ? currentPrice : null
   );
 
-  const handleAddToCart = () => {
-    setIsAddedToCart(true);
-  };
+  const [discountPercent, setDiscountPercent] = useState(
+    previousPrice ? (discount ? `${discount}%` : null) : null
+  );
 
-  const handleAddToFavorites = () => {
-    setIsAddedToFavorites(true);
-  };
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.token.accessToken);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -46,12 +49,28 @@ function ProductCard({
     navigate(`/catalog${cardUrl}/${itemNo}`);
   };
 
+  const handleAddToCart = (selectedProduct) => {
+    const selectedProductCart = {
+      name: title,
+      currentPrice,
+      previousPrice,
+      imageUrls: [imageUrl],
+      itemNo,
+      cardUrl
+    };
+    console.log(selectedProductCart);
+    dispatch(addProductToCart(selectedProductCart, 1, token));
+    navigate("/cart");
+  };
+
   return (
-    <div ref={ref} className="jewelry-card">
+    <div ref={ref} className="jewelry-card" onClick={handleClick}>
       <div className="jewelry-card-image">
         {discount && (
           <div className="jewlry-sale">
-            <h2 className="jewlry-sale-info">-{discount}%</h2>
+            <h2 className="jewlry-sale-info">
+              {discountPercent ? `-${discountPercent}` : "Sale"}
+            </h2>
           </div>
         )}
         {inView ? (
@@ -69,6 +88,7 @@ function ProductCard({
                   className="icon"
                   type="submit"
                   onClick={handleAddToCart}
+                  disabled={quantity === 0}
                 >
                   <img
                     src="../../assets/icons/shopping-cart 1.svg"
@@ -81,16 +101,6 @@ function ProductCard({
                     alt="eye-icon"
                   />
                 </button>
-                <button
-                  className="icon"
-                  type="submit"
-                  onClick={handleAddToFavorites}
-                >
-                  <img
-                    src="../../assets/icons/heart-svgrepo-com 1.svg"
-                    alt="heart-icon"
-                  />
-                </button>
               </div>
             )}
           </div>
@@ -101,13 +111,20 @@ function ProductCard({
       <div className="jewelry-card-info">
         <h2 className="jewelry-card-title">{title}</h2>
         <p className="jewelry-card-price">
-          {discountedPrice !== null ? (
-            <>
-              {/* <span className="discounted-price">${originalPrice}</span> */}
-              <span className="discounted-price">${discountedPrice}</span>
-            </>
+          {previousPrice ? (
+            discountedPrice ? (
+              <span
+                className={`price ${
+                  quantity === 0 ? "out-of-stock" : "discounted-price"
+                }`}
+              >
+                {quantity === 0 ? "Out of Stock" : `$${discountedPrice}`}
+              </span>
+            ) : null
           ) : (
-            <span className="original-price">${originalPrice}</span>
+            <span className={`price ${quantity === 0 ? "out-of-stock" : ""}`}>
+              {quantity === 0 ? "Out of Stock" : `$${currentPrice}`}
+            </span>
           )}
         </p>
       </div>
@@ -120,7 +137,8 @@ ProductCard.propTypes = {
   showButtons: PropTypes.bool,
   discount: PropTypes.number,
   title: PropTypes.string,
-  price: PropTypes.number,
+  currentPrice: PropTypes.number.isRequired,
+  previousPrice: PropTypes.number,
   imageUrl: PropTypes.string.isRequired,
   cardUrl: PropTypes.string
 };
