@@ -291,13 +291,11 @@ function Catalog() {
                       )
                     }
                     title={item.name}
-                    previousPrice={item.previousPrice}
-                    currentPrice={item.currentPrice}
+                    price={item.previousPrice || item.currentPrice}
                     imageUrl={item.imageUrls[0]}
                     itemNo={item.itemNo}
                     cardUrl={item.productUrl}
                     key={item.itemNo}
-                    quantity={item.quantity}
                   />
                 ))
               : "More products coming soon"}

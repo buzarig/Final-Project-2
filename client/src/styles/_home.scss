@@ -1,8 +1,8 @@
 .container {
-  margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 100px;
-  max-width: 1240px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    max-width: 1240px;
   .flex-shop {
     display: flex;
     justify-content: space-between;
@@ -29,10 +29,11 @@
     }
   }
 
-  .cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 20px;
+
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 20px;
 
     .product-card {
       width: calc(33.33% - 20px);
@@ -41,16 +42,16 @@
       }
     }
 
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
-  }
 
-  @media screen and (min-width: 320px) and (max-width: 767px) {
-    .container {
-      max-width: 650px;
+    @media screen and (min-width: 320px) and (max-width: 767px) {
+        .container {
+            max-width: 650px;
+        }
     }
-  }
 }
 
 .home-page {
@@ -69,11 +70,6 @@
     max-width: 400px;
     position: relative;
 
-    &:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.3s ease-in-out;
-    }
-
     .img-block {
       position: relative;
 
@@ -82,9 +78,10 @@
         height: 100%;
         object-fit: cover;
         border-radius: 4px 4px 0 0;
-      }
-      &:hover .icons-container {
-        display: flex;
+
+        &:hover+.icons-container {
+          display: flex;
+        }
       }
 
       .icons-container {
@@ -101,7 +98,6 @@
       }
 
       .icon {
-        z-index: 5;
         width: 25px;
         height: 25px;
         margin: 0 15px;

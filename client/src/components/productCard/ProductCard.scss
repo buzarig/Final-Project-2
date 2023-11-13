@@ -7,7 +7,6 @@
   background-color: #fff;
   transition: box-shadow 0.3s ease-in-out;
   max-width: 300px;
-  cursor: pointer;
 }
 
 .jewlry-sale {
@@ -51,9 +50,6 @@
   color: #a18a68;
   margin: 10px;
   margin-top: 0;
-  .price.out-of-stock {
-    color: red;
-  }
 }
 
 .discounted-price {

@@ -94,17 +94,12 @@ exports.getBlogsByFilters = async (req, res, next) => {
   const perPage = Number(req.query.perPage) || 10;
   const startPage = Number(req.query.startPage) || 1;
   const sort = req.query.sort || "-date";
-  const category = req.query.category || null;
 
   try {
     const query = Blog.find();
 
-    if (category) {
-      query.where("category").equals(category);
-    }
-
     const data = await query
-      .skip(perPage * (startPage - 1)) // Adjust the calculation for skipping records
+      .skip(perPage * startPage - perPage)
       .limit(perPage)
       .sort(sort);
 

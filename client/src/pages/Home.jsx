@@ -46,14 +46,10 @@ function Home() {
             <ProductCard
               key={product.itemNo}
               title={product.name}
-              currentPrice={product.currentPrice}
-              previousPrice={product.previousPrice}
+              price={product.currentPrice}
               imageUrl={product.imageUrls[0]}
               showSaleInfo={false}
               showButtons
-              itemNo={product.itemNo}
-              cardUrl={product.productUrl}
-              quantity={product.quantity}
             />
           ))
         ) : (
