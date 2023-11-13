@@ -1,78 +1,63 @@
 .wrapper_register {
-  margin-top: 126px;
-}
+  margin-top: 50px;
 
-.input {
-  color: var(--light-colors-dark-gray-light, #707070);
-  font-family: DM Sans, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 27px; /* 168.75% */
-  border-bottom: 1px solid #D8D8D8;
-  width: 100%;
-  padding-bottom: 12px;
-  padding-top: 34px;
-  margin-bottom: 6px;
-}
+  form {
 
-.input_area {
-  position: relative;
+    .input {
+      color: var(--light-colors-dark-gray-light, #707070);
+      font-family: DM Sans, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 27px;
+      border-bottom: 1px solid #D8D8D8;
+      width: 100%;
+      padding-bottom: 12px;
+      padding-top: 34px;
+      margin-bottom: 6px;
+    }
 
-  .password-visibility-icon {
-    position: absolute;
-    top: 34px;
-    right: 10px;
+    .input_area {
+      position: relative;
+
+      .password-visibility-icon {
+        position: absolute;
+        top: 34px;
+        right: 10px;
+      }
+
+      span {
+        color: #be0000;
+        font-family: DM Sans, sans-serif;
+        font-weight: 300;
+        border-radius: 10px;
+        padding: 3px;
+      }
+    }
+
+    .submit_register {
+      height: 53px;
+      width: 100%;
+      border-radius: 4px;
+      font-family: DM Sans, sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin-bottom: 90px;
+      margin-top: 60px;
+    }
   }
-
-  span {
-    color: #be0000;
-    font-family: DM Sans, sans-serif;
-    font-weight: 300;
-    //background:var(--light-colors-light-gray-light, #9f2d2d) ;
-    border-radius: 10px;
-    padding: 3px;
-  }
 }
-
-.submit_register {
-  height: 53px;
-  width: 100%;
-  border-radius: 4px;
-  border: 1px solid var(--light-colors-white-light, #FFF);
-  background: var(--light-colors-black-light, #000);
-  color: var(--light-colors-white-light, #FFF);
-  font-family: DM Sans, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-bottom: 257px;
-  margin-top: 111px;
-}
-
 
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .wrapper_signIn {
-    margin-top: 89px;
+    margin-top: 40px;
+    font-size: 15px;
 
-    .input, .checkbox, button {
+    input, .checkbox, button {
       font-size: 12px;
-    }
-
-    .checkbox {
-      margin-bottom: 15px;
-
-      input {
-        width: 13px;
-        height: 13.136px;
-      }
-    }
-
-    button {
-      margin-bottom: 128px;
-      margin-top: 40px;
     }
   }
 }
