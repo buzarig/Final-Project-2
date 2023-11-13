@@ -8,7 +8,6 @@ import searchToggle from "../../redux/actions/searchActions";
 
 import logo from "../../assets/images/SHOPPE.png";
 import searchIcon from "../../assets/icons/Icon-search.png";
-import favoriteIcon from "../../assets/icons/Icon-favorite.png";
 import cartIcon from "../../assets/icons/Icon-cart.png";
 import accountIcon from "../../assets/icons/Icon-account.png";
 import logOutIcon from "../../assets/icons/logOut-icon.png";
@@ -33,6 +32,19 @@ function Header() {
       `/catalog?valueSearch=${searchQuery}&checkedStock=false&checkedSale=false&valueSliderMin=500&valueSliderMax=25000&sortOptions=&shopOptions=`
     );
   }
+  const navAccount = () => navigate("/cabinet/dashboard");
+  const navSignIn = () => navigate("/myAccount/signIn");
+
+  const redirectAccount = () => {
+    const token = localStorage.getItem("persist:root");
+    const objToken = JSON.parse(token);
+    const parseToken = JSON.parse(objToken.token);
+    if (parseToken.accessToken) {
+      navAccount();
+    } else {
+      navSignIn();
+    }
+  };
 
   useEffect(() => {
     let timeoutId;
@@ -130,20 +142,18 @@ function Header() {
                   <img src={searchIcon} alt="" />
                 </button>
               </li>
-              <li className="favorite">
-                <Link to="favorite">
-                  <img src={favoriteIcon} alt="" />
-                </Link>
-              </li>
               <li className="cart">
                 <Link to="cart">
                   <img src={cartIcon} alt="" />
                 </Link>
               </li>
               <li className="account">
-                <Link to="myAccount/register">
+                {/* <Link onClick={() => redirectAccount()}>
                   <img src="../../assets/icons/Icon-account.png" alt="" />
-                </Link>
+                </Link> */}
+                <button type="submit" onClick={() => redirectAccount()}>
+                  <img src="../../assets/icons/Icon-account.png" alt="" />
+                </button>
               </li>
             </ul>
             {/* MENU */}
@@ -216,7 +226,7 @@ function Header() {
                 onInput={(e) => {
                   setSearchQuery(e.target.value);
                 }}
-                label="Search"
+                label="Search in catalog"
                 variant="outlined"
                 placeholder="Search..."
                 size="small"
@@ -234,7 +244,7 @@ function Header() {
                 onInput={(e) => {
                   setSearchQuery(e.target.value);
                 }}
-                label="Search"
+                label="Search in catalog"
                 variant="outlined"
                 placeholder="Search..."
                 size="small"

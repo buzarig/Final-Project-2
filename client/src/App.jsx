@@ -20,7 +20,13 @@ import Thanks from "./pages/Thanks";
 import Order from "./pages/Order";
 import OrderConfirmation from "./pages/OrderConfirmation";
 
+import Cabinet from "./pages/Cabinet";
+import Dashboard from "./pages/navCabinet/Dashboard";
+// import Orders from "./pages/navCabinet/Orders";
+import Addresses from "./pages/navCabinet/Addresses";
+import AccountDetails from "./pages/navCabinet/AccountDetails";
 import MyAccount from "./pages/MyAccount";
+
 import ResetPassword from "./pages/ResetPassword";
 import SignIn from "./components/signIn/SignIn";
 import Register from "./components/register/Register";
@@ -61,6 +67,13 @@ function App() {
             <Route path="myAccount" element={<MyAccount />}>
               <Route path="signIn" element={<SignIn />} />
               <Route path="register" element={<Register />} />
+            </Route>
+
+            <Route path="cabinet" element={<Cabinet />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              {/* <Route path="orders" element={<Orders />} /> */}
+              <Route path="addresses" element={<Addresses />} />
+              <Route path="accountDetails" element={<AccountDetails />} />
             </Route>
 
             <Route path="resetPassword" element={<ResetPassword />} />
