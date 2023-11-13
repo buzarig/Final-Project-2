@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Country } from "country-state-city";
 import { useSelector } from "react-redux";
 
@@ -37,6 +37,7 @@ const customStyles = {
 };
 
 function Checkout() {
+  const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [activePayment, setActivePayment] = useState("PayPal");
   // const [orderNo, setOrderNo] = useState();
@@ -99,7 +100,6 @@ function Checkout() {
     return totalPrice;
   };
 
-  console.log(productsArray);
   const onSubmit = (data) => {
     const formData = {
       products: productsArray,
@@ -126,8 +126,14 @@ function Checkout() {
     };
     api
       .post("/orders", formData, { headers })
-      .then()
+      .then((response) => {
+        if (response.status === 200) {
+          const { orderNo } = response.data.order;
+          navigate(`/order/${orderNo}`);
+        }
+      })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.error("Error:", error);
       });
   };

@@ -61,7 +61,7 @@ function App() {
             <Route path="terms-of-use" element={<TermsOfUse />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
-            <Route path="order" element={<Order />} />
+            <Route path="order/:orderNo" element={<Order />} />
             <Route path="order-confirmation" element={<OrderConfirmation />} />
 
             <Route path="myAccount" element={<MyAccount />}>
@@ -78,7 +78,6 @@ function App() {
 
             <Route path="resetPassword" element={<ResetPassword />} />
             <Route path="thanks" element={<Thanks />} />
-            <Route path="order" element={<Order />} />
             <Route path="*" element={<PageError />} />
           </Route>
         </Routes>

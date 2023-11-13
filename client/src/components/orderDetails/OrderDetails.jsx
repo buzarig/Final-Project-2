@@ -1,7 +1,33 @@
 import React from "react";
 import "./OrderDetails.scss";
+import PropTypes from "prop-types";
 
-function OrderDetails() {
+function formatOrderDate(dateString) {
+  const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+  };
+
+  const formattedDate = new Date(dateString).toLocaleString("en-US", options);
+  return formattedDate;
+}
+
+function OrderDetails({
+  orderNo,
+  email,
+  payment,
+  date,
+  address,
+  country,
+  city,
+  postal,
+  mobile
+}) {
+  const formattedDate = formatOrderDate(date);
   return (
     <div className="container_orderDetails">
       <h4>Order Details</h4>
@@ -9,19 +35,19 @@ function OrderDetails() {
         <div className="leftPart_orderDetails">
           <div className="data_part">
             <p className="data_title">ORDER NUMBER</p>
-            <span>1879605573994</span>
+            <span>{orderNo}</span>
           </div>
           <div className="data_part">
             <p className="data_title">EMAIL</p>
-            <span>Vitathemes@gmail.com</span>
+            <span>{email}</span>
           </div>
           <div className="data_part">
             <p className="data_title">PAYMENT METHOD</p>
-            <span>Mastercard*************7865</span>
+            <span>{payment}</span>
           </div>
           <div className="data_part">
             <p className="data_title">ORDER DATE</p>
-            <span>October 8,2020</span>
+            <span>{formattedDate}</span>
           </div>
         </div>
         <div className="rightPart_orderDetails">
@@ -32,17 +58,28 @@ function OrderDetails() {
           <div className="data_part">
             <p className="data_title">DELIVERY ADDRESS</p>
             <div className="data_address">
-              Kristian holst 34 old street W1F 7NU london United Kingdom
+              {`${country} ${city} ${address} ${postal}`}
             </div>
           </div>
           <div className="data_part">
             <p className="data_title">CONTACT NUMBER</p>
-            <span>+44 8749790988</span>
+            <span>{mobile}</span>
           </div>
         </div>
       </div>
     </div>
   );
 }
+OrderDetails.propTypes = {
+  orderNo: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  payment: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  mobile: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  postal: PropTypes.string.isRequired
+};
 
 export default OrderDetails;
