@@ -23,6 +23,10 @@ function ProductCard({
 }) {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
+  const [originalPrice, setOriginalPrice] = useState(Math.floor(price));
+  const [discountedPrice, setDiscountedPrice] = useState(
+    discount ? Math.floor(price - price * (discount / 100)) : null
+  );
 
   const handleAddToCart = () => {
     setIsAddedToCart(true);
@@ -44,7 +48,7 @@ function ProductCard({
   };
 
   return (
-    <div ref={ref} onClick={handleClick} className="jewelry-card">
+    <div ref={ref} className="jewelry-card">
       <div className="jewelry-card-image">
         {discount && (
           <div className="jewlry-sale">
@@ -52,14 +56,61 @@ function ProductCard({
           </div>
         )}
         {inView ? (
-          <img className="jewelry-card-pic" src={imageUrl} alt="jewelry-pic" />
+          <div className="img-block">
+            <div className="img-wrapper">
+              <img
+                className="jewelry-card-pic"
+                src={imageUrl}
+                alt="jewelry-pic"
+              />
+            </div>
+            {showButtons && (
+              <div className="icons-container">
+                <button
+                  className="icon"
+                  type="submit"
+                  onClick={handleAddToCart}
+                >
+                  <img
+                    src="../../assets/icons/shopping-cart 1.svg"
+                    alt="shopping-icon"
+                  />
+                </button>
+                <button className="icon" type="submit" onClick={handleClick}>
+                  <img
+                    src="../../assets/icons/eye-svgrepo-com 1.svg"
+                    alt="eye-icon"
+                  />
+                </button>
+                <button
+                  className="icon"
+                  type="submit"
+                  onClick={handleAddToFavorites}
+                >
+                  <img
+                    src="../../assets/icons/heart-svgrepo-com 1.svg"
+                    alt="heart-icon"
+                  />
+                </button>
+              </div>
+            )}
+          </div>
         ) : (
           <div className="jewelry-card-stub" />
         )}
       </div>
       <div className="jewelry-card-info">
         <h2 className="jewelry-card-title">{title}</h2>
-        <p className="jewelry-card-price">${price}</p>
+        <p className="jewelry-card-price">
+          {discountedPrice !== null ? (
+            <>
+              {/* <span className="discounted-price">${originalPrice}</span> */}
+              <span className="discounted-price">${discountedPrice}</span>
+            </>
+          ) : (
+            <span className="original-price">${originalPrice}</span>
+          )}
+        </p>
       </div>
     </div>
   );
