@@ -20,7 +20,13 @@ import Thanks from "./pages/Thanks";
 import Order from "./pages/Order";
 import OrderConfirmation from "./pages/OrderConfirmation";
 
+import Cabinet from "./pages/Cabinet";
+import Dashboard from "./pages/navCabinet/Dashboard";
+// import Orders from "./pages/navCabinet/Orders";
+import Addresses from "./pages/navCabinet/Addresses";
+import AccountDetails from "./pages/navCabinet/AccountDetails";
 import MyAccount from "./pages/MyAccount";
+
 import ResetPassword from "./pages/ResetPassword";
 import SignIn from "./components/signIn/SignIn";
 import Register from "./components/register/Register";
@@ -40,7 +46,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="catalog" element={<Catalog />} />
             <Route
-              path="catalog/:productUrl/:productId"
+              path="catalog/:productUrl/:productNo"
               element={<Product />}
             />
             <Route path="contacts" element={<Contacts />} />
@@ -55,7 +61,7 @@ function App() {
             <Route path="terms-of-use" element={<TermsOfUse />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
-            <Route path="order" element={<Order />} />
+            <Route path="order/:orderNo" element={<Order />} />
             <Route path="order-confirmation" element={<OrderConfirmation />} />
 
             <Route path="myAccount" element={<MyAccount />}>
@@ -63,9 +69,15 @@ function App() {
               <Route path="register" element={<Register />} />
             </Route>
 
+            <Route path="cabinet" element={<Cabinet />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              {/* <Route path="orders" element={<Orders />} /> */}
+              <Route path="addresses" element={<Addresses />} />
+              <Route path="accountDetails" element={<AccountDetails />} />
+            </Route>
+
             <Route path="resetPassword" element={<ResetPassword />} />
             <Route path="thanks" element={<Thanks />} />
-            <Route path="order" element={<Order />} />
             <Route path="*" element={<PageError />} />
           </Route>
         </Routes>
