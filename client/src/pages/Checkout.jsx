@@ -133,6 +133,7 @@ function Checkout() {
         }
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.error("Error:", error);
       });
   };

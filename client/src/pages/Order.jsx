@@ -17,11 +17,12 @@ function Order() {
         if (response.status === 200) {
           const orderData = response.data;
           setOrder(orderData);
-        } else {
-          console.log("Произошла ошибка при получении данных ордера.");
         }
+        // else {
+        //   console.log("Произошла ошибка при получении данных ордера.");
+        // }
       } catch (error) {
-        console.error("Ошибка при получении данных:", error);
+        alert.error("ERRor:", error);
       }
     }
 
@@ -42,14 +43,15 @@ function Order() {
             postal={order.deliveryAddress.postal}
             mobile={order.mobile}
           />
-          {order.products.map((product) => (
-            <OrderSummary
-              id={product.product.itemNo}
-              productName={product.product.name}
-              price={product.product.currentPrice}
-              totalSum={order.totalSum}
-            />
-          ))}
+
+          <OrderSummary
+            items={order.products.map((product, index) => ({
+              id: `${product.product.itemNo}_${index}`,
+              productName: product.product.name,
+              price: product.product.currentPrice
+            }))}
+            totalSum={order.totalSum}
+          />
         </div>
       )}
     </div>

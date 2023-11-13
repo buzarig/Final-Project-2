@@ -2,7 +2,8 @@ import React from "react";
 import "./OrderSummary.scss";
 import PropTypes from "prop-types";
 
-function OrderSummary({ id, productName, price, totalSum }) {
+// function OrderSummary({ id, productName, price, totalSum }) {
+function OrderSummary({ items, totalSum }) {
   return (
     <div className="orderSummary_container">
       <h4 className="title_order_summary">Order Summery</h4>
@@ -12,14 +13,17 @@ function OrderSummary({ id, productName, price, totalSum }) {
           <p>PRODUCT</p>
           <p>TOTAL</p>
         </div>
-        <div key={id}>
-          <div className="product_data_OrderSummary">
-            <p className="product">
-              {productName.charAt(0).toUpperCase() + productName.slice(1)}
-            </p>
-            <p className="price">${price}</p>
+        {items.map((item) => (
+          <div key={item.id}>
+            <div className="product_data_OrderSummary">
+              <p className="product">
+                {item.productName.charAt(0).toUpperCase() +
+                  item.productName.slice(1)}
+              </p>
+              <p className="price">${item.price}</p>
+            </div>
           </div>
-        </div>
+        ))}
 
         <div className="data_shipping">
           <p className="shipping">SHIPPING</p>
@@ -38,11 +42,20 @@ function OrderSummary({ id, productName, price, totalSum }) {
     </div>
   );
 }
-
 OrderSummary.propTypes = {
-  productName: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
   totalSum: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      productName: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired
+    })
+  ).isRequired
 };
+// OrderSummary.propTypes = {
+//   productName: PropTypes.string.isRequired,
+//   price: PropTypes.number.isRequired,
+//   totalSum: PropTypes.number.isRequired,
+//   id: PropTypes.string.isRequired
+// };
 export default OrderSummary;
