@@ -54,6 +54,7 @@ router.get("/", passport.authenticate("jwt", { session: false }), getOrders);
 // @access  Private
 router.get(
   "/:orderNo",
+  passport.authenticate("jwt", { session: false }),
   getOrder
 );
 
