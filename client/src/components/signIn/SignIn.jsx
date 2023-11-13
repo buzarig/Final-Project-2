@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import api from "../../http/api";
 import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
+import { getUserInfo } from "../../redux/actions/customer";
 import StatusOk from "../statusOk/StatusOk";
 import { productsFromServer } from "../../redux/actions/cartActions";
 
@@ -33,10 +34,10 @@ function SignIn() {
         const cart = response.data;
         dispatch(productsFromServer(cart.products));
       } else {
-        console.log("Произошла ошибка при получении данных о корзине.");
+        alert.log("Произошла ошибка при получении данных о корзине.");
       }
     } catch (error) {
-      console.error("Ошибка при получении данных о корзине:", error);
+      alert.error("Ошибка при получении данных о корзине:", error);
     }
   };
 
@@ -61,6 +62,7 @@ function SignIn() {
         )
         .then((anotherResponse) => {
           if (anotherResponse.status === 200) {
+            dispatch(getUserInfo(anotherResponse.data));
             setShowStatus(true);
             setTimeout(() => {
               setShowStatus(false);
@@ -71,15 +73,13 @@ function SignIn() {
           }
         })
         .catch(() => {
-          // eslint-disable-next-line no-console
-          console.error("Error during request");
           // eslint-disable-next-line no-alert
           alert("Please enter valid password");
         });
       dispatch(setAccessToken(dataResponse.token));
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error("Authentication error:", error);
+      alert.error("Authentication error:", error);
+
       // eslint-disable-next-line no-alert
       alert("Please, You need to register!");
     }
