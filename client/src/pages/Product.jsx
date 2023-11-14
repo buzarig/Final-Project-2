@@ -1,25 +1,23 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../styles/_product.scss";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
-import { ButtonGroup } from "@mui/material";
 import Box from "@mui/material/Box";
 import { Icon } from "@iconify/react";
+import { format } from "date-fns";
 import api from "../http/api";
-
 import ImageZoom from "../components/imageZoom/ImageZoom";
-
 import { addProductToCart } from "../redux/actions/cartActions";
 
 function Products() {
   const dispatch = useDispatch();
-  const { productId } = useParams();
-  const numericProductId = +productId;
-  const [productData, setProductData] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [cartCounter, setCartCounter] = useState(1);
+  const { productNo } = useParams();
+  const numericProductId = +productNo;
+  const [productData, setProductData] = useState({});
+  const [reviewData, setReviewData] = useState(null);
   const [currentSection, setCurrentSection] = useState("description");
   const [showFullDescription, setShowFullDescription] = useState(false);
   const cartProducts = useSelector((state) => state.cart.cartProducts);
@@ -27,14 +25,58 @@ function Products() {
     (product) => product.product.itemNo === numericProductId
   );
 
-  useEffect(() => {
-    async function fetchProductData() {
+  const [reviewText, setReviewText] = useState("");
+  const [reviewerName, setReviewerName] = useState("");
+  const [reviewerEmail, setReviewerEmail] = useState("");
+  const [nameValidation, setNameValidation] = useState("");
+  const [emailValidation, setEmailValidation] = useState("");
+  const token = useSelector((state) => state.token.accessToken);
+
+  const formStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    borderBottom: "1px solid #03141215",
+    marginTop: "10px",
+    marginBottom: "39px",
+    "&:hover": {
+      borderBottom: "1px solid #031412"
+    }
+  };
+
+  const inputStyle = {
+    width: "100%",
+    fontFamily: "DM Sans, sans-serif",
+    fontSize: "16px",
+    fontWeight: "400",
+    color: "#031412",
+    marginBottom: "10px"
+  };
+
+  const fetchProductData = useCallback(async () => {
+    try {
+      const response = await api.get(`/products/${productNo}`);
+
+      if (response.status === 200) {
+        const product = response.data;
+        setProductData(product);
+      } else {
+        console.log("Произошла ошибка при получении данных о продукте.");
+      }
+    } catch (error) {
+      console.error("Ошибка при получении данных о продукте:", error);
+    }
+  }, [productNo]);
+
+  const fetchReviewData = useCallback(async () => {
+    if (productData && productData._id) {
       try {
-        const response = await api.get(`/products/${productId}`);
+        const response = await api.get(`/comments/product/${productData._id}`);
 
         if (response.status === 200) {
-          const product = response.data;
-          setProductData(product);
+          const review = response.data;
+          setReviewData(review);
         } else {
           console.log("Произошла ошибка при получении данных о продукте.");
         }
@@ -42,21 +84,15 @@ function Products() {
         console.error("Ошибка при получении данных о продукте:", error);
       }
     }
+  }, [productData]);
 
+  useEffect(() => {
     fetchProductData();
-  }, [productId]);
+  }, [fetchProductData]);
 
-  const incrementCounter = () => {
-    if (cartCounter < productData.quantity) {
-      setCartCounter(cartCounter + 1);
-    }
-  };
-
-  const decrementCounter = () => {
-    if (cartCounter > 1) {
-      setCartCounter(cartCounter - 1);
-    }
-  };
+  useEffect(() => {
+    fetchReviewData();
+  }, [productData, fetchReviewData]);
 
   const handleSectionChange = (section) => {
     setCurrentSection(section);
@@ -64,7 +100,74 @@ function Products() {
 
   const handleAddToCart = (selectedProduct) => {
     console.log(selectedProduct);
-    dispatch(addProductToCart(selectedProduct, cartCounter));
+    dispatch(addProductToCart(selectedProduct, 1, token));
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await api.post(
+        "/comments",
+        {
+          product: productData._id,
+          content: reviewText,
+          name: reviewerName,
+          email: reviewerEmail
+        },
+        {
+          headers: {
+            Authorization: token
+          }
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Данные успешно отправлены на сервер");
+
+        await fetchReviewData();
+      } else {
+        console.log("Произошла ошибка при отправке данных на сервер.");
+      }
+    } catch (error) {
+      console.error("Ошибка при отправке данных на сервер:", error);
+    }
+  };
+
+  const validateName = (name) => {
+    if (name.length < 2 || name.length > 8) {
+      setNameValidation("Name should be 2 to 8 characters");
+      return false;
+    }
+    setNameValidation("");
+    return true;
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    if (!emailRegex.test(email)) {
+      setEmailValidation("Invalid email format");
+      return false;
+    }
+    setEmailValidation("");
+    return true;
+  };
+
+  const handleReviewTextChange = (e) => {
+    setReviewText(e.target.value);
+  };
+
+  const handleReviewerNameChange = (e) => {
+    const name = e.target.value;
+    setReviewerName(name);
+    console.log(name);
+    validateName(name);
+  };
+
+  const handleReviewerEmailChange = (e) => {
+    const email = e.target.value;
+    setReviewerEmail(email);
+    validateEmail(email);
   };
 
   return (
@@ -134,32 +237,14 @@ function Products() {
           )}
           {isProductInCart ? (
             <div className="product-cart">
-              <ButtonGroup className="cart-btn-group">
-                <Button className="counter counter-btn">-</Button>
-                <Box className="counter cart-counter">{cartCounter}</Box>
-                <Button className="counter counter-btn">+</Button>
-              </ButtonGroup>
-              <Button className="add-to-cart__btn inCart">
-                Already In Cart
-              </Button>
+              <Link to="/cart">
+                <Button className="add-to-cart__btn inCart">
+                  Already In Cart
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="product-cart">
-              <ButtonGroup className="cart-btn-group">
-                <Button
-                  className="counter counter-btn"
-                  onClick={decrementCounter}
-                >
-                  -
-                </Button>
-                <Box className="counter cart-counter">{cartCounter}</Box>
-                <Button
-                  className="counter counter-btn"
-                  onClick={incrementCounter}
-                >
-                  +
-                </Button>
-              </ButtonGroup>
               <Button
                 onClick={() => handleAddToCart(productData)}
                 className="add-to-cart__btn"
@@ -169,14 +254,6 @@ function Products() {
             </div>
           )}
           <div className="product-socials">
-            <Icon
-              icon={isFavorite ? "mdi:heart" : "mdi:heart-outline"}
-              fontSize={23}
-              color="#707070"
-              onClick={() => {
-                setIsFavorite(!isFavorite);
-              }}
-            />
             <div className="straight" />
             <div className="socials-links">
               <a href="https://www.facebook.com/">
@@ -219,10 +296,11 @@ function Products() {
           <button
             type="button"
             className={currentSection === "reviews" ? "active" : ""}
-            onClick={() => handleSectionChange("reviews")}
+            onClick={() => {
+              handleSectionChange("reviews");
+            }}
           >
-            Reviews(0)
-            {/* ${reviewCounter} */}
+            Reviews ({reviewData ? reviewData.length : 0})
           </button>
         </div>
         <div className="info-field">
@@ -232,7 +310,120 @@ function Products() {
           {currentSection === "aditional-info" && (
             <p>This is the Aditional-info section.</p>
           )}
-          {currentSection === "reviews" && <p>This is the reviews section.</p>}
+          {currentSection === "reviews" && (
+            <div className="reviews-container">
+              <div className="reviews">
+                <h1 className="reviews-title">
+                  {reviewData ? reviewData.length : 0} Reviews for{" "}
+                  {productData ? productData.name : "Loading..."}
+                </h1>
+                {reviewData
+                  ? reviewData.map((review) => (
+                      <div className="review-wrapper" key={review._id}>
+                        <h1>
+                          {review.name}
+                          <span>
+                            {format(new Date(review.date), "d MMMM, yyyy")}
+                          </span>
+                        </h1>
+                        <p>{review.content}</p>
+                      </div>
+                    ))
+                  : "There are no reviews"}
+              </div>
+              {token ? (
+                <div className="add-reviews">
+                  <div className="add-reviews__title">
+                    <h1>Add a Review</h1>
+                    <span>
+                      Your email address will not be published. Required fields
+                      are marked *
+                    </span>
+                  </div>
+                  <h2>Your Review*</h2>
+                  <form onSubmit={handleFormSubmit}>
+                    <Box sx={formStyle}>
+                      <input
+                        style={inputStyle}
+                        type="text"
+                        value={reviewText}
+                        onChange={handleReviewTextChange}
+                      />
+                    </Box>
+                    <Box
+                      className="add-reviews__name"
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "100%",
+                        borderBottom: nameValidation
+                          ? "1px solid red"
+                          : "1px solid #03141215",
+                        marginTop: "10px",
+                        marginBottom: "39px",
+                        "&:hover": {
+                          borderBottom: nameValidation
+                            ? "1px solid red"
+                            : "1px solid #031412"
+                        }
+                      }}
+                    >
+                      <input
+                        style={inputStyle}
+                        type="text"
+                        placeholder="Enter your name*"
+                        value={reviewerName}
+                        onChange={handleReviewerNameChange}
+                      />
+                      {nameValidation && (
+                        <span className="error-message">*</span>
+                      )}
+                    </Box>
+                    <Box
+                      className="add-reviews__email"
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "100%",
+                        borderBottom: emailValidation
+                          ? "1px solid red"
+                          : "1px solid #03141215",
+                        marginTop: "10px",
+                        marginBottom: "39px",
+                        "&:hover": {
+                          borderBottom: emailValidation
+                            ? "1px solid red"
+                            : "1px solid #031412"
+                        }
+                      }}
+                    >
+                      <input
+                        style={inputStyle}
+                        type="text"
+                        placeholder="Enter your Email*"
+                        value={reviewerEmail}
+                        onChange={handleReviewerEmailChange}
+                      />
+                      {emailValidation && (
+                        <span className="error-message">*</span>
+                      )}
+                    </Box>
+                    <Button type="submit" className="add-review__submit">
+                      SUBMIT
+                    </Button>
+                  </form>
+                </div>
+              ) : (
+                <div className="reviews_login">
+                  You need to <Link to="/myAccount/signIn">Login</Link> or
+                  <Link to="myAccount/register"> Register</Link> to publish a
+                  review.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
