@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import api from "../../http/api";
 
+// import "../../styles/_orders.scss";
+// import "../../styles/_order.scss";
+
 function Orders() {
-  const [userName, setUserName] = useState("");
   const [orders, setOrders] = useState([]);
 
   const token = useSelector((state) => state.token.accessToken);
 
   async function fetchData() {
     try {
-      const response = await api.get("/customers/customer", {
+      const response = await api.get("/orders", {
         headers: {
           Authorization: token
         }
       });
 
       if (response.status === 200) {
-        const dataResponse = response.data;
-        setUserName(dataResponse.firstName);
-        setSurname(dataResponse.lastName);
-        setUserEmail(dataResponse.email);
-        setUserLogin(dataResponse.login);
-        setCurrentPassword("");
+        setOrders(response.data);
       } else {
         console.log("Error when retrieving user data:", response.status);
       }
@@ -32,28 +29,31 @@ function Orders() {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  console.log(orders);
 
   useEffect(() => {
-    fetchOrders();
+    fetchData();
   }, []);
 
   return (
     <>
       {orders.length > 0 ? (
-        <ul className="orders-list">
+        <ul className="orders-block">
+          <li className="orders-list orders-header">
+            <p className="orders-text">ORDER NUMBER</p>
+            <p className="orders-text">DATE</p>
+            {/* <p className="orders-text">STATUS</p> */}
+            <p className="orders-text">TOTAL</p>
+            <p className="orders-text">ACTIONS</p>
+          </li>
           {orders.map((order) => (
-            <li key={order.id}>
-              {/* Вставить ключи от заказа */}
-              <p className="orders-text">ORDER NUMBER</p>
-              <p className="orders-text">DATE</p>
-              <p className="orders-text">STATUS</p>
-              <p className="orders-text">TOTAL</p>
-              <p className="orders-text">ACTIONS</p>
-              <p className="orders-link">
-                <Link>View Order</Link>
+            <li className="orders-list" key={order.id}>
+              <p className="orders-text">{order.orderNo}</p>
+              <p className="orders-text">{order.date}</p>
+              {/* <p className="orders-text">{order.status}</p> */}
+              <p className="orders-text">$ {order.totalSum}</p>
+              <p className="orders-text">
+                <Link to={`/orders/${order.id}`}>View Order</Link>
               </p>
             </li>
           ))}
