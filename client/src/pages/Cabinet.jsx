@@ -1,8 +1,5 @@
-/* eslint-disable import/named */
 import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { removeAccessToken } from "../redux/actions/tokenActions";
 import Modal from "../components/modal/Modal";
 
 function Cabinet() {
@@ -10,25 +7,18 @@ function Cabinet() {
   const pathToPage = {
     "/cabinet/dashboard": "dashboard",
     "/cabinet/orders": "orders",
-    "/cabinet/addresses": "addresses",
     "/cabinet/accountDetails": "accountDetails"
   };
 
   const currentPage = pathToPage[location.pathname] || "description";
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleLogout = () => {
+  const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const handleCloseModal = () => {
     setIsModalOpen(false);
-  };
-
-  const handleLogoutConfirmed = () => {
-    // dispatch(removeAccessToken());
-    closeModal();
   };
 
   return (
@@ -46,18 +36,18 @@ function Cabinet() {
             <Link to="/cabinet/accountDetails">Account details</Link>
           </li>
           <li>
-            <Link to="/" onClick={handleLogout} className="btn-cabinet">
+            <button
+              type="submit"
+              onClick={handleOpenModal}
+              className="btn-cabinet"
+            >
               Logout
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
       <Outlet />
-      <Modal
-        isOpen={isModalOpen}
-        closeModal={closeModal}
-        handleLogout={handleLogoutConfirmed}
-      />
+      <Modal isOpen={isModalOpen} closeModal={handleCloseModal} />
     </div>
   );
 }

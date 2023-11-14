@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .cabinet-title {
@@ -29,6 +30,7 @@
 .cabinet-navbar {
     list-style-type: none;
     display: flex;
+    align-items: flex-end;
     margin: 0;
     padding: 0;
     width: 100%;
