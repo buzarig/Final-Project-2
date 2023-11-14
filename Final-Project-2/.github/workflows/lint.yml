@@ -1,0 +1,30 @@
+name: Run Lint
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+env:
+  NODE_VERSION: 16
+  ESLINT_DIR: client
+
+jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Dependencies for Client
+        working-directory: ${{ env.ESLINT_DIR }}
+        run: npm install
+
+      - name: Code Linting for Client
+        working-directory: ${{ env.ESLINT_DIR }}
+        run: npm run lint

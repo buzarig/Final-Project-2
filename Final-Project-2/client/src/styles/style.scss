@@ -1,0 +1,14 @@
+@import "_fonts.css";
+@import "_reset.css";
+@import "variables";
+@import "mixin";
+@import "catalog";
+@import "product";
+@import "myAccount";
+@import "checkout";
+@import "aboutUs";
+@import "privacy";
+
+body {
+  background-color: rgb(255, 255, 255);
+}

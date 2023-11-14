@@ -1,0 +1,44 @@
+{
+  "name": "fe-final-backend",
+  "version": "1.0.0",
+  "description": "Back End code for final projects of Front End groups\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[DDANIT\u001b[3~ Front End groups",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/dan-it/js-course-development/fe-final-backend.git"
+  },
+  "author": "Saribeg",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.10",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "fs-extra": "^8.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "mongoose": "^5.6.10",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.3.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "prop-types": "^15.8.1",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.16.0",
+    "redux-persist": "^6.0.0",
+    "unique-random": "^2.1.0",
+    "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
