@@ -3,8 +3,10 @@
 @import "variables";
 @import "mixin";
 @import "catalog";
+@import "blog";
 @import "product";
 @import "myAccount";
+@import "order";
 @import "cabinet";
 @import "dashboard";
 @import "orders";
@@ -12,7 +14,7 @@
 @import "checkout";
 @import "aboutUs";
 @import "privacy";
-
+@import "order";
 
 body {
   background-color: rgb(255, 255, 255);

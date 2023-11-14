@@ -8,13 +8,11 @@ import searchToggle from "../../redux/actions/searchActions";
 
 import logo from "../../assets/images/SHOPPE.png";
 import searchIcon from "../../assets/icons/Icon-search.png";
-import favoriteIcon from "../../assets/icons/Icon-favorite.png";
 import cartIcon from "../../assets/icons/Icon-cart.png";
 import accountIcon from "../../assets/icons/Icon-account.png";
 import logOutIcon from "../../assets/icons/logOut-icon.png";
 
 import "./header.scss";
-// import tokenReducer from "../../redux/reducers/tokenReducer";
 
 function Header() {
   const dispatch = useDispatch();
@@ -144,11 +142,6 @@ function Header() {
                   <img src={searchIcon} alt="" />
                 </button>
               </li>
-              <li className="favorite">
-                <Link to="favorite">
-                  <img src={favoriteIcon} alt="" />
-                </Link>
-              </li>
               <li className="cart">
                 <Link to="cart">
                   <img src={cartIcon} alt="" />
@@ -233,7 +226,7 @@ function Header() {
                 onInput={(e) => {
                   setSearchQuery(e.target.value);
                 }}
-                label="Search"
+                label="Search in catalog"
                 variant="outlined"
                 placeholder="Search..."
                 size="small"
@@ -251,7 +244,7 @@ function Header() {
                 onInput={(e) => {
                   setSearchQuery(e.target.value);
                 }}
-                label="Search"
+                label="Search in catalog"
                 variant="outlined"
                 placeholder="Search..."
                 size="small"

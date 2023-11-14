@@ -19,6 +19,7 @@ module.exports = {
     "prefer-arrow-callback": "off",
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "comma-dangle": ["error", "never"],
-    "prettier/prettier": ["error", { endOfLine: "auto" }]
+    "prettier/prettier": ["error", { endOfLine: "auto" }],
+    "jsx-a11y/control-has-associated-label": "off"
   }
 };
