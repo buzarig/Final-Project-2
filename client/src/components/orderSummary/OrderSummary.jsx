@@ -7,7 +7,6 @@ function OrderSummary({ items, totalSum }) {
   return (
     <div className="orderSummary_container">
       <h4 className="title_order_summary">Order Summery</h4>
-
       <div className="orderSummary">
         <div className="named_OrderSummary">
           <p>PRODUCT</p>
@@ -24,12 +23,10 @@ function OrderSummary({ items, totalSum }) {
             </div>
           </div>
         ))}
-
         <div className="data_shipping">
           <p className="shipping">SHIPPING</p>
           <p className="shipping_data">Free shipping</p>
         </div>
-
         <div className="data_total">
           <p className="total">
             <b>TOTAL</b>

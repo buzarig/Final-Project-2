@@ -111,6 +111,12 @@
           line-height: normal;
           border: 1px solid black;
         }
+        .out-of-stock-message {
+          color: red;
+          font-family: "DMSans", sans-serif;
+          font-weight: 500;
+          font-size: 30px;
+        }
         .inCart {
           background: black;
           color: #ffffff;
@@ -346,14 +352,6 @@
           margin-top: 20px;
           display: flex;
           align-items: center;
-          .cart-btn-group {
-            .counter {
-              padding: 8px 6px;
-            }
-            .cart-counter {
-              font-size: 14px;
-            }
-          }
           .add-to-cart__btn {
             margin-left: 13px;
             padding: 14px 100px;

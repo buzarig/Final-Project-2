@@ -88,6 +88,7 @@ function Products() {
 
   useEffect(() => {
     fetchProductData();
+    window.scrollTo(0, 0);
   }, [fetchProductData]);
 
   useEffect(() => {
@@ -199,7 +200,7 @@ function Products() {
             )}
           </div>
           <div className="product-rate">
-            <span>Quantity:</span>{" "}
+            <span>Quantity:</span>
             {productData ? productData.quantity : "Loading..."}
           </div>
           <div className="product-description">
@@ -245,12 +246,16 @@ function Products() {
             </div>
           ) : (
             <div className="product-cart">
-              <Button
-                onClick={() => handleAddToCart(productData)}
-                className="add-to-cart__btn"
-              >
-                ADD TO CART
-              </Button>
+              {productData.quantity > 0 ? (
+                <Button
+                  onClick={() => handleAddToCart(productData)}
+                  className="add-to-cart__btn"
+                >
+                  ADD TO CART
+                </Button>
+              ) : (
+                <p className="out-of-stock-message">Out of Stock</p>
+              )}
             </div>
           )}
           <div className="product-socials">

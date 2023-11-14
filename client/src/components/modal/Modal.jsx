@@ -28,7 +28,6 @@ const style = {
   }
 };
 
-
 function ChildModal({ show, onClose }) {
   if (!show) {
     return null;

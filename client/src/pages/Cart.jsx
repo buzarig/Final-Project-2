@@ -83,6 +83,7 @@ function Cart() {
                   className="cart__products-item"
                   key={product.product.itemNo}
                 >
+                  {console.log(product)}
                   <img
                     className="cart__products-image"
                     src={product.product.imageUrls[0]}
