@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Country } from "country-state-city";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clear } from "../redux/actions/cartActions";
+import { requestUserInfo } from "../redux/actions/customer";
 
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
@@ -40,12 +42,11 @@ function Checkout() {
   const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [activePayment, setActivePayment] = useState("PayPal");
-  // const [orderNo, setOrderNo] = useState();
-  // const dispatch = useDispatch();
   const productsArray = useSelector((state) => state.cart.cartProducts);
   const adress = useSelector((state) => state.shippingInfo);
   const userInfo = useSelector((state) => state.customerReducer.customer);
   const token = useSelector((state) => state.token.accessToken);
+  const dispatch = useDispatch();
 
   const [selectedPromo, setSelectedPromo] = useState("");
   const promoData = [
@@ -62,6 +63,14 @@ function Checkout() {
       count: 5
     }
   ];
+
+  const headers = {
+    Authorization: token
+  };
+
+  useEffect(() => {
+    dispatch(requestUserInfo(token));
+  }, []);
 
   const {
     control,
@@ -121,14 +130,13 @@ function Checkout() {
       letterSubject: "Thank you for order! You are welcome!",
       letterHtml: `<h1>Your order is placed. Your order was successful!. You are welcome!</h1><h2>Thank for order!</h2>`
     };
-    const headers = {
-      Authorization: token
-    };
+
     api
       .post("/orders", formData, { headers })
       .then((response) => {
         if (response.status === 200) {
           const { orderNo } = response.data.order;
+          dispatch(clear(token));
           navigate(`/order/${orderNo}`);
         }
       })
@@ -224,7 +232,7 @@ function Checkout() {
                 <Controller
                   name="lastName"
                   control={control}
-                  defaultValue={userInfo.lastName ? userInfo.lastName : ""}
+                  defaultValue={userInfo?.lastName ? userInfo.lastName : ""}
                   render={({ field }) => (
                     <input
                       className="billing_textfield-item"
@@ -334,7 +342,7 @@ function Checkout() {
               <Controller
                 name="mobile"
                 control={control}
-                defaultValue={userInfo.telephone ? userInfo.telephone : ""}
+                defaultValue={userInfo?.telephone ? userInfo.telephone : ""}
                 render={({ field }) => (
                   <input
                     className="billing_info-item"
@@ -356,7 +364,7 @@ function Checkout() {
               <Controller
                 name="email"
                 control={control}
-                defaultValue={userInfo.email ? userInfo.email : ""}
+                defaultValue={userInfo?.email ? userInfo.email : ""}
                 render={({ field }) => (
                   <input
                     className="billing_info-item"
