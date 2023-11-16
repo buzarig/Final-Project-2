@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import api from "../../http/api";
 import "./Register.scss";
 import StatusOk from "../statusOk/StatusOk";
+import ChildModal from "../modal/Modal";
 
 function Register() {
   const {
@@ -19,7 +20,9 @@ function Register() {
   const [emailError, setEmailError] = useState("");
   const [showStatus, setShowStatus] = useState(false);
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
+  // const navigate = useNavigate();
   const password = watch("password");
   const password2 = watch("password2");
 
@@ -41,11 +44,15 @@ function Register() {
             if (!response.data) {
               throw new Error("Network response was not ok");
             }
+
             setShowStatus(true);
+
             setTimeout(() => {
               setShowStatus(false);
-              navigate("/");
+              // navigate("/");
+              setShowModal(true);
             }, 2000);
+            // setShowModal(true);
           })
           .catch((error) => {
             if (
@@ -399,6 +406,16 @@ function Register() {
         >
           Registration
         </Button>
+
+        {/* Render the ChildModal component based on the showModal state */}
+        <ChildModal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          onNavigate={() => {
+            // handle navigation logic if needed
+            setShowModal(false);
+          }}
+        />
       </form>
     </div>
   );
