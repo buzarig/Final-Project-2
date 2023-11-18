@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import Modal from "../components/modal/Modal";
+import ModalLogout from "../components/modalLogout/ModalLogout";
 
 function Cabinet() {
   const location = useLocation();
@@ -47,7 +47,7 @@ function Cabinet() {
         </ul>
       </div>
       <Outlet />
-      <Modal isOpen={isModalOpen} closeModal={handleCloseModal} />
+      <ModalLogout isOpen={isModalOpen} closeModal={handleCloseModal} />
     </div>
   );
 }

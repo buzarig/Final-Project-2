@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import React, { useCallback, useState, useEffect } from "react";
 import "../styles/_blog.scss";

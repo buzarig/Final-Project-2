@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import api from "../../http/api";
-import Modal from "../../components/modal/Modal";
+import ModalLogout from "../../components/modalLogout/ModalLogout";
 
 function Dashboard() {
   const [userName, setUserName] = useState("");
@@ -64,7 +64,7 @@ function Dashboard() {
         </span>{" "}
         .
       </p>
-      <Modal isOpen={isModalOpen} closeModal={handleCloseModal} />
+      <ModalLogout isOpen={isModalOpen} closeModal={handleCloseModal} />
     </div>
   );
 }
