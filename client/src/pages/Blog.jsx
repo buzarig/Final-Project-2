@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState, useEffect, useMemo } from "react";
 import "../styles/_blog.scss";
 import { useLocation } from "react-router-dom";
 import { ColorRing } from "react-loader-spinner";
@@ -44,6 +43,8 @@ function Blog() {
     [location]
   );
 
+  const memoizedBlogData = useMemo(() => blogData, [blogData]);
+
   useEffect(() => {
     fetchBlogData("Fashion");
   }, [fetchBlogData]);
@@ -71,9 +72,9 @@ function Blog() {
           </ul>
         </div>
         <div className="blogs">
-          {blogData.map((item) => (
+          {memoizedBlogData.map((item) => (
             <div key={item._id} className="grid-item">
-              {blogData.length === 0 ? (
+              {memoizedBlogData.length === 0 ? (
                 <ColorRing
                   visible
                   height="70"
