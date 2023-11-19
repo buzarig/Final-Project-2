@@ -4,8 +4,6 @@ import { useForm, Controller } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Country } from "country-state-city";
 import { useSelector, useDispatch } from "react-redux";
-import { clear } from "../redux/actions/cartActions";
-import { requestUserInfo } from "../redux/actions/customer";
 
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
@@ -13,6 +11,8 @@ import Button from "@mui/material/Button";
 import "../styles/_checkout.scss";
 import FormControl from "@mui/material/FormControl";
 import { FormLabel, Radio, RadioGroup } from "@mui/material";
+import { requestUserInfo } from "../redux/actions/customer";
+import { clear } from "../redux/actions/cartActions";
 import api from "../http/api";
 
 const customStyles = {
@@ -70,7 +70,7 @@ function Checkout() {
 
   useEffect(() => {
     dispatch(requestUserInfo(token));
-  }, []);
+  });
 
   const {
     control,
