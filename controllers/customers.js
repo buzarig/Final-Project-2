@@ -148,7 +148,7 @@ exports.getCustomer = (req, res) => {
 exports.editCustomerInfo = (req, res) => {
   // Clone query object, because validator module mutates req.body, adding other fields to object
   const initialQuery = _.cloneDeep(req.body);
-
+  console.log(req.body , "111");
   // Check Validation
   const { errors, isValid } = validateRegistrationForm(req.body);
 
@@ -162,7 +162,7 @@ exports.editCustomerInfo = (req, res) => {
         errors.id = "Customer not found";
         return res.status(404).json(errors);
       }
-
+      
       const currentEmail = customer.email;
       const currentLogin = customer.login;
       let newEmail;
@@ -205,6 +205,7 @@ exports.editCustomerInfo = (req, res) => {
         { new: true }
       )
         .then(customer => res.json(customer))
+        
         .catch(err =>
           res.status(400).json({
             message: `Error happened on server: "${err}" `

@@ -5,6 +5,7 @@
   justify-content: space-between;
   background-color: #efefef;
   border-top: 2px #a18a68 solid;
+  margin-bottom: 100px;
   .orders-text {
     color: #707070;
     font-family: DM Sans, sans-serif;
@@ -23,4 +24,77 @@
     line-height: normal;
     text-transform: uppercase;
   }
+}
+
+.orders-list {
+    width: 1240px;
+    list-style: none;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 100px;
+    .orders-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid black;
+        margin-bottom: 24px;
+
+        .orders-text {
+            flex: 1;
+            text-align: center;
+
+            &:first-child {
+                text-align: left;
+            }
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+
+    .orders-list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        margin-bottom: 24px;
+        color: #707070;
+
+        .orders-text {
+            flex: 1;
+            text-align: center;
+
+            &:first-child {
+                text-align: left;
+            }
+
+            &:last-child {
+                text-align: right;
+            }
+        }
+
+        .orders-link {
+         color: #A18A68;
+         font-family: DM Sans;
+         font-size: 16px;
+         font-style: normal;
+         font-weight: 700;
+         line-height: normal;
+         text-transform: uppercase;
+        }
+    }
+
+    .orders-list {
+        margin-bottom: 24px;
+        border-bottom: 1px solid #707070;
+
+        &:last-child {
+            margin-bottom: 24px;
+        }
+    }
 }

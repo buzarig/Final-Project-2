@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import ModalLogout from "../components/modalLogout/ModalLogout";
 
 function Cabinet() {
   const location = useLocation();
   const pathToPage = {
     "/cabinet/dashboard": "dashboard",
     "/cabinet/orders": "orders",
-    "/cabinet/addresses": "addresses",
     "/cabinet/accountDetails": "accountDetails"
   };
 
   const currentPage = pathToPage[location.pathname] || "description";
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="wrapper-cabinet">
@@ -23,20 +32,22 @@ function Cabinet() {
           <li className={currentPage === "orders" ? "active" : ""}>
             <Link to="/cabinet/orders">Orders</Link>
           </li>
-          <li className={currentPage === "addresses" ? "active" : ""}>
-            <Link to="/cabinet/addresses">Addresses</Link>
-          </li>
           <li className={currentPage === "accountDetails" ? "active" : ""}>
             <Link to="/cabinet/accountDetails">Account details</Link>
           </li>
           <li>
-            <Link to="/" className="btn-cabinet">
+            <button
+              type="submit"
+              onClick={handleOpenModal}
+              className="btn-cabinet"
+            >
               Logout
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
       <Outlet />
+      <ModalLogout isOpen={isModalOpen} closeModal={handleCloseModal} />
     </div>
   );
 }
