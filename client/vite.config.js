@@ -22,5 +22,5 @@ export default defineConfig({
     react(),
     { ...eslint({ failOnWarning: false, failOnError: false }) }
   ], // vite plugins
-  base: "https://final-project-2-iota.vercel.app//" // configure path to auto-deploy process
+  base: "/" // configure path to auto-deploy process
 });
