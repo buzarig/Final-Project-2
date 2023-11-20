@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState } from "react";
 import Select from "react-select";
 import { useForm, Controller } from "react-hook-form";
@@ -45,7 +46,7 @@ function Checkout() {
   const productsArray = useSelector((state) => state.cart.cartProducts);
   const adress = useSelector((state) => state.shippingInfo);
   const userInfo = useSelector((state) => state.customerReducer.customer);
-  const token = useSelector((state) => state.token.accessToken);
+  const customerId = userInfo._id;
 
   const [selectedPromo, setSelectedPromo] = useState("");
   const promoData = [
@@ -121,11 +122,13 @@ function Checkout() {
       letterSubject: "Thank you for order! You are welcome!",
       letterHtml: `<h1>Your order is placed. Your order was successful!. You are welcome!</h1><h2>Thank for order!</h2>`
     };
-    const headers = {
-      Authorization: token
-    };
+
+    if (customerId) {
+      formData.customerId = customerId;
+    }
+
     api
-      .post("/orders", formData, { headers })
+      .post("/orders", formData)
       .then((response) => {
         if (response.status === 200) {
           const { orderNo } = response.data.order;
