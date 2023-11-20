@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
-/* eslint-disable no-undef */
+
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";

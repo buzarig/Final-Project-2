@@ -46,10 +46,24 @@
     }
   }
 
-  @media screen and (min-width: 320px) and (max-width: 767px) {
+    @media screen and (min-width: 320px) and (max-width: 767px) {
     .container {
       max-width: 650px;
     }
+        .title-shop {
+          font-family: "DM Sans", sans-serif;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+        }
+    
+        .shop-link {
+          color: #a18a68;
+          font-family: "DM Sans", sans-serif;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+        }
   }
 }
 
@@ -121,7 +135,6 @@
       font-size: 20px;
       color: #000000;
       margin: 10px;
-      height: 40px;
     }
 
     .jewelry-card-price {
@@ -143,25 +156,44 @@
   }
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
+    .cards-container{
+      width: 320px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     .jewelry-card {
       text-align: left;
       background-color: #fff;
-      min-height: 200px;
-      min-width: 200px;
-
+      min-height: 136px;
+      min-width: 136px;
+      padding: 10px;
+      
       .jewelry-card-pic {
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        height: 136px;
+        object-fit: cover;
+        border-radius: 4px;
       }
 
       .jewelry-card-title {
-        height: 20px;
-        width: 250px;
-        margin-bottom: 10px;
+        width: 100%;
+        height: 25px;
+        font-family: DM Sans, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        margin: 10px 5px;
+        padding: 3px;
       }
 
       .jewelry-card-price {
-        margin-top: 10px;
+        font-family: DM Sans, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        margin: 10px 5px;
+        padding: 3px;
       }
     }
   }

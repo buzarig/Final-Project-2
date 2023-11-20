@@ -1,9 +1,11 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 import api from "../../http/api";
 
 function Orders() {
@@ -21,6 +23,7 @@ function Orders() {
 
       if (response.status === 200) {
         setOrders(response.data);
+        console.log(response.data);
       } else {
         console.log("Error when retrieving user data:", response.status);
       }
@@ -38,21 +41,52 @@ function Orders() {
       {orders.length > 0 ? (
         <ul className="orders-list">
           <li className="orders-header">
-            <p className="orders-text">ORDER NUMBER</p>
-            <p className="orders-text">DATE</p>
-            <p className="orders-text">TOTAL</p>
-            <p className="orders-text">ACTIONS</p>
+            <p className="orders-text">Order Number</p>
+            <p className="orders-text">Date</p>
+            <p className="orders-text">Total</p>
+            <p className="orders-text">Actions</p>
           </li>
           {orders.map((order) => (
-            <li className="orders-list" key={order.id}>
-              <p className="orders-text">{order.orderNo}</p>
-              <p className="orders-text">{order.date}</p>
-              <p className="orders-text">$ {order.totalSum}</p>
-              <p className="orders-text">
-                <Link to={`/orders/${order.id}`} className="orders-link">
-                  View Order
-                </Link>
-              </p>
+            <li className="orders-item" key={order._id}>
+              <div className="mobile-orders">
+                <div className="mobile-flex_orders">
+                  <p className="orders-text">Order Number:</p>
+                  <p className="mobile-info">{order.orderNo}</p>
+                </div>
+                <div className="mobile-flex_orders">
+                  <p className="orders-text">Date:</p>
+                  <p className="mobile-info">
+                    {format(new Date(order.date), "d MMMM, yyyy")}
+                  </p>
+                </div>
+                <div className="mobile-flex_orders">
+                  <p className="orders-text">Total: </p>
+                  <p className="mobile-info">$ {order.totalSum}</p>
+                </div>
+                <div className="mobile-flex_orders">
+                  <p className="orders-text">Actions:</p>
+                  <p>
+                    <Link
+                      to={`/order/${order.orderNo}`}
+                      className="orders-link"
+                    >
+                      View Order
+                    </Link>
+                  </p>
+                </div>
+              </div>
+              <div className="desktop-orders">
+                <p className="orders-text">{order.orderNo}</p>
+                <p className="orders-text">
+                  <span>{format(new Date(order.date), "d MMMM, yyyy")}</span>
+                </p>
+                <p className="orders-text">$ {order.totalSum}</p>
+                <p className="orders-text">
+                  <Link to={`/order/${order.orderNo}`} className="orders-link">
+                    View Order
+                  </Link>
+                </p>
+              </div>
             </li>
           ))}
         </ul>

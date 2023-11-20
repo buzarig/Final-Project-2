@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from "react";
 import "../styles/_cart.scss";
 import { useSelector, useDispatch } from "react-redux";
