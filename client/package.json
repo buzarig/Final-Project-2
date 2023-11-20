@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run lint & vite build",
-    "lint": "eslint src --ext js,jsx,json --report-unused-disable-directives --max-warnings 0 --fix"
+    "lint": "eslint src --ext js,jsx,json --report-unused-disable-directives --max-warnings 0 --fix",
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/react": "^11.10.8",
@@ -14,11 +15,13 @@
     "@iconify/react": "^4.1.1",
     "@mui/icons-material": "^5.14.11",
     "@mui/material": "^5.12.3",
+    "@testing-library/jest-dom": "^6.1.4",
     "@vitejs/plugin-react": "^4.0.0",
     "axios": "^1.4.0",
     "country-state-city": "^3.2.1",
     "date-fns": "^2.30.0",
     "formik": "^2.4.5",
+    "jest": "^29.7.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -42,6 +45,7 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",
+    "@testing-library/react": "^14.1.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.8.0",
