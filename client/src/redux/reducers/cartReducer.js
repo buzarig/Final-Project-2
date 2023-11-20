@@ -86,12 +86,19 @@ const cartReducer = (state = initState, action = {}) => {
     case PRODUCTS_FROM_SERVER: {
       const { products } = action.payload;
 
-      console.log(products);
+      const isProductInCart = (productId) => {
+        return state.cartProducts.some((item) => item.product.id === productId);
+      };
+
+      const newProducts = products.filter(
+        (product) => !isProductInCart(product.product.id)
+      );
+
       return {
         ...state,
         cartProducts: [
           ...state.cartProducts,
-          ...products.map((product) => ({
+          ...newProducts.map((product) => ({
             product: product.product,
             cartQuantity: product.cartQuantity
           }))
