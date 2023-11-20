@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import "../styles/_cart.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { Country, State, City } from "country-state-city";
@@ -6,8 +7,10 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import remove from "../assets/images/remove-cart-item.png";
 import close from "../assets/images/close-shipping.png";
+import api from "../http/api";
 
 import {
+  productsFromServer,
   removeProduct,
   decreaseCount,
   increaseCount
@@ -25,6 +28,34 @@ function Cart() {
   const [selectedCity, setSelectedCity] = useState("");
   const [isShippingInfoVisible, setShippingInfoVisible] = useState(true);
   const [postCode, setPostCode] = useState("");
+
+  const cartFromServer = async () => {
+    try {
+      const headers = {
+        Authorization: token
+      };
+
+      const response = await api.get("/cart", {
+        headers
+      });
+
+      if (response.status === 200) {
+        const cart = response.data;
+        console.log(cart);
+        dispatch(productsFromServer(cart.products));
+      } else {
+        alert.log("Произошла ошибка при получении данных о корзине.");
+      }
+    } catch (error) {
+      alert.error("Ошибка при получении данных о корзине:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (token !== null) {
+      cartFromServer();
+    }
+  }, [token]);
 
   const handleUpdateTotals = () => {
     const updatedShippingInfo = {
