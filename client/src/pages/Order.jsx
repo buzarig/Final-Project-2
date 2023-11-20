@@ -11,6 +11,7 @@ function Order() {
   const numeriсOorderNo = +orderNo;
 
   useEffect(() => {
+    window.scrollTo(0, 100);
     async function fetchOrders() {
       try {
         const response = await api.get(`/orders/${numeriсOorderNo}`);

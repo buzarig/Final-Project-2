@@ -152,11 +152,8 @@ function Header() {
                 </Link>
               </li>
               <li className="account">
-                {/* <Link onClick={() => redirectAccount()}>
-                  <img src="../../assets/icons/Icon-account.png" alt="" />
-                </Link> */}
                 <button type="submit" onClick={() => redirectAccount()}>
-                  <img src="../../assets/icons/Icon-account.png" alt="" />
+                  <img src={accountIcon} alt="" />
                 </button>
               </li>
             </ul>

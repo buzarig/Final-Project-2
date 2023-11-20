@@ -45,10 +45,8 @@ function Checkout() {
   const [activePayment, setActivePayment] = useState("PayPal");
   const productsArray = useSelector((state) => state.cart.cartProducts);
   const adress = useSelector((state) => state.shippingInfo);
-  const userInfo = useSelector((state) => state.customerReducer.customer);
   const token = useSelector((state) => state.token.accessToken);
   const dispatch = useDispatch();
-   const customerId = userInfo._id;
 
   const [selectedPromo, setSelectedPromo] = useState("");
   const promoData = [
@@ -66,13 +64,12 @@ function Checkout() {
     }
   ];
 
-  const headers = {
-    Authorization: token
-  };
-
   useEffect(() => {
     dispatch(requestUserInfo(token));
-  });
+  }, [dispatch, token]);
+
+  const userInfo = useSelector((state) => state.customerReducer.customer);
+  const customerId = userInfo._id;
 
   const {
     control,
