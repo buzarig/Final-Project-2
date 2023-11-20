@@ -18,6 +18,7 @@ function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let isToggledSearch = useSelector((state) => state.search.searchToggle);
+  const products = useSelector((state) => state.cart.cartProducts);
   const [searchQuery, setSearchQuery] = useState("");
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -145,6 +146,9 @@ function Header() {
               <li className="cart">
                 <Link to="cart">
                   <img src={cartIcon} alt="" />
+                  {products.length > 0 && (
+                    <p className="cart__counter">{products.length}</p>
+                  )}
                 </Link>
               </li>
               <li className="account">
@@ -161,6 +165,7 @@ function Header() {
               <Link to="cart">
                 <img src={cartIcon} alt="" />
               </Link>
+              {products.length > 0 && <p>{products.length}</p>}
             </li>
             <button
               id="menu-hamburger-btn"
