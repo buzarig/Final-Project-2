@@ -2,7 +2,7 @@
   "name": "final_project",
   "private": true,
   "version": "0.0.0",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "dev": "vite",
