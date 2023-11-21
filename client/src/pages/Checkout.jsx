@@ -69,8 +69,10 @@ function Checkout() {
   };
 
   useEffect(() => {
-    dispatch(requestUserInfo(token));
-  });
+    if (token) {
+      dispatch(requestUserInfo(token));
+    }
+  }, [dispatch, token]);
 
   const {
     control,

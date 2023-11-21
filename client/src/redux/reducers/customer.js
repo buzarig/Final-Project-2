@@ -12,7 +12,7 @@ function customerReducer(state = initialState, action = {}) {
       };
     case types.REMOVE_USER_INFO:
       return {
-        customer: {}
+        state
       };
     default:
       return state;
