@@ -3,53 +3,67 @@
   margin-top: 50px;
   margin-bottom: 100px;
   max-width: 1240px;
-  .flex-shop {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    width: 100%;
-    .title-shop {
-      font-family: "DM Sans", sans-serif;
-      font-size: 33px;
-      font-style: normal;
-      font-weight: 500;
-      margin-bottom: 16px;
-      margin-right: 10px;
-    }
+}
 
-    .shop-link {
-      color: #a18a68;
-      font-family: "DM Sans", sans-serif;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 26px;
-      text-transform: capitalize;
-      text-align: left;
-    }
-  }
+.flex-shop {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+}
 
+.title-shop {
+  font-family: "DM Sans", sans-serif;
+  font-size: 33px;
+  font-style: normal;
+  font-weight: 500;
+  margin-bottom: 16px;
+  margin-right: 10px;
+}
+
+.shop-link {
+  color: #A18A68 !important;
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px;
+}
+
+.product-card {
+  width: calc(33.33% - 20px);
+}
+
+@media (max-width: 768px) {
   .cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 20px;
-
-    .product-card {
-      width: calc(33.33% - 20px);
-      @media (max-width: 768px) {
-        width: calc(50% - 20px);
-      }
-    }
-
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .flex-shop{
+    width: 320px;
+    margin: 0 auto;
   }
 
-  @media screen and (min-width: 320px) and (max-width: 767px) {
-    .container {
-      max-width: 650px;
-    }
+  .title-shop {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .shop-link {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 650px;
   }
 }
 
@@ -83,6 +97,7 @@
         object-fit: cover;
         border-radius: 4px 4px 0 0;
       }
+
       &:hover .icons-container {
         display: flex;
       }
@@ -121,7 +136,6 @@
       font-size: 20px;
       color: #000000;
       margin: 10px;
-      height: 40px;
     }
 
     .jewelry-card-price {
@@ -143,25 +157,46 @@
   }
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
+    .cards-container {
+      width: 320px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
     .jewelry-card {
       text-align: left;
       background-color: #fff;
-      min-height: 200px;
-      min-width: 200px;
+      min-height: 136px;
+      min-width: 136px;
+      padding: 10px;
 
       .jewelry-card-pic {
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        height: 136px;
+        object-fit: cover;
+        border-radius: 4px;
       }
 
       .jewelry-card-title {
-        height: 20px;
-        width: 250px;
-        margin-bottom: 10px;
+        width: 100%;
+        height: 25px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        margin: 10px 5px;
+        padding: 3px;
       }
 
       .jewelry-card-price {
-        margin-top: 10px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        margin: 10px 5px;
+        padding: 3px;
       }
     }
   }

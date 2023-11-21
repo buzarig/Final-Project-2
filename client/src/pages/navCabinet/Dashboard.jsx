@@ -44,15 +44,22 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <p className="dashboard text">
-        Hello {userName} (not {userName}?
-        <span>
-          {" "}
-          <button type="submit" className="btn-links" onClick={handleOpenModal}>
-            Log out
-          </button>
-        </span>
-        ) From your account dashboard you can view your
+      <div className="dashboard-text">
+        <p className="dashboard-title">
+          Hello {userName} (not {userName}?
+          <span>
+            {" "}
+            <button
+              type="submit"
+              className="btn-links"
+              onClick={handleOpenModal}
+            >
+              Log out
+            </button>{" "}
+          </span>
+          )
+        </p>
+        From your account dashboard you can view your
         <span className="dashboard links">
           {" "}
           <Link to="/cabinet/orders">recent orders</Link>
@@ -63,7 +70,7 @@ function Dashboard() {
           <Link to="/cabinet/accountDetails">password and account details</Link>
         </span>{" "}
         .
-      </p>
+      </div>
       <ModalLogout isOpen={isModalOpen} closeModal={handleCloseModal} />
     </div>
   );
