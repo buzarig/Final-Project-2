@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -171,7 +171,7 @@ function AccountDetails() {
   const handleChangePassword = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.put(
+      await api.put(
         "/customers/password",
         {
           password: currentPassword,
@@ -183,9 +183,6 @@ function AccountDetails() {
           }
         }
       );
-      if (response.status === 200) {
-        const customer = response.data;
-      }
     } catch (error) {
       console.error("Error while updating user password:", error);
     }

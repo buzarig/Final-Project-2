@@ -34,23 +34,6 @@
     }
 
     .main-top_coupon {
-
-      // .coupon-text {
-      //   display: flex;
-      //   font-size: 16px;
-      //   font-weight: 400;
-      //   line-height: 27px;
-      //   text-align: left;
-      //   color: #707070;
-      //   margin-bottom: 20px;
-
-      //   .login-mark-text {
-      //     margin-left: 5px;
-      //     color: #000000;
-      //     cursor: pointer;
-      //   }
-      // }
-
       .coupon-box {
         width: 580px;
         height: 181px;
@@ -86,7 +69,7 @@
               font-size: 16px;
               font-style: normal;
               font-weight: 400;
-              line-height: 27px; /* 168.75% */
+              line-height: 27px;
             }
           }
 
@@ -163,7 +146,6 @@
 
       .order_product-box {
         background: var(--light-colors-light-gray-light, #EFEFEF);
-        //background: rgba(134, 134, 134, 0.34);
         padding: 60px;
         font-size: 16px;
         font-weight: 400;

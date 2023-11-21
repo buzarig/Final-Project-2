@@ -8,7 +8,6 @@ module.exports = async () => {
     return configs;
   } catch (error) {
     console.error("Error fetching global configs:", error);
-    // Можете обработать ошибку здесь или пробросить ее выше
     throw error;
   }
 };

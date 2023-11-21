@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -62,7 +61,6 @@ function ProductCard({
       itemNo,
       cardUrl
     };
-    console.log(selectedProductCart);
     dispatch(addProductToCart(selectedProductCart, 1, token));
     navigate("/cart");
   };
