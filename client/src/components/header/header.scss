@@ -145,12 +145,30 @@
           justify-content: space-between;
           align-items: center;
           li {
+            position: relative;
             margin-left: 48px;
             button {
               background: rgb(255, 255, 255);
             }
             img {
               width: 20px;
+            }
+            p {
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-family: "DMSans", sans-serif;
+              font-size: 14px;
+              font-weight: 500;
+              color: #ffffff;
+              top: 15px;
+              right: -16px;
+              border-radius: 50%;
+              
+              background-color: #a18a68;
+              width: 18px;
+              height: 18px;
             }
           }
         }
@@ -197,6 +215,9 @@
         }
       }
     }
+  }
+  .search-bar {
+    display: none;
   }
 }
 
@@ -291,9 +312,26 @@
           }
           .menu-cart {
             display: block;
+            position: relative;
             margin-right: 16px;
             img {
               width: 25px;
+            }
+            p {
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-family: "DMSans", sans-serif;
+              font-size: 14px;
+              font-weight: 500;
+              color: #ffffff;
+              top: 15px;
+              right: -16px;
+              border-radius: 50%;
+              background-color: #a18a68;
+              width: 18px;
+              height: 18px;
             }
           }
 

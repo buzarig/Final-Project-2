@@ -14,6 +14,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToCart } from "../../redux/actions/cartActions";
 
+import cartIcon from "../../assets/icons/shopping-cart 1.svg";
+import eyeIcon from "../../assets/icons/eye-svgrepo-com 1.svg";
+
 import "./ProductCard.scss";
 
 function ProductCard({
@@ -91,16 +94,10 @@ function ProductCard({
                   onClick={handleAddToCart}
                   disabled={quantity === 0}
                 >
-                  <img
-                    src="../../assets/icons/shopping-cart 1.svg"
-                    alt="shopping-icon"
-                  />
+                  <img src={cartIcon} alt="shopping-icon" />
                 </button>
                 <button className="icon" type="submit" onClick={handleClick}>
-                  <img
-                    src="../../assets/icons/eye-svgrepo-com 1.svg"
-                    alt="eye-icon"
-                  />
+                  <img src={eyeIcon} alt="eye-icon" />
                 </button>
               </div>
             )}

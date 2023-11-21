@@ -5,7 +5,8 @@ import {
   REMOVE_PRODUCT,
   ADD_PRODUCT,
   INCREASE_COUNT,
-  DECREASE_COUNT
+  DECREASE_COUNT,
+  CLEAR
 } from "../actions/cartActions";
 
 import api from "../../http/api";
@@ -82,17 +83,44 @@ const decreaseFromServer = async (data) => {
   }
 };
 
+const clearCartFromServer = async (data) => {
+  try {
+    const headers = {
+      Authorization: data.payload.token
+    };
+
+    const response = await api.delete(`/cart`, {
+      headers
+    });
+
+    if (response.status === 200) {
+      console.log("Cart empty.");
+    } else {
+      console.log("An error occurred while emptying the trash.");
+    }
+  } catch (error) {
+    console.error("An error occurred while emptying the trash:", error);
+  }
+};
+
 const cartReducer = (state = initState, action = {}) => {
   switch (action.type) {
     case PRODUCTS_FROM_SERVER: {
       const { products } = action.payload;
 
-      console.log(products);
+      const isProductInCart = (productId) => {
+        return state.cartProducts.some((item) => item.product.id === productId);
+      };
+
+      const newProducts = products.filter(
+        (product) => !isProductInCart(product.product.id)
+      );
+
       return {
         ...state,
         cartProducts: [
           ...state.cartProducts,
-          ...products.map((product) => ({
+          ...newProducts.map((product) => ({
             product: product.product,
             cartQuantity: product.cartQuantity
           }))
@@ -192,6 +220,16 @@ const cartReducer = (state = initState, action = {}) => {
             : product
         )
       };
+    }
+    case CLEAR: {
+      const { token } = action.payload;
+      if (token) {
+        clearCartFromServer({
+          action: CLEAR,
+          payload: { token }
+        });
+      }
+      return initState;
     }
     default:
       return state;
