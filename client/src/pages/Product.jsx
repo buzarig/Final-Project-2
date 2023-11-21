@@ -127,6 +127,12 @@ function Products() {
         console.log("Данные успешно отправлены на сервер");
 
         await fetchReviewData();
+
+        setReviewText("");
+        setReviewerName("");
+        setReviewerEmail("");
+        setNameValidation("");
+        setEmailValidation("");
       } else {
         console.log("Произошла ошибка при отправке данных на сервер.");
       }
