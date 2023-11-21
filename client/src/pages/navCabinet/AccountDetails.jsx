@@ -210,7 +210,7 @@ function AccountDetails() {
             <div className="account-details_title">Account Details</div>
             <div>
               <Box
-                className="add-reviews__name"
+                className="add-reviews name"
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -229,6 +229,7 @@ function AccountDetails() {
                 }}
               >
                 <input
+                  className="input-details"
                   style={inputStyle}
                   type="text"
                   placeholder="First name*"
@@ -259,6 +260,7 @@ function AccountDetails() {
                 }}
               >
                 <input
+                  className="input-details"
                   style={inputStyle}
                   type="text"
                   placeholder="Last Name*"
@@ -288,6 +290,7 @@ function AccountDetails() {
                 }}
               >
                 <input
+                  className="input-details"
                   style={inputStyle}
                   type="text"
                   placeholder="Display name*"
@@ -322,6 +325,7 @@ function AccountDetails() {
                 }}
               >
                 <input
+                  className="input-details"
                   style={inputStyle}
                   type="text"
                   placeholder="Email address*"
@@ -343,7 +347,7 @@ function AccountDetails() {
             <div className="account-details_title">Password change</div>
             <div>
               <Box
-                className="add-reviews"
+                className="password-title"
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -362,6 +366,7 @@ function AccountDetails() {
                 }}
               >
                 <input
+                  className="input-details"
                   style={inputStyle}
                   type="password"
                   placeholder="Current password (leave blank to leave unchanged)"
@@ -372,7 +377,7 @@ function AccountDetails() {
                 {passwordValidation && <span className="error-message">*</span>}
               </Box>
               <Box
-                className="add-reviews"
+                className="password-title"
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -391,6 +396,7 @@ function AccountDetails() {
                 }}
               >
                 <input
+                  className="input-details"
                   style={inputStyle}
                   type="password"
                   placeholder="New password (leave blank to leave unchanged)"
@@ -403,7 +409,7 @@ function AccountDetails() {
             </div>
             <div>
               <Box
-                className="add-reviews"
+                className="password-title"
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -422,6 +428,7 @@ function AccountDetails() {
                 }}
               >
                 <input
+                  className="input-details"
                   style={inputStyle}
                   type="password"
                   placeholder="Confirm new password"

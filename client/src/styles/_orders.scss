@@ -1,5 +1,5 @@
 .orders-block {
-  width: 1240px;
+  width: 100%;
   padding: 25px;
   display: flex;
   justify-content: space-between;
@@ -155,7 +155,25 @@
                 font-style: normal;
                 font-weight: 400;
                 line-height: 20px;
-                }
             }
         }
+    }
+
+    .orders-block{
+        width: 300px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        margin:20px 15px 100px;
+        .orders-text{
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+        }
+        .orders-link{
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+        }
+    }
 }
