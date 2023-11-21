@@ -17,8 +17,7 @@ import { clear } from "../redux/actions/cartActions";
 import api from "../http/api";
 
 const customStyles = {
-  // eslint-disable-next-line no-unused-vars
-  control: (provided, state) => ({
+  control: (provided) => ({
     ...provided,
     marginTop: 32,
     border: "none",
@@ -27,13 +26,11 @@ const customStyles = {
     fontFamily: "DM Sans, sans-serif",
     color: "#9a9a9a"
   }),
-  // eslint-disable-next-line no-unused-vars
-  valueContainer: (provided, state) => ({
+  valueContainer: (provided) => ({
     ...provided,
     padding: 0
   }),
-  // eslint-disable-next-line no-unused-vars
-  indicatorSeparator: (provided, state) => ({
+  indicatorSeparator: (provided) => ({
     ...provided,
     display: "none"
   })

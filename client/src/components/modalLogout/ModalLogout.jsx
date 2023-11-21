@@ -7,6 +7,8 @@ import Typography from "@mui/material/Typography";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeAccessToken } from "../../redux/actions/tokenActions";
+import { clear } from "../../redux/actions/cartActions";
+import { removeUserInfo } from "../../redux/actions/customer";
 import "./ModalLogout.scss";
 
 const modalStyle = {
@@ -28,6 +30,8 @@ function ModalLogout({ isOpen, closeModal }) {
   const handleLogOut = () => {
     dispatch(removeAccessToken());
     closeModal();
+    dispatch(clear());
+    dispatch(removeUserInfo());
   };
 
   return (

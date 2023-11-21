@@ -367,7 +367,7 @@ function AccountDetails() {
                   className="input-details"
                   style={inputStyle}
                   type="password"
-                  placeholder="Current password (leave blank to leave unchanged)"
+                  placeholder="Current password"
                   autoComplete=""
                   value={currentPassword}
                   onChange={handleCurrentPasswordChange}
@@ -397,7 +397,7 @@ function AccountDetails() {
                   className="input-details"
                   style={inputStyle}
                   type="password"
-                  placeholder="New password (leave blank to leave unchanged)"
+                  placeholder="New password"
                   autoComplete=""
                   value={newPassword}
                   onChange={handleNewPasswordChange}

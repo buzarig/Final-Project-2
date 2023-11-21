@@ -1,17 +1,76 @@
 .account-details_page {
-    width: 100%;
+  width: 1248px;
 }
 
 .flex-blocks {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .form-blocks {
-    width: 500px;
+  width: 500px;
 }
 
 .account-details_title {
+  margin-bottom: 50px;
+  color: #000;
+  font-family: "DM Sans", sans-serif;
+  font-size: 33px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 43px;
+}
+
+.display-info {
+  margin-top: 10px;
+  margin-bottom: 39px;
+  color: #707070;
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.password-title {
+  margin-top: 45px;
+  color: #000;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.submit-btn {
+  height: 53px;
+  width: 50%;
+  border-radius: 4px;
+  background: #000;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 257px;
+  margin-top: 50px;
+}
+
+.color {
+  color: #000;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1399px) {
+  .account-details_page {
+    width: 767px;
+  }
+
+  .form-blocks {
+    width: 300px;
+  }
+
+  .account-details_title {
     margin-bottom: 50px;
     color: #000;
     font-family: "DM Sans", sans-serif;
@@ -19,9 +78,9 @@
     font-style: normal;
     font-weight: 500;
     line-height: 43px;
-}
+  }
 
-.display-info {
+  .display-info {
     margin-top: 10px;
     margin-bottom: 39px;
     color: #707070;
@@ -30,9 +89,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-}
+  }
 
-.password-title {
+  .password-title {
     margin-top: 45px;
     color: #000;
     font-family: "DM Sans", sans-serif;
@@ -40,9 +99,9 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-}
+  }
 
-.submit-btn {
+  .submit-btn {
     height: 53px;
     width: 50%;
     border-radius: 4px;
@@ -55,73 +114,69 @@
     line-height: normal;
     margin-bottom: 257px;
     margin-top: 50px;
-}
-
-.color {
-    color: #000;
+  }
 }
 
 @media (max-width: 768px) {
-    .account-details_page {
-        width: 320px;
-        margin: 20px 0 15px 20px;
-    }
+  .account-details_page {
+    width: 320px;
+  }
 
-    .account-details_title {
-        width: 320px;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 700;
-        margin-bottom: 25px;
-    }
+  .account-details_title {
+    width: 320px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 25px;
+  }
 
-    .form-blocks{
-        width: 320px;
-    }
+  .form-blocks {
+    width: 320px;
+  }
 
-    .flex-blocks {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    
-    .account-details_page input {
-        font-size: 12px !important;
-        font-style: normal;
-        font-weight: 400;
-    }
+  .flex-blocks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-    .display-info{
-        width: 300px;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-    }
+  .account-details_page input {
+    font-size: 12px !important;
+    font-style: normal;
+    font-weight: 400;
+  }
 
-    .css-h8hw3k{
-        width: 285px !important;
-    }
+  .display-info {
+    width: 300px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
 
-    .css-hhp2vy {
-        width: 285px !important;
-    }
+  .css-h8hw3k {
+    width: 285px !important;
+  }
 
-    .css-vy1mxx {
-       width: 285px !important;
-    }
+  .css-hhp2vy {
+    width: 285px !important;
+  }
 
-    .password-title{
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-    }
+  .css-vy1mxx {
+    width: 285px !important;
+  }
 
-    .submit-btn {
-        height: 27px;
-        border-radius: 4px;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        margin: 15px;
-    }
+  .password-title {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .submit-btn {
+    height: 27px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 15px;
+  }
 }

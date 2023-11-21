@@ -23,9 +23,9 @@ function Cabinet() {
   };
   return (
     <div className="wrapper-cabinet">
-      <h3 className="cabinet-title">My Account</h3>
-      <div className="nav-bar">
-        <div className="desktop-cabinet">
+      <div className="cabinet">
+        <h3 className="cabinet-title">My Account</h3>
+        <div className="nav-bar">
           <ul className="cabinet-navbar">
             <li className={currentPage === "dashboard" ? "active" : ""}>
               <Link to="/cabinet/dashboard">Dashboard</Link>
