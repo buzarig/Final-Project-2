@@ -10,7 +10,7 @@ import setAuthToken from "./setAuthToken";
 import setAccessToken from "../../redux/actions/tokenActions";
 import { getUserInfo } from "../../redux/actions/customer";
 import StatusOk from "../statusOk/StatusOk";
-import { productsFromServer } from "../../redux/actions/cartActions";
+import { productsFromServer, clear } from "../../redux/actions/cartActions";
 
 function SignIn() {
   const [showStatus, setShowStatus] = useState(false);
@@ -54,6 +54,7 @@ function SignIn() {
       }
       const dataResponse = response.data;
       setAuthToken(dataResponse.token);
+      dispatch(clear());
       cartFromServer(dataResponse.token);
 
       axios
