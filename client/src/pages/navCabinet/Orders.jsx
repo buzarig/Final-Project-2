@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-console */
@@ -44,12 +45,12 @@ function Orders() {
             <p className="orders-text">ACTIONS</p>
           </li>
           {orders.map((order) => (
-            <li className="orders-list" key={order.id}>
+            <li className="orders-list" key={order._id}>
               <p className="orders-text">{order.orderNo}</p>
               <p className="orders-text">{order.date}</p>
               <p className="orders-text">$ {order.totalSum}</p>
               <p className="orders-text">
-                <Link to={`/orders/${order.id}`} className="orders-link">
+                <Link to={`/order/${order.orderNo}`} className="orders-link">
                   View Order
                 </Link>
               </p>
