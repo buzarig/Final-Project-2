@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 import api from "../../http/api";
 import "./Register.scss";
 import StatusOk from "../statusOk/StatusOk";
+import ChildModal from "../modal/Modal";
 
 function Register() {
-  // const [token, setToken] = useState("");
-
   const {
     control,
     handleSubmit,
@@ -16,10 +16,13 @@ function Register() {
     setError,
     clearErrors
   } = useForm();
-
+  // eslint-disable-next-line no-unused-vars
+  const [emailError, setEmailError] = useState("");
   const [showStatus, setShowStatus] = useState(false);
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
+  // const navigate = useNavigate();
   const password = watch("password");
   const password2 = watch("password2");
 
@@ -41,15 +44,35 @@ function Register() {
             if (!response.data) {
               throw new Error("Network response was not ok");
             }
+
             setShowStatus(true);
+
             setTimeout(() => {
               setShowStatus(false);
-              navigate("/");
-            }, 1000);
+              // navigate("/");
+              setShowModal(true);
+            }, 2000);
+            // setShowModal(true);
           })
           .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.error("Error:", error);
+            if (
+              error.response &&
+              error.response.data &&
+              error.response.data.message &&
+              error.response.data.message.includes("Email already exists")
+            ) {
+              setEmailError("Email is already registered");
+              setError("email", {
+                type: "manual",
+                message: "Email is already registered"
+              });
+            } else {
+              setEmailError("");
+              setError("email", {
+                type: "manual",
+                message: "Email is already registered"
+              });
+            }
           });
       }
     }
@@ -142,7 +165,7 @@ function Register() {
               />
             )}
           />
-          {errors.email && <span>Email is required</span>}
+          {errors.email && <span>{errors.email.message}</span>}
         </div>
         <div className="input_area">
           <Controller
@@ -368,12 +391,31 @@ function Register() {
           />
           {errors.password2 && <span>{errors.password2.message}</span>}
         </div>
-        <div>
-          {showStatus ? <StatusOk /> : null}
-          <button className="submit_register" type="submit">
-            Registration
-          </button>
-        </div>
+
+        {showStatus ? <StatusOk /> : null}
+        <Button
+          className="submit_register"
+          variant="contained"
+          type="submit"
+          sx={{
+            backgroundColor: "black",
+            "&:hover": {
+              backgroundColor: "grey"
+            }
+          }}
+        >
+          Registration
+        </Button>
+
+        {/* Render the ChildModal component based on the showModal state */}
+        <ChildModal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          onNavigate={() => {
+            // handle navigation logic if needed
+            setShowModal(false);
+          }}
+        />
       </form>
     </div>
   );

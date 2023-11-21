@@ -28,8 +28,6 @@ const responsive = {
 };
 
 function CarouselComponent() {
-  const autoSlide = 5000;
-
   const products = [
     {
       title: "Gold big hoops",
@@ -64,7 +62,6 @@ function CarouselComponent() {
         itemClass="carousel-item"
         renderDotsOutside
         autoPlay
-        autoPlaySpeed={autoSlide}
         infinite
       >
         {products.map((product, index) => (

@@ -1,3 +1,4 @@
+import api from "../../http/api";
 import types from "../types";
 
 export function getUserInfo(customer) {
@@ -15,5 +16,22 @@ export function removeUserInfo() {
   };
 }
 
-// собрать данные о юзере с signIn и передать в чекаут! добавить свойство стереть при выходе из акаунта!
-// Собрать дані з корзини (країна, місто..)
+export const requestUserInfo = (token) => async (dispatch) => {
+  const headers = {
+    Authorization: token
+  };
+
+  api
+    .get("/customers/customer", {
+      headers
+    })
+    .then((anotherResponse) => {
+      if (anotherResponse.status === 200) {
+        dispatch(getUserInfo(anotherResponse.data));
+      }
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error("Error:", error);
+    });
+};

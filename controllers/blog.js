@@ -104,7 +104,7 @@ exports.getBlogsByFilters = async (req, res, next) => {
     }
 
     const data = await query
-      .skip(perPage * startPage - perPage)
+      .skip(perPage * (startPage - 1)) // Adjust the calculation for skipping records
       .limit(perPage)
       .sort(sort);
 

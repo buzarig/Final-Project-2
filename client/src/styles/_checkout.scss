@@ -12,7 +12,6 @@
       justify-content: center;
       margin-bottom: 50px;
       margin-top: 50px;
-      font-family: "DM Sans", sans-serif;
       font-size: 33px;
       font-weight: 500;
       line-height: 43px;
@@ -36,21 +35,21 @@
 
     .main-top_coupon {
 
-      .coupon-text {
-        display: flex;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 27px;
-        text-align: left;
-        color: #707070;
-        margin-bottom: 20px;
+      // .coupon-text {
+      //   display: flex;
+      //   font-size: 16px;
+      //   font-weight: 400;
+      //   line-height: 27px;
+      //   text-align: left;
+      //   color: #707070;
+      //   margin-bottom: 20px;
 
-        .login-mark-text {
-          margin-left: 5px;
-          color: #000000;
-          cursor: pointer;
-        }
-      }
+      //   .login-mark-text {
+      //     margin-left: 5px;
+      //     color: #000000;
+      //     cursor: pointer;
+      //   }
+      // }
 
       .coupon-box {
         width: 580px;
@@ -97,20 +96,15 @@
   }
 
   .checkout_main-bottom {
-
-
     display: flex;
-
     .main-bottom_billing {
-
       width: 580px;
-
       .billing_names {
         display: flex;
         flex-direction: column;
 
-
         .billing_textfield-items {
+          padding-top: 20px;
           justify-content: space-between;
           display: flex;
 
@@ -306,4 +300,180 @@
   .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
     color: black;
   }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1399px) {
+  .checkout_page {
+    width: 738px;
+    margin: 0 auto;
+    .checkout_main-top {
+      .main-top_title {
+        justify-content:flex-start;
+        font-size: 20px;
+        margin: 24px 0;
+      }
+      .main-top_login {
+        font-size: 14px;
+      }
+      .main-top_coupon {
+        .coupon-box {
+          width: 738px;
+          height: 100%;
+  
+          .box-title {
+            font-size: 14px;
+            margin: 20px;
+            margin-bottom: 0;
+          }
+  
+          .box-flex-action {
+            margin: 20px;
+          }
+        }
+      }
+    }
+
+    .checkout_main-bottom {
+      justify-content: space-between;
+      .main-bottom_billing {
+        width: 300px;
+        .billing_names {
+  
+          .billing_textfield-items {
+            padding: 0;
+            flex-direction: column;
+            .billing_textfield-item {
+              width: 280px;
+              margin-top: 32px;
+            }
+          }
+  
+          .billing_title {
+            margin-top: 30px;
+            margin-bottom: 0;
+            font-size: 18px;
+          }
+        }
+  
+        .billing_info-items {
+          .billing_info-item {
+            width: 280px;
+          }
+        }
+      }
+  
+      .main-bottom_order {
+        margin: 0;
+        width: 370px;
+        .order_title {
+          font-size: 18px;
+          margin-top: 30px;
+        }
+  
+        .order_product-box {
+          padding: 14px;
+          font-size: 14px;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+
+  .css-1gjbhi8-control, .css-1ko6t5g-control, .css-1nmdiq5-menu{
+  width: 280px;
+}
+
+.css-4cxiow-MuiButtonBase-root-MuiButton-root {
+  width: 280px;
+}
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .checkout_page {
+    width: 290px;
+    margin: 0 15px;
+    .checkout_main-top {
+      .main-top_title {
+        justify-content:flex-start;
+        font-size: 16px;
+        margin: 64px 0 24px 0;
+      }
+      .main-top_login {
+        font-size: 12px;
+      }
+      .main-top_coupon {
+        .coupon-box {
+          width: 290px;
+          height: 100%;
+  
+          .box-title {
+            font-size: 12px;
+            margin: 20px;
+            margin-bottom: 0;
+          }
+  
+          .box-flex-action {
+            height: 110px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+
+    .checkout_main-bottom {
+      display: inline;
+      .main-bottom_billing {
+        width: 280px;
+        .billing_names {
+  
+          .billing_textfield-items {
+            padding: 0;
+            flex-direction: column;
+            .billing_textfield-item {
+              width: 280px;
+              margin-top: 32px;
+            }
+          }
+  
+          .billing_title {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 16px;
+          }
+        }
+  
+        .billing_info-items {
+          .billing_info-item {
+            width: 280px;
+          }
+        }
+      }
+  
+      .main-bottom_order {
+        margin: 0;
+        width: 290px;
+        .order_title {
+          font-size: 16px;
+        }
+  
+        .order_product-box {
+          padding: 14px;
+          font-size: 12px;
+          margin-bottom: 35px;
+        }
+      }
+    }
+  }
+
+  .css-1gjbhi8-control, .css-1ko6t5g-control, .css-1nmdiq5-menu{
+  width: 280px;
+}
+
+.css-4cxiow-MuiButtonBase-root-MuiButton-root {
+  width: 280px;
+}
 }

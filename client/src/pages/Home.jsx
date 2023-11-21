@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -8,14 +9,15 @@ import ProductCard from "../components/productCard/ProductCard";
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const [startPage, setStartPage] = useState(1);
 
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await api.get("/products");
+        const response = await api.get(`/products?perPage=6&startPage=1`);
         if (response.status === 200) {
           const productsData = response.data;
-          setProducts(productsData.slice(0, 6));
+          setProducts(productsData);
         } else {
           console.log("Произошла ошибка при получении данных о продуктах.");
         }
@@ -25,7 +27,7 @@ function Home() {
     }
 
     fetchProducts();
-  }, []);
+  }, [startPage]);
 
   return (
     <div className="container home-page">
@@ -39,18 +41,24 @@ function Home() {
         </Link>
       </div>
       <div className="cards-container">
-        {products.map((product) => (
-          <ProductCard
-            key={product.itemNo}
-            title={product.name}
-            price={product.currentPrice}
-            imageUrl={product.imageUrls[0]}
-            showSaleInfo={false}
-            showButtons
-            itemNo={product.itemNo}
-            cardUrl={product.productUrl}
-          />
-        ))}
+        {Array.isArray(products) && products.length > 0 ? (
+          products.map((product) => (
+            <ProductCard
+              key={product.itemNo}
+              title={product.name}
+              currentPrice={product.currentPrice}
+              previousPrice={product.previousPrice}
+              imageUrl={product.imageUrls[0]}
+              showSaleInfo={false}
+              showButtons
+              itemNo={product.itemNo}
+              cardUrl={product.productUrl}
+              quantity={product.quantity}
+            />
+          ))
+        ) : (
+          <p>No products available</p>
+        )}
       </div>
     </div>
   );

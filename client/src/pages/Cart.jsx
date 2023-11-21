@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import "../styles/_cart.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { Country, State, City } from "country-state-city";
@@ -6,8 +7,10 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import remove from "../assets/images/remove-cart-item.png";
 import close from "../assets/images/close-shipping.png";
+import api from "../http/api";
 
 import {
+  productsFromServer,
   removeProduct,
   decreaseCount,
   increaseCount
@@ -25,6 +28,33 @@ function Cart() {
   const [selectedCity, setSelectedCity] = useState("");
   const [isShippingInfoVisible, setShippingInfoVisible] = useState(true);
   const [postCode, setPostCode] = useState("");
+
+  const cartFromServer = async () => {
+    try {
+      const headers = {
+        Authorization: token
+      };
+
+      const response = await api.get("/cart", {
+        headers
+      });
+
+      if (response.status === 200) {
+        const cart = response.data;
+        dispatch(productsFromServer(cart.products));
+      } else {
+        alert.log("Произошла ошибка при получении данных о корзине.");
+      }
+    } catch (error) {
+      alert.error("Ошибка при получении данных о корзине:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (token !== null) {
+      cartFromServer();
+    }
+  }, [token]);
 
   const handleUpdateTotals = () => {
     const updatedShippingInfo = {
@@ -83,6 +113,7 @@ function Cart() {
                   className="cart__products-item"
                   key={product.product.itemNo}
                 >
+                  {console.log(product)}
                   <img
                     className="cart__products-image"
                     src={product.product.imageUrls[0]}
@@ -287,11 +318,17 @@ function Cart() {
             </p>
           </div>
           <div className="cart__submit">
-            <Link to="/checkout">
-              <button type="submit" className="cart__submit-button">
-                Proceed to Checkout
-              </button>
-            </Link>
+            {products.length > 0 ? (
+              <Link to="/checkout">
+                <button type="submit" className="cart__submit-button">
+                  Proceed to Checkout
+                </button>
+              </Link>
+            ) : (
+              <div className="cart__empty-error">
+                <p className="cart__empty-error-text">Your cart is empty!</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

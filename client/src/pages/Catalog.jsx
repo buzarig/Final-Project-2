@@ -59,7 +59,7 @@ function Catalog() {
   const debouncedSearchTerm = useDebounce(valueSearch, 1000);
 
   useEffect(() => {
-    if (endedProducts > 0) {
+    if (endedProducts > 0 && !debouncedSearchTerm) {
       document.addEventListener("scroll", scrollHandler);
       return function () {
         document.removeEventListener("scroll", scrollHandler);
@@ -109,7 +109,7 @@ function Catalog() {
         )
       );
     }
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, valueSearch]);
 
   function scrollHandler(e) {
     if (
@@ -123,6 +123,7 @@ function Catalog() {
 
   function changeValueInput(e) {
     setCurrentPage(1);
+    dispatch(getAllProducts(products, true, 0));
     setSearchParams(
       (prev) => {
         prev.set("valueSearch", e);
@@ -291,11 +292,13 @@ function Catalog() {
                       )
                     }
                     title={item.name}
-                    price={item.previousPrice || item.currentPrice}
+                    previousPrice={item.previousPrice}
+                    currentPrice={item.currentPrice}
                     imageUrl={item.imageUrls[0]}
                     itemNo={item.itemNo}
                     cardUrl={item.productUrl}
                     key={item.itemNo}
+                    quantity={item.quantity}
                   />
                 ))
               : "More products coming soon"}
