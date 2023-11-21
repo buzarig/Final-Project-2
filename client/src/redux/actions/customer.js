@@ -1,5 +1,5 @@
-import types from "../types";
 import api from "../../http/api";
+import types from "../types";
 
 export function getUserInfo(customer) {
   return {
@@ -28,7 +28,6 @@ export const requestUserInfo = (token) => async (dispatch) => {
     .then((anotherResponse) => {
       if (anotherResponse.status === 200) {
         dispatch(getUserInfo(anotherResponse.data));
-        console.log(anotherResponse.data);
       }
     })
     .catch((error) => {

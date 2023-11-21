@@ -65,9 +65,10 @@ function Checkout() {
   ];
 
   useEffect(() => {
-    dispatch(requestUserInfo(token));
+    if (token) {
+      dispatch(requestUserInfo(token));
+    }
   }, [dispatch, token]);
-
   const userInfo = useSelector((state) => state.customerReducer.customer);
   const customerId = userInfo._id;
 
