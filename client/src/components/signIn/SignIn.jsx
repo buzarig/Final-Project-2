@@ -200,20 +200,6 @@ function SignIn() {
           />
           {errors.password && <span>{errors.password.message}</span>}
         </div>
-        {/* <div className="checkbox"> */}
-        {/*  <Controller */}
-        {/*    name="rememberMe" */}
-        {/*    control={control} */}
-        {/*    defaultValue={false} */}
-        {/*    render={({ field }) => ( */}
-        {/*      // eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        {/*      <label className="checkbox"> */}
-        {/*        <input type="checkbox" {...field} /> */}
-        {/*        Remember Me */}
-        {/*      </label> */}
-        {/*    )} */}
-        {/*  /> */}
-        {/* </div> */}
         {showStatus ? <StatusOk /> : null}
         <Button
           className="submit_signin"

@@ -22,19 +22,15 @@ function Blog() {
           const blog = response.data.data;
           setBlogData(blog);
 
-          // Update query parameters in the address bar
           const searchParams = new URLSearchParams(location.search);
           searchParams.set("category", category);
           searchParams.set("sort", "-date");
 
-          // Replace the current location with the updated query parameters
           window.history.replaceState(
             {},
             "",
             `${location.pathname}?${searchParams.toString()}`
           );
-        } else {
-          console.log("Произошла ошибка при получении данных о продукте.");
         }
       } catch (error) {
         console.error("Ошибка при получении данных о продукте:", error);

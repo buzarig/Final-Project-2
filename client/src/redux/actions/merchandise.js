@@ -47,7 +47,7 @@ export const getFilteredProducts =
         )
       );
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -60,6 +60,6 @@ export const getSearchProducts = (valueSearch) => async (dispatch) => {
       dispatch(getAllProducts(data.data, false, 1));
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

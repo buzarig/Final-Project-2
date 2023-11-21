@@ -4,7 +4,6 @@ const _ = require("lodash");
 exports.addBlog = (req, res, next) => {
   const blogData = _.cloneDeep(req.body);
 
-  console.log(req);
   if (!req.user || !req.user.isAdmin) {
     return res.status(403).json({
       message: "Only admin users can add blogs.",
@@ -104,7 +103,7 @@ exports.getBlogsByFilters = async (req, res, next) => {
     }
 
     const data = await query
-      .skip(perPage * (startPage - 1)) // Adjust the calculation for skipping records
+      .skip(perPage * (startPage - 1))
       .limit(perPage)
       .sort(sort);
 

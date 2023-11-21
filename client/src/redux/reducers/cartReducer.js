@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import {
@@ -31,9 +32,6 @@ const addToServer = async (data) => {
 
     if (response.status === 200) {
       const cart = response.data;
-      console.log("Данные о корзине:", cart);
-    } else {
-      console.log("Произошла ошибка при получении данных о корзине.");
     }
   } catch (error) {
     console.error("Ошибка при получении данных о корзине:", error);
@@ -46,15 +44,9 @@ const removeFromServer = async (data) => {
       Authorization: data.payload.token
     };
 
-    const response = await api.delete(`/cart/${data.payload.productItem._id}`, {
+    await api.delete(`/cart/${data.payload.productItem._id}`, {
       headers
     });
-
-    if (response.status === 200) {
-      console.log("Продукт успешно удален из корзины на сервере.");
-    } else {
-      console.log("Произошла ошибка при удалении продукта из корзины.");
-    }
   } catch (error) {
     console.error("Ошибка при удалении продукта из корзины:", error);
   }
@@ -66,18 +58,9 @@ const decreaseFromServer = async (data) => {
       Authorization: data.payload.token
     };
 
-    const response = await api.delete(
-      `/cart/product/${data.payload.productItem._id}`,
-      {
-        headers
-      }
-    );
-
-    if (response.status === 200) {
-      console.log("Продукт успешно удален из корзины на сервере.");
-    } else {
-      console.log("Произошла ошибка при удалении продукта из корзины.");
-    }
+    await api.delete(`/cart/product/${data.payload.productItem._id}`, {
+      headers
+    });
   } catch (error) {
     console.error("Ошибка при удалении продукта из корзины:", error);
   }
@@ -89,15 +72,9 @@ const clearCartFromServer = async (data) => {
       Authorization: data.payload.token
     };
 
-    const response = await api.delete(`/cart`, {
+    await api.delete(`/cart`, {
       headers
     });
-
-    if (response.status === 200) {
-      console.log("Cart empty.");
-    } else {
-      console.log("An error occurred while emptying the trash.");
-    }
   } catch (error) {
     console.error("An error occurred while emptying the trash:", error);
   }

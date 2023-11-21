@@ -2,7 +2,6 @@ import React from "react";
 import "./OrderSummary.scss";
 import PropTypes from "prop-types";
 
-// function OrderSummary({ id, productName, price, totalSum }) {
 function OrderSummary({ items, totalSum }) {
   return (
     <div className="orderSummary_container">
@@ -49,10 +48,4 @@ OrderSummary.propTypes = {
     })
   ).isRequired
 };
-// OrderSummary.propTypes = {
-//   productName: PropTypes.string.isRequired,
-//   price: PropTypes.number.isRequired,
-//   totalSum: PropTypes.number.isRequired,
-//   id: PropTypes.string.isRequired
-// };
 export default OrderSummary;

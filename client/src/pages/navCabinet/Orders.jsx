@@ -23,8 +23,6 @@ function Orders() {
 
       if (response.status === 200) {
         setOrders(response.data);
-      } else {
-        console.log("Error when retrieving user data:", response.status);
       }
     } catch (error) {
       console.error("Error:", error);

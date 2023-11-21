@@ -18,8 +18,6 @@ function Home() {
         if (response.status === 200) {
           const productsData = response.data;
           setProducts(productsData);
-        } else {
-          console.log("Произошла ошибка при получении данных о продуктах.");
         }
       } catch (error) {
         console.error("Ошибка при получении данных о продуктах:", error);
