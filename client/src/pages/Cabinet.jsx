@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import "react-multi-carousel/lib/styles.css";
 import ModalLogout from "../components/modalLogout/ModalLogout";
 
 function Cabinet() {
@@ -20,31 +21,32 @@ function Cabinet() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
   return (
     <div className="wrapper-cabinet">
-      <h3 className="cabinet-title">My Account</h3>
-      <div className="nav-bar">
-        <ul className="cabinet-navbar">
-          <li className={currentPage === "dashboard" ? "active" : ""}>
-            <Link to="/cabinet/dashboard">Dashboard</Link>
-          </li>
-          <li className={currentPage === "orders" ? "active" : ""}>
-            <Link to="/cabinet/orders">Orders</Link>
-          </li>
-          <li className={currentPage === "accountDetails" ? "active" : ""}>
-            <Link to="/cabinet/accountDetails">Account details</Link>
-          </li>
-          <li>
-            <button
-              type="submit"
-              onClick={handleOpenModal}
-              className="btn-cabinet"
-            >
-              Logout
-            </button>
-          </li>
-        </ul>
+      <div className="cabinet">
+        <h3 className="cabinet-title">My Account</h3>
+        <div className="nav-bar">
+          <ul className="cabinet-navbar">
+            <li className={currentPage === "dashboard" ? "active" : ""}>
+              <Link to="/cabinet/dashboard">Dashboard</Link>
+            </li>
+            <li className={currentPage === "orders" ? "active" : ""}>
+              <Link to="/cabinet/orders">Orders</Link>
+            </li>
+            <li className={currentPage === "accountDetails" ? "active" : ""}>
+              <Link to="/cabinet/accountDetails">Account details</Link>
+            </li>
+            <li>
+              <button
+                type="submit"
+                onClick={handleOpenModal}
+                className="btn-cabinet"
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
       <Outlet />
       <ModalLogout isOpen={isModalOpen} closeModal={handleCloseModal} />

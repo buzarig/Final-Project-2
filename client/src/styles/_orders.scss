@@ -1,5 +1,5 @@
 .orders-block {
-  width: 1240px;
+  width: 100%;
   padding: 25px;
   display: flex;
   justify-content: space-between;
@@ -27,74 +27,165 @@
 }
 
 .orders-list {
-    width: 1240px;
-    list-style: none;
-    padding: 0;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    margin-bottom: 100px;
-    .orders-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0;
-        border-bottom: 1px solid black;
-        margin-bottom: 24px;
+  width: 1240px;
+  list-style: none;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 100px;
+  .orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid black;
 
-        .orders-text {
-            flex: 1;
-            text-align: center;
+    .orders-text {
+      text-transform: uppercase;
+      flex: 1;
+      text-align: center;
 
-            &:first-child {
-                text-align: left;
-            }
+      &:first-child {
+        text-align: left;
+      }
 
-            &:last-child {
-                text-align: right;
-            }
-        }
+      &:last-child {
+        text-align: right;
+      }
     }
+  }
 
-    .orders-list {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0;
-        margin-bottom: 24px;
-        color: #707070;
+  .orders-item {
+    padding: 10px 0;
+    margin-bottom: 24px;
+    color: #707070;
 
-        .orders-text {
-            flex: 1;
-            text-align: center;
-
-            &:first-child {
-                text-align: left;
-            }
-
-            &:last-child {
-                text-align: right;
-            }
-        }
-
-        .orders-link {
-         color: #A18A68;
-         font-family: DM Sans;
-         font-size: 16px;
-         font-style: normal;
-         font-weight: 700;
-         line-height: normal;
-         text-transform: uppercase;
-        }
+    .mobile-orders {
+      display: none;
     }
+    .desktop-orders {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-    .orders-list {
-        margin-bottom: 24px;
-        border-bottom: 1px solid #707070;
+      .orders-text {
+        flex: 1;
+        text-align: center;
+
+        &:first-child {
+          text-align: left;
+        }
 
         &:last-child {
-            margin-bottom: 24px;
+          text-align: right;
         }
+      }
+
+      .orders-link {
+        color: #a18a68;
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+      }
     }
+  }
+
+  .orders-item {
+    padding: 24px 0;
+    border-bottom: 1px solid #d8d8d8;
+    margin: 0;
+
+    &:last-child {
+      border: none;
+    }
+  }
+}
+.orders-block {
+  width: 1248px;
+}
+
+@media screen and (min-width: 767px) and (max-width: 1399px) {
+  .orders-list {
+    width: 767px;
+  }
+  .orders-block {
+    width: 767px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .orders-list {
+    max-width: 318px;
+    .orders-header {
+      display: none;
+    }
+
+    .orders-item {
+      padding: 10px 0;
+      margin-bottom: 24px;
+      color: #707070;
+
+      .mobile-orders {
+        display: block;
+      }
+
+      .desktop-orders {
+        display: none;
+      }
+
+      .mobile-flex_orders {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .orders-text {
+        color: #000;
+        text-transform: uppercase;
+        text-align: left;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        margin-bottom: 24px;
+      }
+
+      .mobile-info {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        margin-bottom: 24px;
+      }
+
+      .orders-link {
+        color: #a18a68;
+        font-family: DM Sans, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .orders-block {
+    width: 300px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 15px 100px;
+    .orders-text {
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+    }
+    .orders-link {
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+    }
+  }
 }
