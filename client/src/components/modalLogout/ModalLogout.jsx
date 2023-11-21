@@ -5,12 +5,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeAccessToken } from "../../redux/actions/tokenActions";
+import { clear } from "../../redux/actions/cartActions";
+import { removeUserInfo } from "../../redux/actions/customer";
 import "./ModalLogout.scss";
 
 function Modal({ isOpen, closeModal }) {
   const dispatch = useDispatch();
   const handleLogOut = () => {
     dispatch(removeAccessToken());
+    dispatch(clear());
+    dispatch(removeUserInfo());
   };
 
   return (

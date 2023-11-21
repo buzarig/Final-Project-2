@@ -41,7 +41,6 @@ function Cart() {
 
       if (response.status === 200) {
         const cart = response.data;
-        console.log(cart);
         dispatch(productsFromServer(cart.products));
       } else {
         alert.log("Произошла ошибка при получении данных о корзине.");
@@ -319,11 +318,17 @@ function Cart() {
             </p>
           </div>
           <div className="cart__submit">
-            <Link to="/checkout">
-              <button type="submit" className="cart__submit-button">
-                Proceed to Checkout
-              </button>
-            </Link>
+            {products.length > 0 ? (
+              <Link to="/checkout">
+                <button type="submit" className="cart__submit-button">
+                  Proceed to Checkout
+                </button>
+              </Link>
+            ) : (
+              <div className="cart__empty-error">
+                <p className="cart__empty-error-text">Your cart is empty!</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
