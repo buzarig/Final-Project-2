@@ -14,7 +14,7 @@ function Home() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await api.get(`/products?perPage=6&startPage=1`);
+        const response = await api.get(`/products?perPage=6&startPage=4`);
         if (response.status === 200) {
           const productsData = response.data;
           setProducts(productsData);
