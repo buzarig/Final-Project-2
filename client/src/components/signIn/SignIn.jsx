@@ -79,7 +79,6 @@ function SignIn() {
       dispatch(setAccessToken(dataResponse.token));
     } catch (error) {
       alert.error("Authentication error:", error);
-
       // eslint-disable-next-line no-alert
       alert("Please, You need to register!");
     }
