@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useParams } from "react-router-dom";
 import OrderDetails from "../components/orderDetails/OrderDetails";
 import OrderSummary from "../components/orderSummary/OrderSummary";
@@ -28,7 +29,7 @@ function Order() {
   }, [numeriсOorderNo]);
   return (
     <div className="container_order">
-      {order && (
+      {order ? (
         <div className="container_order">
           <OrderDetails
             orderNo={order.orderNo}
@@ -51,6 +52,15 @@ function Order() {
             totalSum={order.totalSum}
           />
         </div>
+      ) : (
+        <CircularProgress
+          style={{
+            color: "#a18a68",
+            position: "fixed",
+            bottom: "49vh",
+            right: "49vw"
+          }}
+        />
       )}
     </div>
   );

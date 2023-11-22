@@ -152,12 +152,14 @@ function Checkout() {
       <div className="checkout_page">
         <div className="checkout_main-top">
           <h2 className="main-top_title">Checkout</h2>
-          <p className="main-top_login">
-            Returning Customer?
-            <Link className="login-mark-text" to="/myAccount/signIn">
-              Click here to login
-            </Link>
-          </p>
+          {!token && (
+            <p className="main-top_login">
+              Returning Customer?
+              <Link className="login-mark-text" to="/myAccount/signIn">
+                Click here to login
+              </Link>
+            </p>
+          )}
           <div className="main-top_coupon">
             <div className="coupon-box">
               <h4 className="box-title">
