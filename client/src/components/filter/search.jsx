@@ -7,7 +7,7 @@ const formStyle = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  width: "100%",
+  width: "262px",
   borderBottom: "1px solid #03141215",
   marginTop: "10px",
   marginBottom: "39px",

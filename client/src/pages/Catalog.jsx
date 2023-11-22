@@ -280,31 +280,38 @@ function Catalog() {
             </div>
           )}
           <div className="cards-list">
-            {products.length
-              ? products.map((item) => (
-                  <ProductCard
-                    discount={
-                      item.previousPrice &&
-                      Math.ceil(
-                        ((item.previousPrice - item.currentPrice) /
-                          item.previousPrice) *
-                          100
-                      )
-                    }
-                    title={item.name}
-                    previousPrice={item.previousPrice}
-                    currentPrice={item.currentPrice}
-                    imageUrl={item.imageUrls[0]}
-                    itemNo={item.itemNo}
-                    cardUrl={item.productUrl}
-                    key={item.itemNo}
-                    quantity={item.quantity}
-                  />
-                ))
-              : "More products coming soon"}
+            {products.length ? (
+              products.map((item) => (
+                <ProductCard
+                  discount={
+                    item.previousPrice &&
+                    Math.ceil(
+                      ((item.previousPrice - item.currentPrice) /
+                        item.previousPrice) *
+                        100
+                    )
+                  }
+                  title={item.name}
+                  previousPrice={item.previousPrice}
+                  currentPrice={item.currentPrice}
+                  imageUrl={item.imageUrls[0] && item.imageUrls[0]}
+                  itemNo={item.itemNo}
+                  cardUrl={item.productUrl}
+                  key={item.itemNo}
+                  quantity={item.quantity}
+                />
+              ))
+            ) : (
+              <p
+                className="catalog__information-text"
+                style={{ margin: "0 auto" }}
+              >
+                More products coming soon
+              </p>
+            )}
           </div>
         </div>
-        {endedProducts === 0 && (
+        {endedProducts === 0 && products.length !== 0 && (
           <p className="catalog__information-text">
             At the moment, this is all we have,
             <br />
