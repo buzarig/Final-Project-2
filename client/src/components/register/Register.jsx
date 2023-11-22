@@ -151,17 +151,25 @@ function Register() {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <input
-                className="input"
-                type="email"
-                placeholder="Email"
-                id="email"
-                {...field}
-                required
-              />
+              <div className="input_area">
+                <input
+                  className="input"
+                  type="email"
+                  placeholder="Email"
+                  id="email"
+                  {...field}
+                  required
+                />
+                {errors.email && <span>{errors.email.message}</span>}
+              </div>
             )}
+            rules={{
+              pattern: {
+                value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/,
+                message: "That is not a valid email."
+              }
+            }}
           />
-          {errors.email && <span>{errors.email.message}</span>}
         </div>
         <div className="input_area">
           <Controller
