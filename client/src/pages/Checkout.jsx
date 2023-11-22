@@ -66,7 +66,7 @@ function Checkout() {
       dispatch(requestUserInfo(token));
     }
   }, [dispatch, token]);
-  const userInfo = useSelector((state) => state.customerReducer.customer);
+  const userInfo = useSelector((state) => state.customerReducer.state.customer);
   const customerId = userInfo._id;
 
   const {
