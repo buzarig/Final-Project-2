@@ -35,12 +35,12 @@ export const getFilteredProducts =
           }${checkedSale ? "&previousPrice=*" : ""}${
             checkedStock ? "&inStock=true" : ""
           }&perPage=6&startPage=${currentPage}${
-            sortOptions ? `&sort=${sortOptions}currentPrice` : "&sort=-quantity"
+            sortOptions && `&sort=${sortOptions}currentPrice`
           }`
         )
         .then((response) => response);
       const newProducts = [...new Set([...products, ...data.data.data])];
-      dispatch(
+      await dispatch(
         getAllProducts(
           currentPage === 1 ? data.data.data : newProducts,
           false,
