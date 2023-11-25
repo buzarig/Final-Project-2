@@ -24,7 +24,6 @@ const blogs = require("./routes/blog");
 const shippingMethods = require("./routes/shippingMethods");
 const paymentMethods = require("./routes/paymentMethods");
 const partners = require("./routes/partners");
-// const mainRoute = require('./routes/index');
 
 const app = express();
 

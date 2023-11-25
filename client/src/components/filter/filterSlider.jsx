@@ -3,7 +3,6 @@
 // eslint-disable react/destructuring-assignment
 
 import React from "react";
-import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
@@ -11,7 +10,7 @@ import { styled } from "@mui/material/styles";
 const PriceSlider = styled(Slider)(({ theme }) => ({
   color: "#000",
   width: 262,
-  marginTop: 5,
+  marginTop: 25,
   "& .MuiSlider-thumb": {
     height: 12,
     width: 4,
@@ -48,11 +47,11 @@ function FilterSlider({ value, changeValue }) {
   };
 
   return (
-    <Box sx={{ width: 262, marginTop: 5 }}>
+    <>
       <PriceSlider
         value={value}
-        min={500}
         max={25000}
+        min={500}
         step={10}
         onChangeCommitted={handleChange}
         valueLabelDisplay="auto"
@@ -64,7 +63,7 @@ function FilterSlider({ value, changeValue }) {
       >
         Price: ${value[1]} - $ {value[0]}
       </Typography>
-    </Box>
+    </>
   );
 }
 

@@ -157,7 +157,6 @@ function Header() {
                 </button>
               </li>
             </ul>
-            {/* MENU */}
             <li className="menu-cart">
               <Link to="cart">
                 <img src={cartIcon} alt="" />
@@ -216,7 +215,6 @@ function Header() {
                 </ul>
               </div>
             )}
-            {/* MENU */}
           </div>
         </div>
         <div className="header-wrapper__search">

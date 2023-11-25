@@ -34,23 +34,6 @@
     }
 
     .main-top_coupon {
-
-      // .coupon-text {
-      //   display: flex;
-      //   font-size: 16px;
-      //   font-weight: 400;
-      //   line-height: 27px;
-      //   text-align: left;
-      //   color: #707070;
-      //   margin-bottom: 20px;
-
-      //   .login-mark-text {
-      //     margin-left: 5px;
-      //     color: #000000;
-      //     cursor: pointer;
-      //   }
-      // }
-
       .coupon-box {
         width: 580px;
         height: 181px;
@@ -79,17 +62,16 @@
 
             .promo_select {
               position: absolute;
-              top: 50px;
+              top: 130px;
               left: 20px;
               color: var(--light-colors-black-light, #000);
               font-family: DM Sans, sans-serif;
               font-size: 16px;
               font-style: normal;
               font-weight: 400;
-              line-height: 27px; /* 168.75% */
+              line-height: 27px;
             }
           }
-
         }
       }
     }
@@ -162,8 +144,7 @@
       }
 
       .order_product-box {
-        background: var(--light-colors-light-gray-light, #EFEFEF);
-        //background: rgba(134, 134, 134, 0.34);
+        background: var(--light-colors-light-gray-light, #efefef);
         padding: 60px;
         font-size: 16px;
         font-weight: 400;
@@ -195,7 +176,6 @@
           font-weight: 400;
           line-height: 27px;
           color: #707070;
-
         }
 
         .box-subtotal {
@@ -308,7 +288,7 @@
     margin: 0 auto;
     .checkout_main-top {
       .main-top_title {
-        justify-content:flex-start;
+        justify-content: flex-start;
         font-size: 20px;
         margin: 24px 0;
       }
@@ -319,13 +299,13 @@
         .coupon-box {
           width: 738px;
           height: 100%;
-  
+
           .box-title {
             font-size: 14px;
             margin: 20px;
             margin-bottom: 0;
           }
-  
+
           .box-flex-action {
             margin: 20px;
           }
@@ -338,7 +318,6 @@
       .main-bottom_billing {
         width: 300px;
         .billing_names {
-  
           .billing_textfield-items {
             padding: 0;
             flex-direction: column;
@@ -347,21 +326,21 @@
               margin-top: 32px;
             }
           }
-  
+
           .billing_title {
             margin-top: 30px;
             margin-bottom: 0;
             font-size: 18px;
           }
         }
-  
+
         .billing_info-items {
           .billing_info-item {
             width: 280px;
           }
         }
       }
-  
+
       .main-bottom_order {
         margin: 0;
         width: 370px;
@@ -369,7 +348,7 @@
           font-size: 18px;
           margin-top: 30px;
         }
-  
+
         .order_product-box {
           padding: 14px;
           font-size: 14px;
@@ -379,13 +358,15 @@
     }
   }
 
-  .css-1gjbhi8-control, .css-1ko6t5g-control, .css-1nmdiq5-menu{
-  width: 280px;
-}
+  .css-1gjbhi8-control,
+  .css-1ko6t5g-control,
+  .css-1nmdiq5-menu {
+    width: 280px;
+  }
 
-.css-4cxiow-MuiButtonBase-root-MuiButton-root {
-  width: 280px;
-}
+  .css-4cxiow-MuiButtonBase-root-MuiButton-root {
+    width: 280px;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -394,7 +375,7 @@
     margin: 0 15px;
     .checkout_main-top {
       .main-top_title {
-        justify-content:flex-start;
+        justify-content: flex-start;
         font-size: 16px;
         margin: 64px 0 24px 0;
       }
@@ -405,13 +386,13 @@
         .coupon-box {
           width: 290px;
           height: 100%;
-  
+
           .box-title {
             font-size: 12px;
             margin: 20px;
             margin-bottom: 0;
           }
-  
+
           .box-flex-action {
             height: 110px;
             flex-direction: column;
@@ -429,7 +410,6 @@
       .main-bottom_billing {
         width: 280px;
         .billing_names {
-  
           .billing_textfield-items {
             padding: 0;
             flex-direction: column;
@@ -438,28 +418,28 @@
               margin-top: 32px;
             }
           }
-  
+
           .billing_title {
             margin-top: 30px;
             margin-bottom: 10px;
             font-size: 16px;
           }
         }
-  
+
         .billing_info-items {
           .billing_info-item {
             width: 280px;
           }
         }
       }
-  
+
       .main-bottom_order {
         margin: 0;
         width: 290px;
         .order_title {
           font-size: 16px;
         }
-  
+
         .order_product-box {
           padding: 14px;
           font-size: 12px;
@@ -469,11 +449,13 @@
     }
   }
 
-  .css-1gjbhi8-control, .css-1ko6t5g-control, .css-1nmdiq5-menu{
-  width: 280px;
-}
+  .css-1gjbhi8-control,
+  .css-1ko6t5g-control,
+  .css-1nmdiq5-menu {
+    width: 280px;
+  }
 
-.css-4cxiow-MuiButtonBase-root-MuiButton-root {
-  width: 280px;
-}
+  .css-4cxiow-MuiButtonBase-root-MuiButton-root {
+    width: 280px;
+  }
 }

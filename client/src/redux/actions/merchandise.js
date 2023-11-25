@@ -39,15 +39,16 @@ export const getFilteredProducts =
           }`
         )
         .then((response) => response);
-      dispatch(
+      const newProducts = [...new Set([...products, ...data.data.data])];
+      await dispatch(
         getAllProducts(
-          currentPage === 1 ? data.data.data : [...products, ...data.data.data],
+          currentPage === 1 ? data.data.data : newProducts,
           false,
           data.data.data.length
         )
       );
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -60,6 +61,6 @@ export const getSearchProducts = (valueSearch) => async (dispatch) => {
       dispatch(getAllProducts(data.data, false, 1));
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

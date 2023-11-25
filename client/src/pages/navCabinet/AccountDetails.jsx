@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -82,8 +83,6 @@ function AccountDetails() {
         setUserEmail(dataResponse.email);
         setUserLogin(dataResponse.login);
         setCurrentPassword("");
-      } else {
-        console.log("Error when retrieving user data:", response.status);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -110,7 +109,6 @@ function AccountDetails() {
     const email = e.target.value;
     setUserEmail(email);
     validateEmail(email);
-    console.log(email);
   };
 
   const handleLoginChange = (e) => {
@@ -163,11 +161,7 @@ function AccountDetails() {
         }
       );
       if (response.status === 200) {
-        const customer = response.data;
         setCurrentPassword("");
-        console.log("User data updated:", customer);
-      } else {
-        console.log("An error occurred while updating user data.");
       }
     } catch (error) {
       console.error("Error while updating user data:", error);
@@ -177,7 +171,7 @@ function AccountDetails() {
   const handleChangePassword = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.put(
+      await api.put(
         "/customers/password",
         {
           password: currentPassword,
@@ -189,12 +183,6 @@ function AccountDetails() {
           }
         }
       );
-      if (response.status === 200) {
-        const customer = response.data;
-        console.log("User password updated:", customer);
-      } else {
-        console.log("An error occurred while updating user password.");
-      }
     } catch (error) {
       console.error("Error while updating user password:", error);
     }

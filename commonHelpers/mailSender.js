@@ -21,7 +21,6 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
           : configs.development.email.mailPassword,
     },
   });
-  console.log(transporter);
 
   const mailOptions = {
     from:

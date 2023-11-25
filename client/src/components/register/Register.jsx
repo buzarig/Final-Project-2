@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import api from "../../http/api";
 import "./Register.scss";
@@ -22,7 +21,6 @@ function Register() {
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // const navigate = useNavigate();
   const password = watch("password");
   const password2 = watch("password2");
 
@@ -49,10 +47,8 @@ function Register() {
 
             setTimeout(() => {
               setShowStatus(false);
-              // navigate("/");
               setShowModal(true);
             }, 2000);
-            // setShowModal(true);
           })
           .catch((error) => {
             if (
@@ -407,12 +403,10 @@ function Register() {
           Registration
         </Button>
 
-        {/* Render the ChildModal component based on the showModal state */}
         <ChildModal
           show={showModal}
           onClose={() => setShowModal(false)}
           onNavigate={() => {
-            // handle navigation logic if needed
             setShowModal(false);
           }}
         />

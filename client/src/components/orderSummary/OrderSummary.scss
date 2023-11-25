@@ -9,19 +9,17 @@
     font-weight: 400;
     line-height: 25px;
     margin-bottom: 39px;
-
   }
 
   .orderSummary {
-    //width: 462px;
     width: 580px;
-    background: var(--light-colors-light-gray-light, #EFEFEF);
+    background: var(--light-colors-light-gray-light, #efefef);
     padding: 39px 59px;
 
     .named_OrderSummary {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #D8D8D8;
+      border-bottom: 1px solid #d8d8d8;
       margin-bottom: 22px;
 
       p {
@@ -46,18 +44,18 @@
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
-      line-height: 27px; /* 168.75% */
+      line-height: 27px;
       margin-bottom: 26px;
     }
-
   }
 
-  .data_subtotal, .data_shipping, .data_total {
+  .data_subtotal,
+  .data_shipping,
+  .data_total {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-top: 1px solid #D8D8D8;
-    //margin-bottom: 22px;
+    border-top: 1px solid #d8d8d8;
 
     p {
       color: var(--light-colors-black-light, #000);
@@ -70,8 +68,9 @@
       padding-top: 16px;
     }
 
-    .shipping_data, .sum {
-      color: var(--light-colors-dark-gray-light, #707070)
+    .shipping_data,
+    .sum {
+      color: var(--light-colors-dark-gray-light, #707070);
     }
   }
 }
@@ -96,18 +95,17 @@
       font-style: normal;
       font-weight: 400;
       line-height: 27px;
-
     }
 
     .orderSummary {
       width: 290px;
-      background: var(--light-colors-light-gray-light, #EFEFEF);
+      background: var(--light-colors-light-gray-light, #efefef);
       padding: 20px 16px;
 
       .named_OrderSummary {
         display: flex;
         justify-content: space-between;
-        border-bottom: 1px solid #D8D8D8;
+        border-bottom: 1px solid #d8d8d8;
         margin-bottom: 22px;
 
         p {
@@ -129,14 +127,14 @@
         font-weight: 400;
         line-height: 20px;
       }
-
     }
 
-    .data_subtotal, .data_shipping, .data_total {
+    .data_subtotal,
+    .data_shipping,
+    .data_total {
       display: flex;
       justify-content: space-between;
-      border-top: 1px solid #D8D8D8;
-      //margin-bottom: 22px;
+      border-top: 1px solid #d8d8d8;
 
       p {
         font-size: 12px;
@@ -145,10 +143,10 @@
         line-height: 20px;
       }
 
-      .shipping_data, .sum {
-        color: var(--light-colors-dark-gray-light, #707070)
+      .shipping_data,
+      .sum {
+        color: var(--light-colors-dark-gray-light, #707070);
       }
     }
   }
-
 }

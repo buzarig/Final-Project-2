@@ -61,8 +61,6 @@ function Products() {
       if (response.status === 200) {
         const product = response.data;
         setProductData(product);
-      } else {
-        console.log("Произошла ошибка при получении данных о продукте.");
       }
     } catch (error) {
       console.error("Ошибка при получении данных о продукте:", error);
@@ -77,8 +75,6 @@ function Products() {
         if (response.status === 200) {
           const review = response.data;
           setReviewData(review);
-        } else {
-          console.log("Произошла ошибка при получении данных о продукте.");
         }
       } catch (error) {
         console.error("Ошибка при получении данных о продукте:", error);
@@ -100,7 +96,6 @@ function Products() {
   };
 
   const handleAddToCart = (selectedProduct) => {
-    console.log(selectedProduct);
     dispatch(addProductToCart(selectedProduct, 1, token));
   };
 
@@ -124,11 +119,7 @@ function Products() {
       );
 
       if (response.status === 200) {
-        console.log("Данные успешно отправлены на сервер");
-
         await fetchReviewData();
-      } else {
-        console.log("Произошла ошибка при отправке данных на сервер.");
       }
     } catch (error) {
       console.error("Ошибка при отправке данных на сервер:", error);
@@ -161,7 +152,6 @@ function Products() {
   const handleReviewerNameChange = (e) => {
     const name = e.target.value;
     setReviewerName(name);
-    console.log(name);
     validateName(name);
   };
 

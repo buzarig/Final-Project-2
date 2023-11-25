@@ -30,8 +30,6 @@ function Dashboard() {
       if (response.status === 200) {
         const dataResponse = response.data;
         setUserName(dataResponse.firstName);
-      } else {
-        console.log("Error when retrieving user data:", response.status);
       }
     } catch (error) {
       console.error("Error:", error);

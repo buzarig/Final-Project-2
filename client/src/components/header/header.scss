@@ -106,7 +106,7 @@
           justify-content: space-between;
           align-items: center;
           li {
-            position: relative; /* Необходимо для абсолютного позиционирования ::after псевдоэлемента */
+            position: relative;
             margin-right: 48px;
             font-family: "DM Sans", sans-serif;
             font-size: 16px;
@@ -132,11 +132,11 @@
             &.active::after {
               content: "";
               position: absolute;
-              top: 46px; /* Разместить подчеркивание ниже элемента li */
+              top: 46px;
               left: 0;
               width: 100%;
-              height: 2px; /* Высота подчеркивания */
-              background-color: #000; /* Цвет подчеркивания */
+              height: 2px;
+              background-color: #000;
             }
           }
         }
@@ -165,7 +165,7 @@
               top: 15px;
               right: -16px;
               border-radius: 50%;
-              
+
               background-color: #a18a68;
               width: 18px;
               height: 18px;
@@ -341,7 +341,7 @@
             flex-direction: column;
             align-items: center;
             position: fixed;
-            top: 64%;
+            top: 52%;
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #ffffff;
